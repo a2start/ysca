@@ -1,24 +1,32 @@
 <?php
 
 $currentPage = basename($_SERVER['PHP_SELF'] ?? '');
-$isHome = ($currentPage === 'index.php' || $currentPage === '');
-$isAbout = ($currentPage === 'about.php');
+$isHome = ($currentPage === 'index.php' || $currentPage === 'index.html' || $currentPage === '');
+$isAbout = ($currentPage === 'about.php' || $currentPage === 'about.html');
 $isCoaches = in_array($currentPage, [
     'coach.php', 'coach-detail.php', 'coach-kapil-pratap-singh.php', 
     'coach-lokesh-bharti.php', 'coach-manoj-gupta.php', 'coach-nayan-bhardwaj.php', 
-    'coach-nikhil-yadav.php', 'coach-rajeev-gupta.php', 'coach-suryabhan-singh.php'
+    'coach-nikhil-yadav.php', 'coach-rajeev-gupta.php', 'coach-suryabhan-singh.php',
+    'coach.html', 'coach-detail.html', 'coach-kapil-pratap-singh.html', 
+    'coach-lokesh-bharti.html', 'coach-manoj-gupta.html', 'coach-nayan-bhardwaj.html', 
+    'coach-nikhil-yadav.html', 'coach-rajeev-gupta.html', 'coach-suryabhan-singh.html'
 ]);
 $isPrograms = in_array($currentPage, [
     'our-programs.php', 'program-detail.php', 'program-foundation-cricket.php',
     'program-junior-development.php', 'program-senior-performance.php',
-    'program-professional-coaching.php'
+    'program-professional-coaching.php',
+    'our-programs.html', 'program-detail.html', 'program-foundation-cricket.html',
+    'program-junior-development.html', 'program-senior-performance.html',
+    'program-professional-coaching.html'
 ]);
 $isFacilities = in_array($currentPage, [
     'hostel.php', 'gym.php', 'program-cricket-hostel.php', 'program-gym-fitness.php',
-    'cricket-training.php', 'net-practice.php'
+    'cricket-training.php', 'net-practice.php',
+    'hostel.html', 'gym.html', 'program-cricket-hostel.html', 'program-gym-fitness.html',
+    'cricket-training.html', 'net-practice.html'
 ]);
-$isGallery = ($currentPage === 'photo-gallery.php');
-$isContact = ($currentPage === 'contact.php');
+$isGallery = ($currentPage === 'photo-gallery.php' || $currentPage === 'photo-gallery.html');
+$isContact = ($currentPage === 'contact.php' || $currentPage === 'contact.html');
 ?>
 
 <div class="preloader" id="preloader">
