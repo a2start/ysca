@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="Young Star Cricket Academy">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Young Star Cricket Academy</title>
+        <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/plugins/slick.css">
+        <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+        <link rel="stylesheet" href="assets/css/plugins/aos.css">
+        <link rel="stylesheet" href="assets/css/spacings.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css">
+
+<style>
+.album-section-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+@media (max-width: 768px) {
+    .album-section-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+@media (max-width: 576px) {
+    .album-section-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.album-section-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eef2f6;
+    height: 100%;
+}
+.album-section-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(11, 23, 71, 0.1);
+}
+.album-section-cover {
+    height: 220px;
+    background: #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
+.album-section-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.album-section-card:hover .album-section-cover img {
+    transform: scale(1.04);
+}
+.album-section-cover .no-cover {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 3rem;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+.album-section-badge {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(11, 23, 71, 0.85);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.album-section-content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.album-section-content h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0b1747;
+    margin-bottom: 10px;
+    font-family: 'Philosopher', sans-serif;
+}
+.album-section-content p {
+    font-size: 0.92rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+}
+.album-section-btn {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #e89903;
+    color: #ffffff !important;
+    padding: 11px 22px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(232, 153, 3, 0.2);
+}
+.album-section-btn:hover {
+    background: #cd8202;
+    transform: translateY(-1px);
+}
+.back-to-albums-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0b1747;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transition: color 0.2s;
+}
+.back-to-albums-btn:hover {
+    color: #e89903;
+}
+.album-header-details {
+    margin-bottom: 40px;
+    max-width: 800px;
+}
+.album-header-details p {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.6;
+}
+</style>
+
+    </head>
+    <body>
+             
+<div class="preloader" id="preloader">
+    <div class="ysca-loader-container">
+        <div class="ysca-loader-spinner">
+            <div class="ysca-spinner-ring ysca-ring-outer"></div>
+            <div class="ysca-spinner-ring ysca-ring-inner"></div>
+            <div class="ysca-loader-logo">
+                <img src="assets/images/ysca-logo1.png" alt="Young Star Cricket Academy" width="76" height="76">
+            </div>
+        </div>
+        <div class="ysca-loader-text">
+            <span class="ysca-loader-title">Young Star Cricket Academy</span>
+            <div class="ysca-loader-bar">
+                <div class="ysca-loader-progress"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+(function() {
+    function hideLoader() {
+        var p = document.getElementById('preloader');
+        if (p && !p.classList.contains('loaded')) {
+            p.classList.add('loaded');
+            setTimeout(function() {
+                if (p) p.style.display = 'none';
+            }, 450);
+        }
+    }
+    if (document.readyState === 'complete') {
+        setTimeout(hideLoader, 50);
+    } else {
+        window.addEventListener('load', function() { setTimeout(hideLoader, 150); });
+        document.addEventListener('DOMContentLoaded', function() { setTimeout(hideLoader, 600); });
+        setTimeout(hideLoader, 1500); 
+    }
+})();
+</script>
+
+<header class="zite-header zite-header-page" id="ziteHeader">
+    <div class="zite-header-container">
+        <div class="zite-header-inner">
+
+            <a href="./" class="zite-logo-link" title="Young Star Cricket Academy" aria-label="Young Star Cricket Academy Home">
+                <img src="assets/images/ysca-zite-logo.webp" onerror="this.src='assets/images/ys-logo.png'" alt="Young Star Cricket Academy" class="zite-logo-img" width="170" height="52">
+            </a>
+
+            <nav class="zite-desktop-nav" aria-label="Main Navigation">
+                <div class="zite-nav-item">
+                    <a href="./" class="zite-nav-link ">Home</a>
+                </div>
+
+                <div class="zite-nav-item">
+                    <a href="about" class="zite-nav-link ">About</a>
+                </div>
+
+                <div class="zite-nav-item has-dropdown">
+                    <a href="our-programs" class="zite-nav-link ">
+                        <span>Programs</span>
+                        <svg class="zite-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="zite-dropdown-menu">
+                        <a href="program-foundation-cricket" class="zite-dropdown-link">Foundation Cricket</a>
+                        <a href="program-junior-development" class="zite-dropdown-link">Junior Development</a>
+                        <a href="program-senior-performance" class="zite-dropdown-link">Senior Performance</a>
+                        <a href="program-professional-coaching" class="zite-dropdown-link">Professional Coaching</a>
+                        <a href="hostel" class="zite-dropdown-link">Academy Hostel</a>
+                        <a href="gym" class="zite-dropdown-link">Gym &amp; Fitness</a>
+                    </div>
+                </div>
+
+                <div class="zite-nav-item">
+                    <a href="coach" class="zite-nav-link ">Coaches</a>
+                </div>
+
+                <div class="zite-nav-item has-dropdown">
+                    <a href="hostel" class="zite-nav-link ">
+                        <span>Facilities</span>
+                        <svg class="zite-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="zite-dropdown-menu">
+                        <a href="cricket-training" class="zite-dropdown-link">Cricket Training</a>
+                        <a href="net-practice" class="zite-dropdown-link">Turf Net Practice</a>
+                        <a href="hostel" class="zite-dropdown-link">Academy Hostel</a>
+                        <a href="gym" class="zite-dropdown-link">Gym &amp; Fitness</a>
+                    </div>
+                </div>
+
+                <div class="zite-nav-item">
+                    <a href="photo-gallery" class="zite-nav-link active">Gallery</a>
+                </div>
+
+                <div class="zite-nav-item">
+                    <a href="contact" class="zite-nav-link ">Contact</a>
+                </div>
+
+                <div class="zite-nav-cta-wrap">
+                    <a href="contact?action=trial" class="zite-btn-trial">
+                        BOOK FREE TRIAL
+                    </a>
+                </div>
+            </nav>
+
+            <button type="button" class="zite-mobile-toggle" id="ziteMobileToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="ziteMobileMenu">
+                <svg class="zite-menu-icon icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+                <svg class="zite-menu-icon icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+        </div>
+
+        <div class="zite-mobile-menu" id="ziteMobileMenu">
+            <nav class="zite-mobile-nav">
+                <a href="./" class="zite-mobile-link ">Home</a>
+                
+                <a href="about" class="zite-mobile-link ">About Us</a>
+
+                <div class="zite-mobile-accordion">
+                    <button type="button" class="zite-mobile-accordion-toggle " aria-expanded="false">
+                        <span>Programs</span>
+                        <svg class="zite-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="zite-mobile-sub">
+                        <a href="our-programs" class="zite-mobile-sub-link zite-sub-highlight">
+                            <i class="fas fa-th-large me-2"></i> All Programs Overview
+                        </a>
+                        <a href="program-foundation-cricket" class="zite-mobile-sub-link">Foundation Cricket (U-12)</a>
+                        <a href="program-junior-development" class="zite-mobile-sub-link">Junior Development (U-16)</a>
+                        <a href="program-senior-performance" class="zite-mobile-sub-link">Senior Performance (U-19+)</a>
+                        <a href="program-professional-coaching" class="zite-mobile-sub-link">Professional Coaching</a>
+                        <a href="hostel" class="zite-mobile-sub-link">Academy Cricket Hostel</a>
+                        <a href="gym" class="zite-mobile-sub-link">Gym &amp; Fitness Center</a>
+                    </div>
+                </div>
+
+                <a href="coach" class="zite-mobile-link ">Coaching Faculty</a>
+
+                <div class="zite-mobile-accordion">
+                    <button type="button" class="zite-mobile-accordion-toggle " aria-expanded="false">
+                        <span>Facilities</span>
+                        <svg class="zite-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="zite-mobile-sub">
+                        <a href="our-programs#facilities-section" class="zite-mobile-sub-link zite-sub-highlight">
+                            <i class="fas fa-shield-alt me-2"></i> All Academy Facilities
+                        </a>
+                        <a href="cricket-training" class="zite-mobile-sub-link">Cricket Training Grounds</a>
+                        <a href="net-practice" class="zite-mobile-sub-link">Turf Net Practice</a>
+                        <a href="hostel" class="zite-mobile-sub-link">Residential Hostel</a>
+                        <a href="gym" class="zite-mobile-sub-link">Modern Gym &amp; Fitness</a>
+                    </div>
+                </div>
+
+                <a href="photo-gallery" class="zite-mobile-link active">Photo Gallery</a>
+
+                <a href="contact" class="zite-mobile-link ">Contact &amp; Location</a>
+
+                <div class="zite-mobile-cta-wrap">
+                    <a href="contact?action=trial" class="zite-mobile-btn-trial">
+                        <span>BOOK FREE TRIAL SESSION</span>
+                        <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+    </div>
+</header>
+<div class="zite-mobile-backdrop" id="ziteMobileBackdrop" aria-hidden="true"></div>
+
+<script>
+(function() {
+    function initZiteNavbar() {
+        var header = document.getElementById('ziteHeader');
+        var mobileToggle = document.getElementById('ziteMobileToggle');
+        var mobileMenu = document.getElementById('ziteMobileMenu');
+        var backdrop = document.getElementById('ziteMobileBackdrop');
+        if (!header) return;
+
+        var isFloating = false;
+        function checkScroll() {
+            if (mobileMenu && mobileMenu.classList.contains('is-open')) return;
+            var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollY > 120) {
+                if (!isFloating) {
+                    isFloating = true;
+                    header.classList.add('is-floating');
+                }
+            } else {
+                if (isFloating) {
+                    isFloating = false;
+                    header.classList.remove('is-floating');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        checkScroll();
+
+        function resetMenuScroll() {
+            if (mobileMenu) {
+                mobileMenu.scrollTop = 0;
+            }
+        }
+
+        function openMenu() {
+            if (!mobileMenu || !mobileToggle) return;
+            resetMenuScroll();
+            mobileMenu.classList.add('is-open');
+            mobileToggle.classList.add('is-active');
+            mobileToggle.setAttribute('aria-expanded', 'true');
+            if (backdrop) backdrop.classList.add('is-active');
+            document.body.classList.add('zite-menu-locked');
+
+            if (window.requestAnimationFrame) {
+                requestAnimationFrame(resetMenuScroll);
+            }
+            setTimeout(resetMenuScroll, 30);
+            setTimeout(resetMenuScroll, 150);
+        }
+
+        function closeMenu() {
+            if (!mobileMenu || !mobileToggle) return;
+            mobileMenu.classList.remove('is-open');
+            mobileToggle.classList.remove('is-active');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            if (backdrop) backdrop.classList.remove('is-active');
+            document.body.classList.remove('zite-menu-locked');
+            resetMenuScroll();
+            checkScroll();
+        }
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (mobileMenu.classList.contains('is-open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+        }
+
+        var accordions = document.querySelectorAll('.zite-mobile-accordion-toggle');
+        accordions.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var sub = this.nextElementSibling;
+                if (sub) {
+                    var isSubOpen = sub.classList.contains('is-open');
+                    if (isSubOpen) {
+                        sub.classList.remove('is-open');
+                        this.classList.remove('is-open');
+                        this.setAttribute('aria-expanded', 'false');
+                    } else {
+                        sub.classList.add('is-open');
+                        this.classList.add('is-open');
+                        this.setAttribute('aria-expanded', 'true');
+                    }
+                }
+            });
+        });
+
+        if (backdrop) {
+            backdrop.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeMenu();
+            });
+        }
+
+        var navLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                closeMenu();
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('is-open')) {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener('pageshow', function() {
+            resetMenuScroll();
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024 && mobileMenu && mobileMenu.classList.contains('is-open')) {
+                closeMenu();
+            }
+        }, { passive: true });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initZiteNavbar);
+    } else {
+        initZiteNavbar();
+    }
+})();
+</script>
+             <div id="smooth-wrapper">
+                  <div id="smooth-content">
+                    <main>
+                    <section class="page-hero bg_cover p-r z-1" data-src="assets/images/abt-bg.jpg">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <div class="page-content text-center">
+                                        <h1>Gallery</h1>
+                                        <ul>
+                                            <li><a href="./">Home</a></li>
+                                            <li>Photo Gallery</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                        <div class="row justify-content-center">
+                            <div class="col-xl-8 col-lg-10">
+                                <div class="section-title text-center mb-55">
+                                                                            <h2 class="text-anm">Photo Gallery</h2>
+                                                                    </div>
+                            </div>
+                        </div>
+                        <div class="container">
+
+                                                                                                                                <div class="album-section-grid">
+                                                                                                                                <div class="album-section-card">
+                                                <div class="album-section-cover">
+                                                                                                            <img src="assets/images/g-2.jpg" alt="Training Sessions">
+                                                                                                        <span class="album-section-badge">
+                                                        <i class="far fa-images"></i> 3 Photos                                                    </span>
+                                                </div>
+                                                <div class="album-section-content">
+                                                    <h3>Training Sessions</h3>
+                                                    <p>Our dedicated players training hard at the academy grounds every day.</p>
+                                                    <a href="photo-gallery?album=training-sessions" class="album-section-btn">
+                                                        View Album <i class="fas fa-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                                                                                                                <div class="album-section-card">
+                                                <div class="album-section-cover">
+                                                                                                            <img src="assets/images/g-5.jpg" alt="Match Highlights">
+                                                                                                        <span class="album-section-badge">
+                                                        <i class="far fa-images"></i> 3 Photos                                                    </span>
+                                                </div>
+                                                <div class="album-section-content">
+                                                    <h3>Match Highlights</h3>
+                                                    <p>Best moments from our recent inter-academy matches and tournaments.</p>
+                                                    <a href="photo-gallery?album=match-highlights" class="album-section-btn">
+                                                        View Album <i class="fas fa-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                                                                                                                <div class="album-section-card">
+                                                <div class="album-section-cover">
+                                                                                                            <div class="no-cover">🖼️</div>
+                                                                                                        <span class="album-section-badge">
+                                                        <i class="far fa-images"></i> 0 Photos                                                    </span>
+                                                </div>
+                                                <div class="album-section-content">
+                                                    <h3>Gym</h3>
+                                                    <p>Traninner facilities is available</p>
+                                                    <a href="photo-gallery?album=gym-d3f73949" class="album-section-btn">
+                                                        View Album <i class="fas fa-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                                                            </div>
+                                                            
+                        </div>
+                    </section>
+
+                </main>
+                  <footer class="main-footer footer-v1 pt-50" role="contentinfo">
+                    <div class="container">
+                        <div class="footer-top">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8">
+                                    <div class="section-title text-white mb-25 text-center text-lg-start">
+                                        <h2 style="color:white;">Give Your Child the Right Start in Cricket</h2>
+                                        <p>Join our academy and train with experienced coaches focused on real match performance.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="renvia-button text-lg-end mb-60 text-center">
+                                        <a href="contact" style="background-color: #fea630;" class="theme-btn style-one">Get In Touch <i class="far fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-widget-area pt-50 pb-30">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="footer-widget footer-about-widget mb-40">
+                                        <div class="widget-content">
+                                        <h4 class="widget-title">About the Academy</h4>
+                                            <p>Young Star Cricket Academy is a professional cricket training institute focused on developing young talent through structured coaching, discipline, and real match exposure under experienced coaches.</p>
+                                            <div class="social-box">
+                                                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Young Star Cricket Academy on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                                                <a href="https://www.twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Young Star Cricket Academy on Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                                                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Young Star Cricket Academy on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                                                <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Young Star Cricket Academy on YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="footer-widget footer-nav-widget mb-40 ms-0 ms-lg-5">
+                                        <div class="widget-content">
+                                            <h4 class="widget-title">Quick Links</h4>
+                                            <div class="line-wrap"><span></span><span></span><span></span></div>
+                                            <ul class="widget-nav">
+                                                <li><a href="./">Home</a></li>
+                                                <li><a href="about">About Us</a></li>
+                                                <li><a href="coach">Our Coaches</a></li>
+                                                <li><a href="our-programs">Our Programs</a></li>
+                                                <li><a href="photo-gallery">Photo Gallery</a></li>
+                                                <li><a href="contact">Contact Us</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="footer-widget footer-nav-widget mb-40">
+                                        <div class="widget-content">
+                                            <h4 class="widget-title">Our Programs</h4>
+                                            <div class="line-wrap"><span></span><span></span><span></span></div>
+                                            <ul class="widget-nav">
+                                                <li><a href="program-foundation-cricket">Foundation Cricket Program</a></li>
+                                                <li><a href="program-junior-development">Junior Development Program</a></li>
+                                                <li><a href="program-senior-performance">Senior Performance Program</a></li>
+                                                <li><a href="program-professional-coaching">Professional Coaching Program</a></li>
+                                                <li><a href="cricket-training">Cricket Training</a></li>
+                                                <li><a href="net-practice">Turf Net Practice</a></li>
+                                                <li><a href="hostel">Academy Hostel</a></li>
+                                                <li><a href="gym">Gym &amp; Fitness Center</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="footer-widget footer-newsletter-widget mb-40">
+                                        <div class="widget-content">
+                                            <h4 class="widget-title">Contact Details</h4>
+                                            <div class="line-wrap"><span></span><span></span><span></span></div>
+                                            <br/>
+                                                 <span style="padding: 5px;">
+                                                        <i class="far fa-phone-alt" style="
+                                                           color: #ffffff; border: 1px solid #fea630; padding: 4px; border-radius: 5px; margin-right: 10px; background-color: #fea630;" aria-hidden="true"></i> 
+                                                        <a href="tel:9999999999" style="color: #ffffff;"> 99999 99000, 99999 99001</a>
+                                                </span> <br/>
+                                                <span style="padding: 5px;"><i style="
+                                                        color: #ffffff; border: 1px solid #fea630; padding: 4px; border-radius: 5px; margin-right: 10px; background-color: #fea630;" class="far fa-envelope" aria-hidden="true"></i> <a href="mailto:youngstarcricketacademy123@gmail.com" style="color: #ffffff; font-size:13px;">youngstarcricketacademy123@gmail.com</a></span><br/>
+                                                <span style="padding: 5px; color: #ffffff;"><i style="
+                                                        color: #ffffff; border: 1px solid #fea630; padding: 4px; padding-left: 6px; width: 26px; border-radius: 5px; margin-right: 10px; background-color: #fea630;"
+                                                        class="far fa-map-marker-alt" aria-hidden="true"></i> J-1, Block J, Delta II, Greater Noida, Uttar Pradesh 201310</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="copyright-area">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="copyright-text text-lg-start text-center">
+                                        <p>&copy;All Copyright 2026 by YSCA</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="copyright-link text-lg-end text-center">
+                                        <a href="contact?topic=terms">Terms &amp; Conditions</a>
+                                        <a href="contact?topic=privacy">Privacy Policy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="assets/js/plugins/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"></script>
+        <script>
+        (function () {
+            var lgEl = document.getElementById('lightgallery');
+            if (lgEl && typeof lightGallery === 'function') {
+                lightGallery(lgEl, {
+                    speed: 400,
+                    thumbnail: true,
+                    zoom: true,
+                    download: false,
+                    actualSize: false,
+                    counter: true,
+                    mobileSettings: {
+                        controls: true,
+                        showCloseIcon: true,
+                        download: false
+                    }
+                });
+            }
+        })();
+        </script>
+        <script src="assets/js/plugins/popper.min.js"></script>
+        <script src="assets/js/plugins/bootstrap.min.js"></script>
+        <script src="assets/js/plugins/gsap/gsap.min.js"></script>
+        <script src="assets/js/plugins/gsap/SplitText.min.js"></script>
+        <script src="assets/js/plugins/gsap/ScrollSmoother.min.js"></script>
+        <script src="assets/js/plugins/gsap/ScrollTrigger.min.js"></script>
+        <script src="assets/js/plugins/slick.min.js"></script>
+        <script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/plugins/jquery.waypoints.js"></script>
+        <script src="assets/js/plugins/jquery.counterup.min.js"></script>
+        <script src="assets/js/plugins/aos.js"></script>
+        <script src="assets/js/theme.js"></script>
+    </body>
+</html>
