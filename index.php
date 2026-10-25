@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Young Star Cricket Academy (YSCA) in Greater Noida offers premier professional cricket coaching, floodlit turf nets, hostel accommodation, and gym conditioning.">
+        <meta name="keywords" content="cricket academy, cricket coaching Greater Noida, cricket hostel, cricket turf nets, YSCA cricket, young star cricket academy, best cricket academy in Noida">
+        <meta name="author" content="Young Star Cricket Academy">
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+        <title>Young Star Cricket Academy | Premier Cricket Academy in Greater Noida</title>
+        <link rel="canonical" href="http://localhost/young/">
+        <meta property="og:site_name" content="Young Star Cricket Academy">
+        <meta property="og:title" content="Young Star Cricket Academy | Professional Cricket Coaching in Greater Noida">
+        <meta property="og:description" content="Join Young Star Cricket Academy (YSCA) in Greater Noida for professional coaching, floodlit turf nets, sports conditioning, and residential boarding hostel.">
+        <meta property="og:image" content="http://localhost/young/assets/images/gemini-senior.webp">
+        <meta property="og:url" content="http://localhost/young/">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="en_IN">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Young Star Cricket Academy | Professional Cricket Coaching in Greater Noida">
+        <meta name="twitter:description" content="Join Young Star Cricket Academy (YSCA) in Greater Noida for professional coaching, floodlit turf nets, sports conditioning, and residential boarding hostel.">
+        <meta name="twitter:image" content="http://localhost/young/assets/images/gemini-senior.webp">
+        <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/spacings.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="assets/css/plugins/slick.css" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="assets/css/plugins/aos.css" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css" media="print" onload="this.media='all'">
+        <noscript>
+            <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css">
+            <link rel="stylesheet" href="assets/css/plugins/slick.css">
+            <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+            <link rel="stylesheet" href="assets/css/plugins/aos.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css">
+        </noscript>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "SportsActivityLocation",
+              "@id": "http://localhost/young/#academy",
+              "name": "Young Star Cricket Academy",
+              "alternateName": "YSCA Greater Noida",
+              "url": "http://localhost/young/",
+              "logo": "http://localhost/young/assets/images/ysca-zite-logo.webp",
+              "image": "http://localhost/young/assets/images/gemini-senior.webp",
+              "description": "Young Star Cricket Academy provides premier professional cricket coaching, floodlit natural and astro turf nets, modern sports fitness gym, and residential hostel boarding in Greater Noida.",
+              "telephone": "+91-9999999000",
+              "email": "youngstarcricketacademy123@gmail.com",
+              "priceRange": "₹₹",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "J-1, Block J, Delta II",
+                "addressLocality": "Greater Noida",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "201310",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "28.4744",
+                "longitude": "77.5040"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday"
+                  ],
+                  "opens": "06:00",
+                  "closes": "20:30"
+                }
+              ],
+              "sameAs": [
+                "https://www.facebook.com/",
+                "https://www.twitter.com/",
+                "https://www.linkedin.com/",
+                "https://www.youtube.com/"
+              ]
+            },
+            {
+              "@type": "SportsClub",
+              "@id": "http://localhost/young/#club",
+              "name": "Young Star Cricket Academy",
+              "url": "http://localhost/young/",
+              "sport": "Cricket",
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Cricket Coaching & Development Programs",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Foundation Cricket Program",
+                      "description": "Basic fundamentals, hand-eye coordination, and cricket rules for ages 6-10."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Junior Development Program",
+                      "description": "Technical batting, bowling, fielding drills, and turf net training for ages 10-14."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Senior Performance Program",
+                      "description": "Competitive match simulation, video analysis, and tournament readiness for ages 14-19."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Professional Coaching Program",
+                      "description": "Elite 1-on-1 personalized mentorship for district, state, and national trials."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Academy Hostel Accommodation",
+                      "description": "Full-time residential boarding with nutritious sports meals and 24/7 supervision."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Cricket Fitness & Gym Center",
+                      "description": "Sports-specific strength, conditioning, agility, and injury-prevention training."
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+        </script>
+
+        <style>
+.section-title,
+.ysca-programs-header,
+.ysca-why-header,
+.zite-facilities-overview-sec .text-start,
+.gallery-section-header .section-title {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+.section-title .sub-title,
+.ysca-programs-badge,
+.ysca-why-badge,
+.zite-showcase-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: 12px !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+}
+.section-title h2,
+.ysca-programs-title,
+.ysca-why-title,
+.zite-showcase-title,
+.gallery-section-header h2 {
+  font-family: 'Philosopher', serif !important;
+  font-size: clamp(28px, 3.8vw, 44px) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  color: #0b1747 !important;
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: 14px !important;
+}
+
+.text-white h2,
+.renvia-counter_three h2 {
+  color: #ffffff !important;
+}
+
+.section-title p,
+.ysca-programs-desc,
+.ysca-why-desc,
+.zite-facilities-overview-sec p,
+.zite-showcase-desc,
+.gallery-section-header p {
+  text-align: left !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  color: #475569 !important;
+  max-width: 740px !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 35px !important;
+}
+
+.text-white p,
+.renvia-counter_three p {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+.ysca-filter-bar {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-bottom: 18px !important;
+}
+.psc-title-wrap,
+.psc-title,
+.ysca-why-card-title,
+.ysca-why-card-desc,
+.zite-facility-body,
+.zite-facility-title,
+.zite-facility-desc,
+.renvia-service-card.style-two .content h5,
+.renvia-service-card.style-two .content p {
+  text-align: left !important;
+}
+
+.ysca-why-card-title,
+.zite-facility-title {
+  margin-bottom: 8px !important;
+}
+
+.ysca-why-card-desc,
+.zite-facility-desc {
+  margin-bottom: 14px !important;
+  line-height: 1.6 !important;
+}
+
+.renvia-service-card.style-two .content h5 {
+  font-family: 'Philosopher', serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #0b1747 !important;
+  padding: 12px 14px 2px 14px !important;
+  margin-bottom: 4px !important;
+}
+
+.renvia-service-card.style-two .content p {
+  color: #64748b !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 0 14px !important;
+  margin-bottom: 12px !important;
+}
+
+.renvia-service-card.style-two .renvia-team-item {
+  padding: 0 14px 14px 14px !important;
+}
+
+.yt-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.yt-video {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #000 url('https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg') center/cover no-repeat;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.yt-video::after {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: #fff;
+}
+
+@media(max-width:768px){
+  .yt-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width:480px){
+  .yt-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.custom-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.custom-gallery a {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f1f5f9;
+  box-shadow: 0 4px 15px rgba(11, 23, 71, 0.06);
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.custom-gallery a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(11, 23, 71, 0.12);
+}
+
+.custom-gallery img,
+.custom-gallery a img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.custom-gallery a:hover img {
+  transform: scale(1.05);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .custom-gallery a::after {
+    content: '\f00e';
+    font-family: 'Font Awesome 5 Free', 'Font Awesome 6 Free', 'FontAwesome';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(11, 23, 71, 0.8);
+    backdrop-filter: blur(4px);
+    color: #fea630;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+    z-index: 2;
+  }
+  .custom-gallery a:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .custom-gallery a,
+  .custom-gallery img,
+  .custom-gallery a img {
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-gallery-sec {
+    padding: 45px 0 !important;
+  }
+  .gallery-section-header {
+    margin-bottom: 24px !important;
+  }
+  .custom-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .custom-gallery a,
+  .custom-gallery img,
+  .custom-gallery a img {
+    border-radius: 8px;
+    aspect-ratio: 3 / 2;
+  }
+}
+
+  </style>
+    </head>
+    <body>
+             <?php
+                include_once 'header.php';
+             ?>
+
+      
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <main>
+                   
+
+                <section class="crk-hero" aria-label="Hero Introduction">
+  <div class="crk-hero-media">
+    <img src="assets/images/hero.webp" alt="Cricket Coaching Academy Training" class="crk-hero-poster" width="1920" height="1080" fetchpriority="high">
+    <video class="crk-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/images/hero.webp" src="assets/images/video.mp4" aria-label="Cricket coaching academy training video montage">
+      <source src="assets/images/video.mp4" type="video/mp4">
+      <track kind="captions" src="data:text/vtt,WEBVTT" srclang="en" label="English" default>
+    </video>
+
+  </div>
+    <div class="crk-hero-content">
+      <div class="container">
+        <h1 style="max-width:620px; color:white; font-family:'Philosopher', serif; font-size:clamp(30px, 4.8vw, 54px); font-weight:700; line-height:1.2; margin-bottom:14px;">Professional Cricket Coaching for Future Champions</h1>
+        <p>Train with certified coaches. Limited seats available.</p>
+        <a style="max-width:160px; text-align:center;" href="contact" class="crk-hero-btn" aria-label="Book a free cricket coaching trial">Book Free Trial</a>
+      </div>
+    </div>
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const hero = document.querySelector(".crk-hero");
+  const video = document.querySelector(".crk-hero-video");
+  if (!hero || !video) return;
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+
+  function markVideoActive() {
+    hero.classList.add("is-video-loaded");
+  }
+
+  video.addEventListener("playing", markVideoActive);
+  video.addEventListener("canplay", markVideoActive);
+  video.addEventListener("loadeddata", markVideoActive);
+
+  function tryPlayVideo() {
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.then(function () {
+        markVideoActive();
+      }).catch(function () {
+        video.muted = true;
+        video.play().then(markVideoActive).catch(function () {});
+      });
+    }
+  }
+  tryPlayVideo();
+  window.addEventListener("load", function () {
+    if (video.paused) tryPlayVideo();
+  });
+  const userSignals = ["touchstart", "touchend", "scroll", "click"];
+  function onUserSignal() {
+    if (video.paused) {
+      tryPlayVideo();
+    }
+    userSignals.forEach(function (e) {
+      window.removeEventListener(e, onUserSignal);
+    });
+  }
+  userSignals.forEach(function (e) {
+    window.addEventListener(e, onUserSignal, { passive: true, once: true });
+  });
+
+  document.addEventListener("visibilitychange", function() {
+    if (!document.hidden && video.paused) {
+      tryPlayVideo();
+    }
+  });
+});
+</script>
+
+                    
+                    <section class="renvia-about_one pt-100 pb-20" >
+                        
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                     <div class="renvia-image-box" style="min-height: auto;" data-aos="fade-up" data-aos-duration="1000">
+                                         <img src="assets/images/cric-wel.webp" class="img-fluid" style="border-radius: 20px; width: 100%; display: block;" alt="Welcome to Young Star Cricket Academy" width="500" height="480">
+                                     </div>
+                                 </div>
+                                 <div class="col-xl-8 col-lg-8 col-md-6">
+                                     <div class="renvia-content-box mt-5 mt-xl-0" style="padding-top:15px;">
+                                         <div class="section-title text-start">
+                                             <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">WELCOME TO<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
+                                             <h2 class="text-anm">Young Star Cricket Academy</h2>
+                                         </div>
+                                         <p data-aos="fade-up" data-aos-duration="1000">
+                                         Our coaching programs are carefully designed for different age groups and skill levels. From mastering basic fundamentals to advanced match techniques, each player receives focused training, individual attention, and continuous performance evaluation.
+                                         </p>
+                                         <div class="renvia-features-list">
+                                             <div class="row">
+                                                 <div class="col-12 col-lg-6">
+                                                     <div class="renvia-iconic-left-box style-one mb-15" data-aos="fade-up" data-aos-duration="1000">
+                                                         <div class="icon">
+                                                             <img src="assets/images/i-1.png" alt="Expert Cricket Coaching" width="60" height="51" loading="lazy">
+                                                         </div>
+                                                         <div class="content">
+                                                             <h3 style="max-width: 100%; color: #0b1747; line-height: 1.4; font-size: 20px; font-weight: 700; font-family: 'Philosopher', serif; margin-bottom: 6px;">Expert Cricket Coaching</h3>
+                                                             <p>Professional training focused on skills, discipline, and match readiness.</p>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="col-12 col-lg-6">
+                                                     <div class="renvia-iconic-left-box style-one mb-15" data-aos="fade-up" data-aos-duration="1200">
+                                                         <div class="icon">
+                                                             <img src="assets/images/i-2.png" alt="Building Future Champions" width="60" height="48" loading="lazy">
+                                                         </div>
+                                                         <div class="content">
+                                                             <h3 style="max-width: 100%; color: #0b1747; line-height: 1.4; font-size: 20px; font-weight: 700; font-family: 'Philosopher', serif; margin-bottom: 6px;">Building Future Champions</h3>
+                                                             <p>A structured environment that develops confident and competitive players.</p>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                        
+                                         <p data-aos="fade-up" data-aos-duration="500">
+                                         Guided by certified coaches and experienced trainers, Young Star Cricket Academy prepares players for district, state, and higher-level competitive cricket. We believe in identifying potential early and shaping it through dedication, proper guidance, and professional training methods.
+                                         </p>
+                                         <div class="renvia-button" data-aos="fade-up" data-aos-duration="600">
+                                             <a href="about" class="theme-btn style-one">Know More <i class="fas fa-arrow-right"></i></a>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </section>
+                     <section class="renvia-service_one pb-60" >
+                         <div class="container">
+                             <div class="service-slider" data-aos="fade-down" data-aos-duration="1000">
+                                 <div class="renvia-service-card style-one mb-40">
+                                     <div class="content">
+                                        
+                                         <img src="assets/images/1-1.webp" alt="YSCA Cricket Practice Session" width="370" height="240" loading="lazy">
+                                     </div>
+                                 </div>
+                                 <div class="renvia-service-card style-one mb-40">
+                                     <div class="content">
+                                         
+                                         <img src="assets/images/1-2.webp" alt="YSCA Bowling Masterclass" width="370" height="240" loading="lazy">
+                                     </div>
+                                 </div>
+                                 <div class="renvia-service-card style-one mb-40">
+                                     <div class="content">
+                                        
+                                         <img src="assets/images/1-3.webp" alt="YSCA Batting Stance Drills" width="370" height="240" loading="lazy">
+                                     </div>
+                                 </div>
+                                 <div class="renvia-service-card style-one mb-40">
+                                     <div class="content">
+                                         
+                                         <img src="assets/images/1-4.webp" alt="YSCA Fielding and Catching Drills" width="370" height="240" loading="lazy">
+                                     </div>
+                                 </div>
+                                 <div class="renvia-service-card style-one mb-40">
+                                     <div class="content">
+                                       
+                                         <img src="assets/images/1-5.webp" alt="YSCA Physical Fitness Training" width="370" height="240" loading="lazy">
+                                     </div>
+                                 </div>
+                                  <div class="renvia-service-card style-one mb-40">
+                                     <div class="content">
+                                       
+                                         <img src="assets/images/1-66.webp" alt="YSCA Tournament Match Preparation" width="370" height="240" loading="lazy">
+                                     </div>
+                                 </div>
+
+                             </div>
+                         </div>
+                     </section> 
+
+                    
+                    
+                    <section class="renvia-counter_three pt-115 pb-120" style="background: #0b1747 url('assets/images/counter-bg.jpg') center/cover no-repeat; position: relative;">
+                        <div class="container">
+                            <div class="row align-items-end">
+                                <div class="col-lg-12">
+                                     
+                                     <div class="section-title text-white mb-50">
+                                         <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">OUR TRACK RECORD<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
+                                         <h2 class="text-anm" style="color:white;">Proven Cricket Excellence in Numbers</h2>
+                                         <p>We focus on disciplined training, personal attention, and long-term player development — not just practice sessions.</p>
+                                     </div>
+                                 </div>
+                                
+                             </div>
+                             <div class="row justify-content-center">
+                                 <div class="col-xl-7 col-lg-10">
+                                     <div class="row">
+                                         <div class="col-md-7">
+                                             
+                                             <div class="renvia-text-box mb-30" data-aos="fade-up" data-aos-duration="1000">
+                                                 <ul style="color: white; text-align: left;">
+                                                     <li><i class="fa fa-check"></i> Certified & experienced coaches</li>
+                                                     <li><i class="fa fa-check"></i> Match-focused training, not only net practice</li>
+                                                     <li><i class="fa fa-check"></i> Regular tournaments, trials & match exposure</li>
+                                                     <li><i class="fa fa-check"></i> Strong focus on fitness, discipline & mindset</li>
+                                                 </ul>
+                                             </div>
+                                             <div class="renvia-image" data-aos="fade-up" data-aos-duration="1000">
+                                                 <img src="assets/images/1-1.webp" alt="Young Star Cricket Academy Practice Match" width="350" height="230" loading="lazy">
+                                             </div>
+                                         </div>
+                                         <div class="col-md-5">
+                                             <div class="renvia-image renvia-image-two mt-4 mt-md-0" data-aos="fade-up" data-aos-duration="1000">
+                                                 <img src="assets/images/wh-1.webp" alt="Cricket Player In Match Action" width="280" height="360" loading="lazy">
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                
+                                <div class="col-xl-5 col-lg-10">
+                                    
+                                    <div class="counter-wrapper mt-5 mt-xl-0" data-aos="fade-up" data-aos-duration="1000">
+                                        <div class="row g-md-0">
+                                            <div class="col-md-6 item-border">
+                                                <div class="counter-list">
+                                                     
+                                                    <div class="renvia-counter-item style-three">
+                                                        <div class="content">
+                                                            <div class="counter-number-val"><span class="counter">20</span><span class="symbol">+</span></div>
+                                                            <p style="color:white; font-weight: 300;">Years of Coaching Experience</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="renvia-counter-item style-three">
+                                                        <div class="content">
+                                                            <div class="counter-number-val"><span class="counter">5000</span><span class="symbol">+</span></div>
+                                                            <p style="color:white; font-weight: 300;">Trained Players</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 item-border">
+                                                <div class="counter-wrap">
+                                                    
+                                                    <div class="renvia-counter-item style-three">
+                                                        <div class="content">
+                                                            <div class="counter-number-val"><span class="counter">50</span><span class="symbol">+</span></div>
+                                                            <p style="color:white; font-weight: 300;">District / League Matches Played</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="renvia-counter-item style-three">
+                                                        <div class="content">
+                                                            <div class="counter-number-val"><span class="counter">100</span><span class="symbol">%</span></div>
+                                                            <p style="color:white; font-weight: 300;">Focus on Skill &amp; Discipline</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="ysca-programs-section" id="programs-section">
+                        <div class="container">
+                            
+                            <div class="ysca-programs-header text-start">
+                                <div class="ysca-programs-badge" data-aos="fade-down" data-aos-duration="700">
+                                    <span class="ysca-badge-pulse"></span>
+                                    <i class="fas fa-cricket"></i>
+                                    <span>OUR PROGRAMS</span>
+                                </div>
+                                <h2 class="ysca-programs-title" data-aos="fade-up" data-aos-duration="900">
+                                    Programs for <span class="ysca-gold-text">Every Age &amp; Stage</span>
+                                </h2>
+                                <p class="ysca-programs-desc" data-aos="fade-up" data-aos-duration="1100">
+                                    Structured developmental pathways designed by BCCI &amp; NIS certified coaches — from foundational grassroots fun to high-intensity competitive match excellence, residential hostel boarding, and athletic conditioning.
+                                </p>
+
+                            </div>
+
+                            <div class="ysca-programs-layout-row">
+
+                                <div class="ysca-programs-filter-col" data-aos="fade-right" data-aos-duration="900">
+                                    <div class="ysca-filter-sidebar-sticky">
+                                        <div class="ysca-filter-panel">
+                                            <div class="ysca-filter-panel-header">
+                                                <div class="ysca-filter-panel-icon">
+                                                    <i class="fas fa-layer-group"></i>
+                                                </div>
+                                                <div>
+                                                    <h3 class="ysca-filter-panel-title">Filter Pathways</h3>
+                                                    <span class="ysca-filter-panel-subtitle">Select your age or stage</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="ysca-filter-vertical-list ysca-filter-bar">
+                                                
+                                                <button type="button" class="ysca-filter-btn active" data-filter="grassroots" aria-pressed="true">
+                                                    <div class="yfb-icon"><i class="fas fa-seedling"></i></div>
+                                                    <div class="yfb-content">
+                                                        <span class="yfb-title">Grassroots</span>
+                                                        <span class="yfb-desc">Age 6–10 Yrs &bull; Fundamentals</span>
+                                                    </div>
+                                                    <span class="ysca-filter-count">1</span>
+                                                </button>
+
+                                                
+                                                <button type="button" class="ysca-filter-btn" data-filter="junior" aria-pressed="false">
+                                                    <div class="yfb-icon"><i class="fas fa-medal"></i></div>
+                                                    <div class="yfb-content">
+                                                        <span class="yfb-title">Junior Development</span>
+                                                        <span class="yfb-desc">Age 11–14 Yrs &bull; Match Tactics</span>
+                                                    </div>
+                                                    <span class="ysca-filter-count">1</span>
+                                                </button>
+
+                                                
+                                                <button type="button" class="ysca-filter-btn" data-filter="senior" aria-pressed="false">
+                                                    <div class="yfb-icon"><i class="fas fa-trophy-alt"></i></div>
+                                                    <div class="yfb-content">
+                                                        <span class="yfb-title">Senior Performance</span>
+                                                        <span class="yfb-desc">Age 15–19 Yrs &bull; Ranji Trials</span>
+                                                    </div>
+                                                    <span class="ysca-filter-count">1</span>
+                                                </button>
+
+                                                
+                                                <button type="button" class="ysca-filter-btn" data-filter="masterclass" aria-pressed="false">
+                                                    <div class="yfb-icon"><i class="fas fa-star"></i></div>
+                                                    <div class="yfb-content">
+                                                        <span class="yfb-title">1-on-1 Masterclass</span>
+                                                        <span class="yfb-desc">All Ages &bull; Head Coach Mentorship</span>
+                                                    </div>
+                                                    <span class="ysca-filter-count">1</span>
+                                                </button>
+
+                                                
+                                                <button type="button" class="ysca-filter-btn filter-hostel" data-filter="hostel" aria-pressed="false">
+                                                    <div class="yfb-icon"><i class="fas fa-hotel"></i></div>
+                                                    <div class="yfb-content">
+                                                        <span class="yfb-title">Hostel Boarding</span>
+                                                        <span class="yfb-desc">Residential &bull; Sports Nutrition</span>
+                                                    </div>
+                                                    <span class="ysca-filter-count">1</span>
+                                                </button>
+
+                                                
+                                                <button type="button" class="ysca-filter-btn filter-gym" data-filter="gym" aria-pressed="false">
+                                                    <div class="yfb-icon"><i class="fas fa-dumbbell"></i></div>
+                                                    <div class="yfb-content">
+                                                        <span class="yfb-title">Gym &amp; Conditioning</span>
+                                                        <span class="yfb-desc">Power, Agility &amp; Durability</span>
+                                                    </div>
+                                                    <span class="ysca-filter-count">1</span>
+                                                </button>
+
+                                                
+                                                <button type="button" class="ysca-filter-btn ysca-filter-all-btn" data-filter="all" aria-pressed="false">
+                                                    <div class="yfb-icon"><i class="fas fa-th-large"></i></div>
+                                                    <div class="yfb-content">
+                                                        <span class="yfb-title">All Programs</span>
+                                                        <span class="yfb-desc">Show all 6 developmental stages</span>
+                                                    </div>
+                                                    <span class="ysca-filter-count">6</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ysca-programs-cards-col" data-aos="fade-left" data-aos-duration="900">
+
+                                    <div class="ysca-filter-meta-bar">
+                                        <div class="ysca-filter-status">
+                                            <span class="ysca-status-dot"></span>
+                                            <span class="ysca-filter-status-text">Showing: <strong id="filterCurrentName">Grassroots (6–10 Yrs)</strong> (<span id="filterCurrentCount">1</span> Available)</span>
+                                        </div>
+                                        <div class="ysca-filter-meta-actions">
+                                            <button type="button" class="ysca-filter-reset-btn" id="resetProgramsFilter" style="display: inline-flex;">
+                                                <i class="fas fa-th-large"></i> View All Programs
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row g-4 ysca-programs-grid" id="programsGrid">
+                                        <div class="col-lg-6 col-md-6 col-12 program-grid-item" data-category="grassroots">
+                                            <div class="program-slider-card theme-blue h-100" data-index="0">
+                                                <div class="psc-img-banner">
+                                                    <a href="program-foundation-cricket" aria-label="Foundation Cricket Program Details">
+                                                        <img src="assets/images/gemini-foundation.webp" alt="Foundation Cricket Program" class="psc-card-img" width="360" height="220" loading="lazy">
+                                                    </a>
+                                                    <span class="psc-badge"><i class="far fa-calendar-alt"></i> Age: 6–10 Yrs</span>
+                                                </div>
+                                                <div class="psc-title-wrap">
+                                                    <h3 class="psc-title"><a href="program-foundation-cricket">Foundation Cricket</a></h3>
+                                                    <span class="psc-subtitle">Grassroots &amp; Motor Skills</span>
+                                                </div>
+                                                <ul class="psc-features">
+                                                    <li><i class="fas fa-check-circle"></i> <span>Batting, bowling &amp; fielding fundamentals</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Hand-eye coordination &amp; motor agility</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Confidence building with safety incrediballs</span></li>
+                                                </ul>
+                                                <div class="psc-meta-grid">
+                                                    <div class="psc-meta-item">
+                                                        <i class="far fa-clock"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Schedule</span>
+                                                            <span class="psc-meta-val">3–4 Days / Wk</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="psc-meta-item">
+                                                        <i class="fas fa-bullseye"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Core Goal</span>
+                                                            <span class="psc-meta-val">Fundamentals</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="psc-batch-alert">
+                                                    <span class="psc-pulse-dot"></span>
+                                                    <span>Batches Active &bull; 1:12 Coach Ratio</span>
+                                                </div>
+                                                <div class="psc-actions">
+                                                    <a href="program-foundation-cricket" class="btn-psc-details">View Details <i class="fas fa-arrow-right"></i></a>
+                                                    <a href="contact?subject=For+Foundation+Cricket+Program" class="btn-psc-enroll">Enroll Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12 program-grid-item is-hidden" data-category="junior">
+                                            <div class="program-slider-card theme-amber h-100" data-index="1">
+                                                <div class="psc-img-banner">
+                                                    <a href="program-junior-development" aria-label="Junior Development Program Details">
+                                                        <img src="assets/images/gemini-junior.webp" alt="Junior Development Program" class="psc-card-img" width="360" height="220" loading="lazy">
+                                                    </a>
+                                                    <span class="psc-badge"><i class="far fa-calendar-alt"></i> Age: 11–14 Yrs</span>
+                                                </div>
+                                                <div class="psc-title-wrap">
+                                                    <h3 class="psc-title"><a href="program-junior-development">Junior Development</a></h3>
+                                                    <span class="psc-subtitle">Match Tactics &amp; Turf Nets</span>
+                                                </div>
+                                                <ul class="psc-features">
+                                                    <li><i class="fas fa-check-circle"></i> <span>Drive, pull, cut &amp; strokeplay mastery</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Pace seam position &amp; spin revolutions</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Leather ball nets &amp; match simulations</span></li>
+                                                </ul>
+                                                <div class="psc-meta-grid">
+                                                    <div class="psc-meta-item">
+                                                        <i class="far fa-clock"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Schedule</span>
+                                                            <span class="psc-meta-val">5 Days / Wk</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="psc-meta-item">
+                                                        <i class="fas fa-bullseye"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Core Goal</span>
+                                                            <span class="psc-meta-val">Match Skills</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="psc-batch-alert">
+                                                    <span class="psc-pulse-dot"></span>
+                                                    <span>Selection Prep &bull; High Demand</span>
+                                                </div>
+                                                <div class="psc-actions">
+                                                    <a href="program-junior-development" class="btn-psc-details">View Details <i class="fas fa-arrow-right"></i></a>
+                                                    <a href="contact?subject=For+Junior+Development+Program" class="btn-psc-enroll">Join Batch</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12 program-grid-item is-hidden" data-category="senior">
+                                            <div class="program-slider-card theme-crimson h-100" data-index="2">
+                                                <div class="psc-img-banner">
+                                                    <a href="program-senior-performance" aria-label="Senior Performance Program Details">
+                                                        <img src="assets/images/gemini-senior.webp" alt="Senior Performance Program" class="psc-card-img" width="360" height="220" loading="lazy">
+                                                    </a>
+                                                    <span class="psc-badge"><i class="far fa-calendar-alt"></i> Age: 15–19 Yrs</span>
+                                                </div>
+                                                <div class="psc-title-wrap">
+                                                    <h3 class="psc-title"><a href="program-senior-performance">Senior Performance</a></h3>
+                                                    <span class="psc-subtitle">Ranji &amp; District Pathways</span>
+                                                </div>
+                                                <ul class="psc-features">
+                                                    <li><i class="fas fa-check-circle"></i> <span>Biomechanics video review &amp; speed guns</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Pressure match temperament &amp; strategy</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Direct trial nominations for BCCI / State</span></li>
+                                                </ul>
+                                                <div class="psc-meta-grid">
+                                                    <div class="psc-meta-item">
+                                                        <i class="far fa-clock"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Schedule</span>
+                                                            <span class="psc-meta-val">6 Days / Wk</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="psc-meta-item">
+                                                        <i class="fas fa-bullseye"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Core Goal</span>
+                                                            <span class="psc-meta-val">Pro Selection</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="psc-batch-alert">
+                                                    <span class="psc-pulse-dot"></span>
+                                                    <span>Intensive &bull; Assessment Required</span>
+                                                </div>
+                                                <div class="psc-actions">
+                                                    <a href="program-senior-performance" class="btn-psc-details">View Details <i class="fas fa-arrow-right"></i></a>
+                                                    <a href="contact?subject=For+Senior+Performance+Program" class="btn-psc-enroll">Apply Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12 program-grid-item is-hidden" data-category="masterclass">
+                                            <div class="program-slider-card theme-teal h-100" data-index="3">
+                                                <div class="psc-img-banner">
+                                                    <a href="program-professional-coaching" aria-label="Professional Coaching Program Details">
+                                                        <img src="assets/images/zite-professional.jpg" alt="Professional Coaching Program" class="psc-card-img" width="360" height="220" loading="lazy">
+                                                    </a>
+                                                    <span class="psc-badge"><i class="fas fa-star"></i> 1-on-1 Masterclass</span>
+                                                </div>
+                                                <div class="psc-title-wrap">
+                                                    <h3 class="psc-title"><a href="program-professional-coaching">Professional Coaching</a></h3>
+                                                    <span class="psc-subtitle">Elite Individual Mentorship</span>
+                                                </div>
+                                                <ul class="psc-features">
+                                                    <li><i class="fas fa-check-circle"></i> <span>Dedicated 1-on-1 focus with Head Coach</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Bowling machine specialization drills</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Personalized biomechanical corrections</span></li>
+                                                </ul>
+                                                <div class="psc-meta-grid">
+                                                    <div class="psc-meta-item">
+                                                        <i class="far fa-clock"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Schedule</span>
+                                                            <span class="psc-meta-val">Custom Slots</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="psc-meta-item">
+                                                        <i class="fas fa-bullseye"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Core Goal</span>
+                                                            <span class="psc-meta-val">Elite Mastery</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="psc-batch-alert">
+                                                    <span class="psc-pulse-dot"></span>
+                                                    <span>Slots by Appointment Only</span>
+                                                </div>
+                                                <div class="psc-actions">
+                                                    <a href="program-professional-coaching" class="btn-psc-details">View Details <i class="fas fa-arrow-right"></i></a>
+                                                    <a href="contact?subject=For+Professional+Coaching+Program" class="btn-psc-enroll">Book Trial</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12 program-grid-item is-hidden" data-category="hostel">
+                                            <div class="program-slider-card theme-gold h-100" data-index="4">
+                                                <div class="psc-img-banner">
+                                                    <a href="hostel" aria-label="Academy Residential Hostel Details">
+                                                        <img src="assets/images/zite-hostel.jpg" alt="Academy Hostel" class="psc-card-img" width="360" height="220" loading="lazy">
+                                                    </a>
+                                                    <span class="psc-badge"><i class="fas fa-hotel"></i> Residential Hostel</span>
+                                                </div>
+                                                <div class="psc-title-wrap">
+                                                    <h3 class="psc-title"><a href="hostel">Academy Hostel</a></h3>
+                                                    <span class="psc-subtitle">Boarding &amp; Sports Nutrition</span>
+                                                </div>
+                                                <ul class="psc-features">
+                                                    <li><i class="fas fa-check-circle"></i> <span>Furnished rooms next to training turf</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>High-protein sports nutritionist meals</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>24/7 warden, CCTV &amp; academic study hours</span></li>
+                                                </ul>
+                                                <div class="psc-meta-grid">
+                                                    <div class="psc-meta-item">
+                                                        <i class="far fa-clock"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Availability</span>
+                                                            <span class="psc-meta-val">Year-Round</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="psc-meta-item">
+                                                        <i class="fas fa-bullseye"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Core Goal</span>
+                                                            <span class="psc-meta-val">Zero Travel Stress</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="psc-batch-alert">
+                                                    <span class="psc-pulse-dot"></span>
+                                                    <span>Limited Rooms &bull; Early Application</span>
+                                                </div>
+                                                <div class="psc-actions">
+                                                    <a href="hostel" class="btn-psc-details">View Details <i class="fas fa-arrow-right"></i></a>
+                                                    <a href="contact?subject=For+Academy+Hostel" class="btn-psc-enroll">Enquire Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12 program-grid-item is-hidden" data-category="gym">
+                                            <div class="program-slider-card theme-green h-100" data-index="5">
+                                                <div class="psc-img-banner">
+                                                    <a href="gym" aria-label="Gym and Athletic Conditioning Center Details">
+                                                        <img src="assets/images/zite-gym-interior.jpg" alt="Gym & Conditioning" class="psc-card-img" width="360" height="220" loading="lazy">
+                                                    </a>
+                                                    <span class="psc-badge"><i class="fas fa-dumbbell"></i> Fitness &amp; Gym</span>
+                                                </div>
+                                                <div class="psc-title-wrap">
+                                                    <h3 class="psc-title"><a href="gym">Gym &amp; Conditioning</a></h3>
+                                                    <span class="psc-subtitle">Cricket Conditioning</span>
+                                                </div>
+                                                <ul class="psc-features">
+                                                    <li><i class="fas fa-check-circle"></i> <span>Rotational core power, agility &amp; sprint speed</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Shoulder durability &amp; fast twitch reflexes</span></li>
+                                                    <li><i class="fas fa-check-circle"></i> <span>Injury prevention &amp; active rehabilitation</span></li>
+                                                </ul>
+                                                <div class="psc-meta-grid">
+                                                    <div class="psc-meta-item">
+                                                        <i class="far fa-clock"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Schedule</span>
+                                                            <span class="psc-meta-val">Daily Access</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="psc-meta-item">
+                                                        <i class="fas fa-bullseye"></i>
+                                                        <div class="psc-meta-content">
+                                                            <span class="psc-meta-label">Core Goal</span>
+                                                            <span class="psc-meta-val">Peak Fitness</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="psc-batch-alert">
+                                                    <span class="psc-pulse-dot"></span>
+                                                    <span>Certified Strength &amp; Conditioning Mentors</span>
+                                                </div>
+                                                <div class="psc-actions">
+                                                    <a href="gym" class="btn-psc-details">View Details <i class="fas fa-arrow-right"></i></a>
+                                                    <a href="contact?subject=For+Gym+&+Fitness+Center" class="btn-psc-enroll">Join Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12" id="stageHighlightCol">
+                                            <div class="stage-highlight-card" id="stageHighlightCard">
+                                                <div class="shc-header">
+                                                    <span class="shc-badge" id="shcBadge"><i class="fas fa-seedling"></i> Grassroots Pathway</span>
+                                                    <span class="shc-age-pill" id="shcAgePill">Age: 6–10 Yrs</span>
+                                                </div>
+                                                <h3 class="shc-title" id="shcTitle">Grassroots Development Syllabus</h3>
+                                                <p class="shc-desc" id="shcDesc">Designed specifically to ignite cricket passion in young children through play-based biomechanics, safe equipment, and motor coordination drills.</p>
+                                                
+                                                <div class="shc-features-wrap">
+                                                    <h4 class="shc-section-heading"><i class="fas fa-bullseye"></i> Key Stage Milestones</h4>
+                                                    <ul class="shc-milestones" id="shcMilestones">
+                                                        <li><i class="fas fa-check-circle"></i> <span>Foundational grip, balanced stance &amp; swing mechanics</span></li>
+                                                        <li><i class="fas fa-check-circle"></i> <span>Zero-fear training with high-grade safety incrediballs</span></li>
+                                                        <li><i class="fas fa-check-circle"></i> <span>Agility ladders, reaction ball drills &amp; reflex games</span></li>
+                                                        <li><i class="fas fa-check-circle"></i> <span>1:12 Coach-to-student ratio ensuring individualized care</span></li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="shc-batch-info">
+                                                    <div class="shc-batch-item">
+                                                        <i class="far fa-calendar-alt"></i>
+                                                        <div>
+                                                            <span class="shc-b-label">Next Batch Starts</span>
+                                                            <strong class="shc-b-val" id="shcBatchDate">Fresh Intake Every Monday</strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="shc-batch-item">
+                                                        <i class="fas fa-clock"></i>
+                                                        <div>
+                                                            <span class="shc-b-label">Session Timings</span>
+                                                            <strong class="shc-b-val" id="shcTimings">Morning 6:30–8:30 AM | Eve 4:00–6:00 PM</strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="shc-footer-cta">
+                                                    <a href="contact?action=trial&program=grassroots" class="btn-shc-trial" id="shcCtaBtn">
+                                                        <i class="fas fa-cricket"></i> Book 1-Day Free Net Assessment
+                                                    </a>
+                                                    <a href="https://wa.me/919910543666?text=Hi%2C%20I%20want%20to%20know%20more%20about%20the%20grassroots%20cricket%20program" target="_blank" rel="noopener" class="btn-shc-whatsapp" aria-label="Chat on WhatsApp">
+                                                        <i class="fab fa-whatsapp"></i> Chat with Coach
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="ysca-empty-programs" id="noProgramsFound" style="display: none;">
+                                        <div class="empty-icon-wrap">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                        <h3>No programs match this filter</h3>
+                                        <p>Try selecting another age category or view all training pathways.</p>
+                                        <button type="button" class="btn-psc-enroll" id="emptyResetBtn" style="display:inline-flex; width:auto; padding:10px 24px;">
+                                            <i class="fas fa-th-large me-2"></i> View All Programs
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ysca-programs-footer-bar" data-aos="fade-up" data-aos-duration="1000">
+                                <div class="row align-items-center g-4">
+                                    <div class="col-lg-8">
+                                        <div class="ysca-assurance-grid">
+                                            <div class="ysca-assurance-item">
+                                                <i class="fas fa-users-crown"></i>
+                                                <div>
+                                                    <strong>1:12 Coach Ratio</strong>
+                                                    <span>Individual Technical Focus</span>
+                                                </div>
+                                            </div>
+                                            <div class="ysca-assurance-item">
+                                                <i class="fas fa-bolt"></i>
+                                                <div>
+                                                    <strong>10+ Turf Nets</strong>
+                                                    <span>Floodlit Evening Training</span>
+                                                </div>
+                                            </div>
+                                            <div class="ysca-assurance-item">
+                                                <i class="fas fa-video"></i>
+                                                <div>
+                                                    <strong>Video Analytics</strong>
+                                                    <span>Biomechanical Stroke Tracking</span>
+                                                </div>
+                                            </div>
+                                            <div class="ysca-assurance-item">
+                                                <i class="fas fa-award"></i>
+                                                <div>
+                                                    <strong>BCCI Certified</strong>
+                                                    <span>NIS Coaching Mentors</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 text-lg-end text-center">
+                                        <div class="ysca-trial-callout-card">
+                                            <span class="ysca-trial-tag"><i class="fas fa-sparkles"></i> 100% Free Net Trial</span>
+                                            <div class="ysca-trial-title">Evaluate Your Skills With Us</div>
+                                            <a href="contact?action=trial" class="btn-ysca-trial-glow">
+                                                <i class="fas fa-baseball-ball"></i> Book Free Trial Session <i class="far fa-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <script>
+                        (function() {
+                            function ensureProgramFilterInit() {
+                                if (window.jQuery && typeof applyProgramsFilter === 'function') {
+                                    return;
+                                }
+                                var bar = document.querySelector('#programs-section .ysca-filter-bar');
+                                var grid = document.getElementById('programsGrid');
+                                if (!bar || !grid) return;
+
+                                var buttons = bar.querySelectorAll('.ysca-filter-btn');
+                                var items = grid.querySelectorAll('.program-grid-item');
+                                var stageCol = document.getElementById('stageHighlightCol');
+                                var resetBtn = document.getElementById('resetProgramsFilter');
+                                var emptyReset = document.getElementById('emptyResetBtn');
+                                var nameEl = document.getElementById('filterCurrentName');
+                                var countEl = document.getElementById('filterCurrentCount');
+                                var noFoundEl = document.getElementById('noProgramsFound');
+
+                                function setFilter(filterVal, activeBtn) {
+                                    var cat = (filterVal || 'grassroots').toLowerCase().trim();
+                                    buttons.forEach(function(b) { 
+                                        b.classList.remove('active'); 
+                                        b.setAttribute('aria-pressed', 'false');
+                                    });
+                                    if (activeBtn) {
+                                        activeBtn.classList.add('active');
+                                        activeBtn.setAttribute('aria-pressed', 'true');
+                                    } else {
+                                        var targetBtn = bar.querySelector('.ysca-filter-btn[data-filter="' + cat + '"]');
+                                        if (targetBtn) {
+                                            targetBtn.classList.add('active');
+                                            targetBtn.setAttribute('aria-pressed', 'true');
+                                        }
+                                    }
+
+                                    var matchCount = 0;
+                                    items.forEach(function(item) {
+                                        var itemCats = (item.getAttribute('data-category') || '').toLowerCase().split(/\s+/);
+                                        var isMatch = (cat === 'all') || (itemCats.indexOf(cat) !== -1);
+                                        if (isMatch) {
+                                            item.classList.remove('is-hidden', 'is-animating-out');
+                                            item.classList.add('is-animating-in');
+                                            matchCount++;
+                                        } else {
+                                            item.classList.remove('is-animating-in');
+                                            item.classList.add('is-hidden');
+                                        }
+                                    });
+
+                                    if (stageCol) {
+                                        stageCol.style.display = (cat === 'all') ? 'none' : 'block';
+                                    }
+
+                                    var currentBtn = bar.querySelector('.ysca-filter-btn.active');
+                                    if (currentBtn && nameEl) {
+                                        var titleEl = currentBtn.querySelector('.yfb-title') || currentBtn.querySelector('span:first-of-type') || currentBtn;
+                                        var text = (titleEl.textContent || '').replace(/\s*\(\d+\)/g, '').trim();
+                                        nameEl.textContent = text || 'Grassroots (6–10 Yrs)';
+                                    }
+                                    if (countEl) countEl.textContent = matchCount;
+                                    if (resetBtn) {
+                                        resetBtn.innerHTML = (cat === 'all') ? '<i class="fas fa-undo-alt"></i> Reset Filter' : '<i class="fas fa-th-large"></i> View All Programs';
+                                        resetBtn.style.display = (cat === 'all') ? 'none' : 'inline-flex';
+                                    }
+                                    if (noFoundEl) noFoundEl.style.display = (matchCount === 0) ? 'block' : 'none';
+
+                                    if (window.ScrollTrigger) {
+                                        try { window.ScrollTrigger.refresh(); } catch (e) {}
+                                    }
+                                }
+
+                                bar.addEventListener('click', function(e) {
+                                    var btn = e.target.closest('.ysca-filter-btn');
+                                    if (!btn) return;
+                                    e.preventDefault();
+                                    var filterVal = btn.getAttribute('data-filter');
+                                    setFilter(filterVal, btn);
+                                });
+
+                                if (resetBtn) {
+                                    resetBtn.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        var curActive = bar.querySelector('.ysca-filter-btn.active');
+                                        var curFilter = curActive ? curActive.getAttribute('data-filter') : '';
+                                        if (curFilter === 'all') {
+                                            var grassBtn = bar.querySelector('.ysca-filter-btn[data-filter="grassroots"]');
+                                            setFilter('grassroots', grassBtn);
+                                        } else {
+                                            var allBtn = bar.querySelector('.ysca-filter-btn[data-filter="all"]');
+                                            setFilter('all', allBtn);
+                                        }
+                                    });
+                                }
+                                if (emptyReset) {
+                                    emptyReset.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        var allBtn = bar.querySelector('.ysca-filter-btn[data-filter="all"]');
+                                        setFilter('all', allBtn);
+                                    });
+                                }
+                            }
+
+                            if (document.readyState === 'loading') {
+                                document.addEventListener('DOMContentLoaded', ensureProgramFilterInit);
+                            } else {
+                                ensureProgramFilterInit();
+                            }
+                        })();
+                        </script>
+                    </section>
+                    <section class="ysca-why-choose-section" id="why-choose-section">
+                        <div class="container">
+                            <div class="ysca-why-header text-start">
+                                <div class="ysca-why-badge" data-aos="fade-down" data-aos-duration="700">
+                                    <span class="ysca-badge-pulse"></span>
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>THE YSCA ADVANTAGE</span>
+                                </div>
+                                <h2 class="ysca-why-title" data-aos="fade-up" data-aos-duration="900">
+                                    Why Choose <span class="ysca-gold-text">Young Star</span>
+                                </h2>
+                                <p class="ysca-why-desc" data-aos="fade-up" data-aos-duration="1100">
+                                    A high-performance cricket ecosystem combining BCCI &amp; NIS certified coaching, intense match-situation training, limited batch sizes, and world-class developmental pathways.
+                                </p>
+                            </div>
+
+                            <div class="ysca-why-grid">
+
+                                <div class="ysca-why-card theme-blue" data-aos="fade-up" data-aos-duration="800">
+                                    <div class="ysca-why-card-glow"></div>
+                                    <span class="ysca-why-card-num">01</span>
+                                    <div class="ysca-why-icon-box">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h3 class="ysca-why-card-title">Experienced Coaches</h3>
+                                    <p class="ysca-why-card-desc">
+                                        Experienced cricket professionals focused on technical and competitive development. Certified BCCI, ECB Level 2 &amp; NIS coaching mentors with Ranji Trophy and first-class playing pedigree.
+                                    </p>
+                                    <div class="ysca-why-tag">
+                                        <i class="fas fa-award"></i>
+                                        <span>BCCI &amp; ECB Certified Mentors</span>
+                                    </div>
+                                </div>
+                                <div class="ysca-why-card theme-amber" data-aos="fade-up" data-aos-duration="900">
+                                    <div class="ysca-why-card-glow"></div>
+                                    <span class="ysca-why-card-num">02</span>
+                                    <div class="ysca-why-icon-box">
+                                        <i class="fas fa-swords"></i>
+                                    </div>
+                                    <h3 class="ysca-why-card-title">Match-Focused Training</h3>
+                                    <p class="ysca-why-card-desc">
+                                        Training designed to prepare players for realistic match situations, not only net practice. Middle-wicket simulations, pressure-chase drills, and live tactical decision making under pressure.
+                                    </p>
+                                    <div class="ysca-why-tag">
+                                        <i class="fas fa-bullseye"></i>
+                                        <span>Realistic Match Scenarios</span>
+                                    </div>
+                                </div>
+                                <div class="ysca-why-card theme-teal" data-aos="fade-up" data-aos-duration="1000">
+                                    <div class="ysca-why-card-glow"></div>
+                                    <span class="ysca-why-card-num">03</span>
+                                    <div class="ysca-why-icon-box">
+                                        <i class="fas fa-user-check"></i>
+                                    </div>
+                                    <h3 class="ysca-why-card-title">Individual Attention</h3>
+                                    <p class="ysca-why-card-desc">
+                                        Limited batch sizes that allow closer coaching attention. Dedicated 1:12 coach-to-player ratio ensures custom stroke correction, bio-mechanics video reviews, and continuous progress feedback.
+                                    </p>
+                                    <div class="ysca-why-tag">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Strict 1:12 Coach Ratio</span>
+                                    </div>
+                                </div>
+                                <div class="ysca-why-card theme-crimson" data-aos="fade-up" data-aos-duration="800">
+                                    <div class="ysca-why-card-glow"></div>
+                                    <span class="ysca-why-card-num">04</span>
+                                    <div class="ysca-why-icon-box">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <h3 class="ysca-why-card-title">Match Exposure</h3>
+                                    <p class="ysca-why-card-desc">
+                                        Regular matches, tournaments and trial exposure where genuinely applicable. Active participation in district leagues, state selection camps, and prestigious all-India invitation tournaments.
+                                    </p>
+                                    <div class="ysca-why-tag">
+                                        <i class="fas fa-medal"></i>
+                                        <span>50+ Yearly Competitive Fixtures</span>
+                                    </div>
+                                </div>
+                                <div class="ysca-why-card theme-purple" data-aos="fade-up" data-aos-duration="900">
+                                    <div class="ysca-why-card-glow"></div>
+                                    <span class="ysca-why-card-num">05</span>
+                                    <div class="ysca-why-icon-box">
+                                        <i class="fas fa-dumbbell"></i>
+                                    </div>
+                                    <h3 class="ysca-why-card-title">Fitness &amp; Mindset</h3>
+                                    <p class="ysca-why-card-desc">
+                                        Fitness, discipline, confidence and competitive mentality. Comprehensive cricket conditioning, rotational core strength, agility drills, injury prevention, and mental toughness masterclasses.
+                                    </p>
+                                    <div class="ysca-why-tag">
+                                        <i class="fas fa-heartbeat"></i>
+                                        <span>In-House S&amp;C Athletic Gym</span>
+                                    </div>
+                                </div>
+                                <div class="ysca-why-card theme-green" data-aos="fade-up" data-aos-duration="1000">
+                                    <div class="ysca-why-card-glow"></div>
+                                    <span class="ysca-why-card-num">06</span>
+                                    <div class="ysca-why-icon-box">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h3 class="ysca-why-card-title">Structured Development</h3>
+                                    <p class="ysca-why-card-desc">
+                                        Age-appropriate and skill-appropriate development pathways. Seamless transition ladder from grassroots foundation to junior competitive cricket, senior division leagues, and professional trials.
+                                    </p>
+                                    <div class="ysca-why-tag">
+                                        <i class="fas fa-layer-group"></i>
+                                        <span>Grassroots to Elite Pathway</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </section>
+                      <section class="renvia-intro_one bg_cover" data-src="assets/images/video.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="play-button text-center">
+                                        <a href="https://www.youtube.com/watch?v=9Pblih0GoMM" class="video-popup" aria-label="Play Young Star Cricket Academy training session video"><i class="fas fa-play" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="renvia-service_two gray-bg pt-115 pb-120">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div class="section-title text-start mb-45">
+                                        <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">EXPERT COACHES<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
+                                        <h2 class="text-anm">Guided by Experience. Driven by Performance.</h2>
+                                        <p>Learn from certified BCCI, ECB Level 2 &amp; NIS mentors with first-class playing pedigree, dedicated to nurturing technique, discipline, and match temperament.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="service-slider" data-aos="fade-up" data-aos-duration="1000">
+                                <div class="renvia-service-card style-two">
+                                    <div class="content">
+                                       <img src="assets/images/kps.jpg" alt="Coach Kapil Pratap Singh - Head Coach" width="300" height="360" loading="lazy">
+                                       <h3 style="font-weight:bold; font-size:20px; padding-top:10px; text-align:left; font-family:'Philosopher', serif; color:#0b1747; margin-bottom:4px;">Kapil Pratap Singh</h3>
+                                        <p style="text-align:left;">(Head Coach)</p>
+                                        <div class="renvia-team-item style-one member-info" style="background-color: #FFFFFF; padding:2px;">
+                                              <div class="member-info" style=" padding:2px; margin-bottom:10px;">
+                                                   <div class="renvia-button aos-init aos-animate" data-aos="fade-up" data-aos-duration="600">
+                                                      <a href="coach-kapil-pratap-singh" style="padding: 10px 20px;" class="theme-btn style-one" aria-label="View profile of Coach Kapil Pratap Singh">View Profile 
+                                                          <i class="fas fa-arrow-right"></i>
+                                                      </a>
+                                                   </div>
+                                              </div> 
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="renvia-service-card style-two">
+                                    <div class="content">
+                                        <img src="assets/images/rg.jpg" alt="Coach Rajeev Gupta - Senior Coach" width="300" height="360" loading="lazy">
+                                        <h3 style="font-weight:bold; font-size:20px; padding-top:10px; text-align:left; font-family:'Philosopher', serif; color:#0b1747; margin-bottom:4px;">Mr. Rajeev Gupta </h3>
+                                        <p style="text-align:left;">(Senior Coach)</p>
+                                        <div class="renvia-team-item style-one member-info" style="background-color: #FFFFFF; padding:2px;">
+                                              <div class="member-info" style=" padding:2px; margin-bottom:10px;">
+                                                <div class="renvia-button aos-init aos-animate" data-aos="fade-up" data-aos-duration="600">
+                                                      <a href="coach-rajeev-gupta" style="padding: 10px 20px;" class="theme-btn style-one" aria-label="View profile of Coach Rajeev Gupta">View Profile 
+                                                          <i class="fas fa-arrow-right"></i>
+                                                      </a>
+                                                   </div>
+                                                </div> 
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="renvia-service-card style-two">
+                                    <div class="content">
+                                        <img src="assets/images/sbs.jpg" alt="Coach Suryabhan Singh - S&C Expert" width="300" height="360" loading="lazy">
+                                        <h3 style="font-weight:bold; font-size:20px; padding-top:10px; text-align:left; font-family:'Philosopher', serif; color:#0b1747; margin-bottom:4px;">Mr. Suryabhan Singh</h3>
+                                        <p style="text-align:left;">(Coach & S&C Expert)</p>
+                                        <div class="renvia-team-item style-one member-info" style="background-color: #FFFFFF; padding:2px;">
+                                              <div class="member-info" style=" padding:2px; margin-bottom:10px;">
+                                                  <div class="renvia-button aos-init aos-animate" data-aos="fade-up" data-aos-duration="600">
+                                                      <a href="coach-suryabhan-singh" style="padding: 10px 20px;" class="theme-btn style-one" aria-label="View profile of Coach Suryabhan Singh">View Profile 
+                                                          <i class="fas fa-arrow-right"></i>
+                                                      </a>
+                                                   </div>
+                                                </div> 
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="renvia-service-card style-two">
+                                    <div class="content">
+                                        <img src="assets/images/mg.jpg" alt="Coach Manoj Gupta - Cricket Coach" width="300" height="360" loading="lazy">
+                                        <h3 style="font-weight:bold; font-size:20px; padding-top:10px; text-align:left; font-family:'Philosopher', serif; color:#0b1747; margin-bottom:4px;">Mr. Manoj Gupta</h3>
+                                        <p style="text-align:left;">(Cricket Coach)</p>
+                                        <div class="renvia-team-item style-one member-info" style="background-color: #FFFFFF; padding:2px;">
+                                              <div class="member-info" style=" padding:2px; margin-bottom:10px;">
+                                                    <div class="renvia-button aos-init aos-animate" data-aos="fade-up" data-aos-duration="600">
+                                                      <a href="coach-manoj-gupta" style="padding: 10px 20px;" class="theme-btn style-one" aria-label="View profile of Coach Manoj Gupta">View Profile 
+                                                          <i class="fas fa-arrow-right"></i>
+                                                      </a>
+                                                    </div>
+                                                </div> 
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="renvia-service-card style-two">
+                                    <div class="content">
+                                        <img src="assets/images/nb.jpg" alt="Coach Nayan Bhardwaj - High-Performance Coach" width="300" height="360" loading="lazy">
+                                        <h3 style="font-weight:bold; font-size:20px; padding-top:10px; text-align:left; font-family:'Philosopher', serif; color:#0b1747; margin-bottom:4px;">Mr. Nayan Bhardwaj</h3>
+                                        <p style="text-align:left;">(High-Performance Coach)</p>
+                                          <div class="renvia-team-item style-one member-info" style="background-color: #FFFFFF; padding:2px;">
+                                              <div class="member-info" style=" padding:2px; margin-bottom:10px;">
+                                                   <div class="renvia-button aos-init aos-animate" data-aos="fade-up" data-aos-duration="600">
+                                                      <a href="coach-nayan-bhardwaj" style="padding: 10px 20px;" class="theme-btn style-one" aria-label="View profile of Coach Nayan Bhardwaj">View Profile 
+                                                          <i class="fas fa-arrow-right"></i>
+                                                      </a>
+                                                   </div>
+                                                </div> 
+                                          </div>
+                                        
+                                    </div>
+                                </div>
+                                 <div class="renvia-service-card style-two">
+                                    <div class="content">
+                                        <img src="assets/images/lb.jpg" alt="Coach Lokesh Bharti - ICC Certified Coach" width="300" height="360" loading="lazy">
+                                        <h3 style="font-weight:bold; font-size:20px; padding-top:10px; text-align:left; font-family:'Philosopher', serif; color:#0b1747; margin-bottom:4px;">Mr. Lokesh Bharti</h3>
+                                        <p style="text-align:left;">(ICC Certified Coach)</p>
+                                          <div class="renvia-team-item style-one member-info" style="background-color: #FFFFFF; padding:2px;">
+                                              <div class="member-info" style=" padding:2px; margin-bottom:10px;">
+                                                    <div class="renvia-button aos-init aos-animate" data-aos="fade-up" data-aos-duration="600">
+                                                      <a href="coach-lokesh-bharti" style="padding: 10px 20px;" class="theme-btn style-one" aria-label="View profile of Coach Lokesh Bharti">View Profile 
+                                                          <i class="fas fa-arrow-right"></i>
+                                                      </a>
+                                                    </div>
+                                                </div> 
+                                          </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                 <div class="renvia-service-card style-two">
+                                    <div class="content">
+                                        <img src="assets/images/ny.jpg" alt="Coach Nikhil Yadav - Youth Coach" width="300" height="360" loading="lazy">
+                                        <h3 style="font-weight:bold; font-size:20px; padding-top:10px; text-align:left; font-family:'Philosopher', serif; color:#0b1747; margin-bottom:4px;">Mr. Nikhil Yadav</h3>
+                                        <p style="text-align:left;">(Youth Coach)</p>
+                                          <div class="renvia-team-item style-one member-info" style="background-color: #FFFFFF; padding:2px;">
+                                              <div class="member-info" style=" padding:2px; margin-bottom:10px;">
+                                                    <div class="renvia-button aos-init aos-animate" data-aos="fade-up" data-aos-duration="600">
+                                                      <a href="coach-nikhil-yadav" style="padding: 10px 20px;" class="theme-btn style-one" aria-label="View profile of Coach Nikhil Yadav">View Profile 
+                                                          <i class="fas fa-arrow-right"></i>
+                                                      </a>
+                                                    </div>
+                                                </div> 
+                                          </div>
+                                        
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                    </section>
+                    <section class="zite-facilities-overview-sec" id="facilities-section">
+                        <div class="container">
+                            <div class="text-start mb-45" data-aos="fade-up">
+                                <span class="ysca-programs-badge" style="display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:800; color:#ea580c; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:12px;">
+                                    <span class="ysca-badge-pulse"></span>
+                                    <i class="fas fa-shield-alt"></i> ACADEMY FACILITIES
+                                </span>
+                                <h2 class="text-anm" style="font-family:'Philosopher', serif; font-size:clamp(30px, 3.8vw, 44px); font-weight:700; color:#0b1747; margin-bottom:14px; text-align:left;">
+                                    Everything Players Need to Develop
+                                </h2>
+                                <p style="font-size:16px; color:#475569; line-height:1.65; max-width:740px; margin:0 0 35px 0; text-align:left;">
+                                    Professional training infrastructure in Greater Noida designed to build complete technical mastery, elite athletic conditioning, and residential immersion.
+                                </p>
+                            </div>
+
+                            <div class="row g-4">
+                                
+                                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+                                    <a href="cricket-training" class="zite-facility-card" aria-label="Explore Professional Cricket Training Facility">
+                                        <div class="zite-facility-img-box">
+                                            <img src="assets/images/zite-ground.jpg" alt="Cricket Training Turf Facilities" width="400" height="260" loading="lazy">
+                                        </div>
+                                        <div class="zite-facility-body">
+                                            <h3 class="zite-facility-title">Cricket Training</h3>
+                                            <p class="zite-facility-desc">Professional structured cricket practice on natural turf and astroturf pitches under floodlights.</p>
+                                            <span class="zite-facility-link-text">EXPLORE TRAINING <i class="fas fa-arrow-right ms-1"></i></span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                             
+                                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                                    <a href="net-practice" class="zite-facility-card" aria-label="Explore Turf Net Practice Facilities">
+                                        <div class="zite-facility-img-box">
+                                            <img src="assets/images/zite-bowling-nets.webp" alt="Hard Ball Net Practice Sessions" width="400" height="260" loading="lazy">
+                                        </div>
+                                        <div class="zite-facility-body">
+                                            <h3 class="zite-facility-title">Net Practice</h3>
+                                            <p class="zite-facility-desc">Dedicated sessions for batting and bowling development with automated bowling machines.</p>
+                                            <span class="zite-facility-link-text">EXPLORE NETS <i class="fas fa-arrow-right ms-1"></i></span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                
+                                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+                                    <a href="gym" class="zite-facility-card" aria-label="Explore Gym and Fitness Training Facility">
+                                        <div class="zite-facility-img-box">
+                                            <img src="assets/images/zite-gym-interior.jpg" alt="High Performance Sports Conditioning Gym" width="400" height="260" loading="lazy">
+                                        </div>
+                                        <div class="zite-facility-body">
+                                            <h3 class="zite-facility-title">Gym &amp; Fitness</h3>
+                                            <p class="zite-facility-desc">Strength, conditioning, agility, speed and cricket-specific endurance development.</p>
+                                            <span class="zite-facility-link-text">EXPLORE GYM <i class="fas fa-arrow-right ms-1"></i></span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                
+                                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                                    <a href="hostel" class="zite-facility-card" aria-label="Explore Academy Residential Hostel Facility">
+                                        <div class="zite-facility-img-box">
+                                            <img src="assets/images/zite-hostel.jpg" alt="Academy Residential Hostel Facility" width="400" height="260" loading="lazy">
+                                        </div>
+                                        <div class="zite-facility-body">
+                                            <h3 class="zite-facility-title">Academy Hostel</h3>
+                                            <p class="zite-facility-desc">Comfortable, safe residential accommodation with 3 nutritious meals daily for outstation players.</p>
+                                            <span class="zite-facility-link-text">EXPLORE HOSTEL <i class="fas fa-arrow-right ms-1"></i></span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="zite-showcase-split-sec bg-muted-custom">
+                        <div class="container">
+                            <div class="row align-items-center g-4 g-lg-5">
+                                <div class="col-lg-6" data-aos="fade-right">
+                                    <span class="zite-showcase-badge">RESIDENTIAL FACILITY</span>
+                                    <h2 class="zite-showcase-title">Train Here. Stay Focused. Develop Faster.</h2>
+                                    <p class="zite-showcase-desc">
+                                        Our academy hostel provides a safe, comfortable and disciplined living environment for outstation players who want to train full-time with Young Star Cricket Academy without the stress and time loss of daily commuting. Located near the training grounds in Greater Noida, the hostel allows players to fully immerse themselves in structured cricket development.
+                                    </p>
+                                    <ul class="zite-check-list">
+                                        <li><i class="fas fa-check-circle"></i> <span>Shared comfortable accommodation with dedicated study area</span></li>
+                                        <li><i class="fas fa-check-circle"></i> <span>3 wholesome sports-nutrition meals daily + evening snacks</span></li>
+                                        <li><i class="fas fa-check-circle"></i> <span>24/7 security, warden supervision &amp; structured daily routine</span></li>
+                                        <li><i class="fas fa-check-circle"></i> <span>Immediate walking distance to turf nets &amp; fitness gym</span></li>
+                                    </ul>
+                                    <a href="hostel" class="zite-btn-action" aria-label="Explore residential hostel facility">
+                                        Explore Hostel Facility <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                                <div class="col-lg-6" data-aos="fade-left">
+                                    <div class="zite-showcase-media">
+                                        <img src="assets/images/zite-hostel.jpg" alt="Academy Hostel Dormitory Greater Noida" width="600" height="380" loading="lazy">
+                                        <div class="zite-media-pill">
+                                            <i class="fas fa-bed"></i> 24/7 Supervised Boarding
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="zite-showcase-split-sec" style="background:#ffffff;">
+                        <div class="container">
+                            <div class="row align-items-center g-4 g-lg-5">
+                                <div class="col-lg-6 order-lg-1 order-2" data-aos="fade-right">
+                                    <div class="zite-showcase-media">
+                                        <img src="assets/images/zite-gym-interior.jpg" alt="Cricket Strength & Conditioning Gym" width="600" height="380" loading="lazy">
+                                        <div class="zite-media-pill">
+                                            <i class="fas fa-dumbbell"></i> Sports-Specific Conditioning
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 order-lg-2 order-1" data-aos="fade-left">
+                                    <span class="zite-showcase-badge">FITNESS &amp; CONDITIONING</span>
+                                    <h2 class="zite-showcase-title">Cricket Fitness &amp; Conditioning</h2>
+                                    <p class="zite-showcase-desc">
+                                        Build the athlete behind the cricketer. Modern competitive cricket demands players who are physically exceptional — fast bowlers needing explosive power, batsmen needing rotational core torque, and fielders needing agility and throwing speed.
+                                    </p>
+                                    <ul class="zite-check-list">
+                                        <li><i class="fas fa-check-circle"></i> <span>Strength training for powerful bat-speed &amp; bowling pace</span></li>
+                                        <li><i class="fas fa-check-circle"></i> <span>Speed, ladder drills &amp; quick deceleration mechanics</span></li>
+                                        <li><i class="fas fa-check-circle"></i> <span>Cricket-specific stamina to endure long tournament matches</span></li>
+                                        <li><i class="fas fa-check-circle"></i> <span>Shoulder, hip &amp; spine mobility to reduce injury risk</span></li>
+                                    </ul>
+                                    <a href="gym" class="zite-btn-action" aria-label="Explore sports fitness centre">
+                                        Explore Fitness Centre <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                   
+
+<section class="renvia-team-sec pt-70 pb-80" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div class="section-title text-start mb-40">
+                                        <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">TRAINING IN ACTION<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
+                                        <h2 class="text-anm">Video Gallery</h2>
+                                        <p>Watch our players in action during live turf training, net practice sessions, and competitive match simulations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="yt-grid">
+                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play cricket batting drill training video" data-id="A1kRs65K4io"></div>
+                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play fast bowling technique training video" data-id="or6EIb_4Lm8"></div>
+                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play turf pitch match practice video" data-id="TRxkZ_cCh6I"></div>
+                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play spin bowling variations video" data-id="vBxw69ABRog"></div>
+                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play junior cricket masterclass video" data-id="4I0kKWUDXzM"></div>
+                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play agility and athletic fielding drill video" data-id="k-fmHVLbZIk"></div>
+                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play power hitting and stroke play video" data-id="zd9bIjZLRvc"></div>
+                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play academy fixture highlights video" data-id="iURnpwgg-gU"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    
+                    
+                    <script>
+document.querySelectorAll('.yt-video').forEach(el => {
+  const id = el.dataset.id;
+
+  el.style.backgroundImage = `url(https://img.youtube.com/vi/${id}/hqdefault.jpg)`;
+
+  function playVideo() {
+    el.innerHTML = `
+      <iframe
+        src="https://www.youtube.com/embed/${id}?autoplay=1"
+        title="Young Star Cricket Academy Training Video"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    `;
+  }
+
+  el.addEventListener('click', playVideo);
+  el.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      playVideo();
+    }
+  });
+});
+</script>
+
+  <section class="home-gallery-sec" style="padding:70px 0; background:#ffffff; border-top: 1px solid #f1f5f9;">
+  <div class="container">
+    <div class="gallery-section-header mb-40">
+      <div class="section-title text-start mb-0">
+        <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">MOMENTS &amp; HIGHLIGHTS<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
+        <h2 class="text-anm">Photo Gallery</h2>
+        <p style="margin-bottom:0;">Explore glimpses of daily academy training, match fixtures, turf nets practice, and student achievements.</p>
+      </div>
+      <a href="photo-gallery" class="theme-btn style-one gallery-view-more" aria-label="View complete academy photo gallery">View More <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div id="lightgallery" class="custom-gallery">
+      <a href="assets/images/g-1.webp" aria-label="View enlarged cricket batting practice photo">
+        <img src="assets/images/g-1.webp" alt="Young Star Cricket Academy batting practice" width="400" height="266" loading="lazy">
+      </a>
+      <a href="assets/images/g-2.webp" aria-label="View enlarged bowling action training photo">
+        <img src="assets/images/g-2.webp" alt="Young Star Cricket Academy bowling action training" width="400" height="266" loading="lazy">
+      </a>
+      <a href="assets/images/g-3.webp" aria-label="View enlarged wicket-keeping and fielding drill photo">
+        <img src="assets/images/g-3.webp" alt="Young Star Cricket Academy fielding drill session" width="400" height="266" loading="lazy">
+      </a>
+      <a href="assets/images/g-5.webp" aria-label="View enlarged turf nets match simulation photo">
+        <img src="assets/images/g-5.webp" alt="Young Star Cricket Academy match simulation" width="400" height="266" loading="lazy">
+      </a>
+      <a href="assets/images/g-6.webp" aria-label="View enlarged youth cricket squad coaching photo">
+        <img src="assets/images/g-6.webp" alt="Young Star Cricket Academy youth cricket squad" width="400" height="266" loading="lazy">
+      </a>
+      <a href="assets/images/g-4.webp" aria-label="View enlarged fitness and conditioning drill photo">
+        <img src="assets/images/g-4.webp" alt="Young Star Cricket Academy fitness drill" width="400" height="266" loading="lazy">
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  lightGallery(document.getElementById('lightgallery'), {
+    speed: 400,
+    thumbnail: true,
+    zoom: true,
+    download: false,
+    actualSize: false,
+    counter: true,
+    mobileSettings: {
+      controls: true,
+      showCloseIcon: true,
+      download: false
+    }
+  });
+});
+</script>
+
+                    
+                </main>
+                 <?php
+                   include_once 'fotter.php';
+                  ?>
+
+            </div>
+        </div>
+        
+        <script src="assets/js/plugins/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
+        
+        <script defer src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"></script>
+
+        
+        <script defer src="assets/js/plugins/popper.min.js"></script>
+        <script defer src="assets/js/plugins/bootstrap.min.js"></script>
+        <script defer src="assets/js/plugins/slick.min.js"></script>
+        <script defer src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
+        <script defer src="assets/js/plugins/jquery.waypoints.js"></script>
+        <script defer src="assets/js/plugins/jquery.counterup.min.js"></script>
+        <script defer src="assets/js/plugins/aos.js"></script>
+        <script defer src="assets/js/theme.js?v=<?= filemtime(__DIR__ . '/assets/js/theme.js') ?>"></script>
+    </body>
+</html>

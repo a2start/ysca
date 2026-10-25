@@ -1,0 +1,23 @@
+﻿User-agent: *
+Allow: /
+Disallow: /is-cms/
+Disallow: /admin/
+Disallow: /tmp/
+
+# Agentic Search & AI Browsing Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://youngstarcricketacademy.in/young/sitemap.xml

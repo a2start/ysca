@@ -1,0 +1,102 @@
+# ========================================================
+# Universal Apache URL Rewriting - Clean URLs without .php
+# Compatible with both Localhost (/young/) & Live Hostinger (/)
+# ========================================================
+
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+
+    # 1. Do not redirect POST requests (e.g. form submissions)
+    RewriteCond %{REQUEST_METHOD} !POST
+
+    # 2. Redirect index.php to root (dynamically matches subfolder or root domain)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\s(.*?)index\.php[/\s\?] [NC]
+    RewriteRule ^index\.php$ %1 [R=301,L]
+
+    # 3. External 301 Redirect: If someone visits a page with .php explicitly, redirect to clean URL
+    # Example: /about.php -> /about, /young/about.php -> /young/about
+    RewriteCond %{REQUEST_METHOD} !POST
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\s([^?\s]+)\.php(?:\s|\?) [NC]
+    RewriteRule ^ %1 [R=301,L]
+
+    # 4. Program & Facilities routes matching zite.so structure (/programs, /programs/xyz)
+    RewriteRule ^programs/?$ our-programs.php [L,QSA]
+    RewriteRule ^programs/hostel/?$ hostel.php [L,QSA]
+    RewriteRule ^programs/gym/?$ gym.php [L,QSA]
+    RewriteRule ^programs/([^/]+)/?$ program-detail.php?id=$1 [L,QSA]
+
+    # 5. Internal Rewrite: Map extensionless clean URL to physical .php file
+    # Example: /about -> about.php, works seamlessly on root domain or any subfolder
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php [L,QSA]
+</IfModule>
+
+# ========================================================
+# 7. Security Headers (Lighthouse Best Practices)
+# ========================================================
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Clickjacking protection
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Referrer policy for privacy and security
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Restrict unnecessary browser features
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+    # Remove PHP version disclosure
+    Header unset X-Powered-By
+    Header always unset X-Powered-By
+
+    # Long-term browser caching for static assets (1 year)
+    <FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|webp|js|css|woff|woff2|ttf|svg)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+
+# ========================================================
+# 8. GZIP & Deflate Compression (Lighthouse Performance)
+# ========================================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript
+    AddOutputFilterByType DEFLATE application/json application/ld+json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/ttf font/otf font/woff font/woff2
+</IfModule>
+
+# ========================================================
+# 9. Browser Caching / Expires Headers (Lighthouse Cache)
+# ========================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+
+    # Images
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+
+    # CSS & JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
