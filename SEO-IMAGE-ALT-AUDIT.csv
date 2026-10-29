@@ -1,0 +1,9 @@
+asset,usage,alt_text,status,action
+hero.webp,Homepage hero,"Cricket Coaching Academy Training",reviewed,Keep descriptive alt; image contains batters practising in nets.
+cric-wel.webp,Homepage and About,"Welcome to Young Star Cricket Academy",reviewed,Keep brand-context alt.
+zite-bowling-nets.webp,Net-practice page,"Young Star Cricket Academy Turf Net Practice Greater Noida",reviewed,Keep; review location wording with owner if image provenance changes.
+zite-fielding.jpg,Cricket-training page,"Young Star Cricket Academy Practice & Fielding Sessions",reviewed,Keep descriptive alt.
+zite-hostel.jpg,Hostel and programme cards,"Illustrative residential accommodation image",updated,Do not present unverified illustrative render as an academy facility photograph.
+zite-gym-interior.jpg,Gym and gallery,"Illustrative cricket fitness gym interior",updated,Do not present unverified illustrative render as an academy facility photograph.
+line1.png and line2.png,Decorative heading rules,"",reviewed,Decorative images should use empty alt text and aria-hidden where applicable.
+coach portraits,Coach cards and profiles,Coach name and current role,reviewed,Keep names; avoid unverified credentials in alt text.
