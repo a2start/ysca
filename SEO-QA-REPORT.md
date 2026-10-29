@@ -1,7 +1,7 @@
 # SEO QA report
 
 Date: 29 October 2026  
-Branch: `seo-optimization`  
+Branch: `seo-final-implementation`  
 Recommendation: **BLOCKED — not ready to merge to production**
 
 ## Passed source checks
@@ -29,6 +29,25 @@ Recommendation: **BLOCKED — not ready to merge to production**
 | Staging index protection | Unverified. | Configure environment-aware preview protection/noindex at the Pages layer and prove production does not inherit it. |
 | Rich Results Test | Unverified. | Run the home-page JSON-LD through Google’s Rich Results Test after confirming all entity values. |
 | Performance/Core Web Vitals | Unverified. | Run PageSpeed Insights/Lighthouse against staging on mobile and desktop; address measured issues only. |
+
+## Current source and live checks — 29 October 2026
+
+| Check | Result | Status |
+| --- | --- | --- |
+| 21 sitemap pages | Every sitemap URL has one H1, a production canonical and a meta description in source. | Passed source check |
+| Contact Function | Local mock tests: valid KV-backed POST returns 200 and stores one inquiry; invalid input returns 400; missing `CONTACTS_KV` returns 503. | Passed local check |
+| Preview middleware | Local host-policy tests pass for `ysca.pages.dev`, `*.ysca.pages.dev`, `ysca-live.pages.dev`, `*.ysca-live.pages.dev`, and the production custom domain. | Passed local check |
+| Production home | `https://youngstarcricketacademy.com/` returned HTTP 200 without `X-Robots-Tag` on the live baseline check. | Passed live baseline |
+| Staging home | `https://ysca.pages.dev/` returned HTTP 200 with `X-Robots-Tag: noindex, nofollow`. | Passed live baseline |
+| Live project default host | `https://ysca-live.pages.dev/` returned HTTP 200 **without** `X-Robots-Tag`. Source is corrected on this branch but it is not deployed. | Failed pending deployment |
+| Production robots and sitemap | `robots.txt` and `sitemap.xml` returned HTTP 200; robots allows crawlers and declares the production sitemap. | Passed live baseline |
+
+## Cloudflare configuration needed before release
+
+1. In Cloudflare Pages project **ysca-live**, confirm the production branch is `main` and that Pages Functions are enabled for the deployed output.
+2. Bind the intended KV namespace to the production environment as `CONTACTS_KV`. Bind the corresponding staging namespace in the `ysca` project if staging submissions are expected to work.
+3. Confirm no dashboard Transform Rule, `_headers` deployment artifact or proxy rule adds `X-Robots-Tag` to `youngstarcricketacademy.com`.
+4. After deploying this branch, verify `ysca-live.pages.dev` and a branch-preview hostname return `X-Robots-Tag: noindex, nofollow`, while the custom domain does not.
 
 ## Owner confirmations required
 

@@ -43,3 +43,15 @@ Research reference: `MD/deep-research-report.md` and `SEO-IMPLEMENTATION-PLAN.md
 ## Research interpretation
 
 The target phrases are qualitative intent themes, not volume-verified metrics. Greater Noida is the primary location. Noida may be mentioned only as a nearby travel catchment and not as a YSCA location until a branch/service-area statement is approved. Google's guidance supports useful, people-first content and consistent canonical/sitemap signals rather than keyword repetition: [Search Essentials](https://developers.google.com/search/docs/essentials), [canonicalization](https://developers.google.com/search/docs/crawling-indexing/canonicalization), and [Keyword Planner limitations](https://support.google.com/google-ads/answer/6325025?hl=en).
+
+## Continued implementation — `seo-final-implementation`
+
+| URL / file | Previous issue | Revision | Reason |
+| --- | --- | --- | --- |
+| `/` | Fixed coach ratios, selection pathways, unverified facilities and free-trial claims. | Neutral programme, match-practice and trial-enquiry wording. | Avoid unsupported outcomes and facility promises. |
+| `/our-programs` | Selection nominations, coach credentials, ratio, hostel and meal claims. | Enquiry-led programme and accommodation copy. | Visitors receive useful next steps without invented facts. |
+| Facilities and programme aliases | Fixed schedules, equipment specifications, meal counts, supervision and performance claims. | Current availability and eligibility guidance. | Facility and boarding facts remain owner-confirmation items. |
+| Coach directory and profiles | Experience totals, certifications, affiliations, selections and achievements were stated as fact. | Neutral roles, confirmed-profile enquiry route and updated unique metadata. | Coach credentials require owner evidence before publication. |
+| `/about`, `/cricket-training`, `/hostel`, `/gym`, `/coach`, `/photo-gallery` | Generic or mismatched H1/title/description. | Distinct intent-led metadata and H1s. | Improves relevance without keyword repetition. |
+| `functions/_middleware.js` | Only the `ysca` Pages host family was protected from indexing. | Added `ysca-live.pages.dev` and branch-preview host protection; custom domains are left indexable. | Keeps preview noindex separate from production. |
+| `SEO-OWNER-FACTS.md`, `SEO-PAGE-METADATA.csv`, `SEO-IMAGE-ALT-AUDIT.csv` | No consolidated evidence/implementation record. | Added owner-fact, page metadata and reviewed image-alt records. | Supports safe future updates and release review. |
