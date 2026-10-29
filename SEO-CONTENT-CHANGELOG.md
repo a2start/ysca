@@ -65,3 +65,13 @@ The target phrases are qualitative intent themes, not volume-verified metrics. G
 | `/` and `/our-programs` | Used non-descriptive alt text for illustrative hostel/gym images; some accommodation copy implied fixed meals and arrangements. | Uses accurate illustrative alt text and directs visitors to confirm current accommodation and meal arrangements. | Image accessibility and fact accuracy. |
 | `/coach` | CTA promised a free trial. | CTA asks visitors to enquire about a trial session. | Trial availability and pricing require confirmation. |
 | All 21 canonical sitemap pages | Footer and Contact-page social controls linked to generic social-platform homepages. | Removed placeholder social links while retaining verified WhatsApp contact access. | Prevents visitors and crawlers from being sent to unrelated profiles. |
+
+## Academy content enrichment — October 2026
+
+| URL / file group | Previous issue | Revision | Reason |
+| --- | --- | --- | --- |
+| Homepage, About and Programs | Repeated availability prompts and unsupported training/facility language. | Added age-pathway, skill-development, coaching-directory, facilities-navigation and admissions guidance. | Gives parents useful next steps without inventing operations. |
+| Foundation, Junior, Senior and one-to-one coaching pages | Legacy claims about equipment, schedules, selection, trials and outcomes. | Added practical educational guides for the relevant player stage and removed unsupported operational promises. | Separates cricket education from unverified academy services. |
+| Cricket Training, Net Practice and Gym | Thin enquiry copy and unsupported equipment/performance claims. | Added practical batting, bowling, fielding, wicketkeeping, preparation and age-appropriate fitness guidance. | Helps visitors understand the subject without claiming specific facilities. |
+| Hostel and Contact | Repetitive confirmation panels. | Added parent-focused residential-decision and admissions-enquiry guidance; clarified programme choices and what to include in an enquiry. | Improves conversion clarity without publishing unverified hostel arrangements. |
+| Coach directory and indexed profiles | Generic credential disclaimers and unsupported biographies/trial claims. | Retained published names/Head Coach role only, linked to programme information and removed unsupported credentials and free-trial claims. | Keeps the directory factual. |

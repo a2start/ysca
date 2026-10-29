@@ -74,3 +74,11 @@ Recommendation: **BLOCKED — not ready to merge to production**
 - Every sitemap page has baseline Open Graph and Twitter metadata. The home page is the only page with JSON-LD; expand entity schema only with verified facts. Add official social profiles only after the academy confirms their URLs.
 - `.htaccess` and `is-cms/` are Apache/PHP-oriented, while the report describes Cloudflare Pages static hosting. They do not validate the live Pages routing and should not be treated as deployment proof.
 - Canonicals and sitemap entries consistently use the `.com` host. This follows Google’s recommendation to align canonical hints and sitemap URLs; redirects are the stronger signal for duplicate URLs when a verified hosting configuration permits them.
+
+## Content-enrichment local validation — October 2026
+
+- All 21 sitemap templates have exactly one H1 and load `assets/css/ysca-theme.css`.
+- The headless-browser smoke suite completed with 21 pages and zero failures at the mobile viewport; it checks page load, one H1, horizontal overflow and visible keyboard focus.
+- JavaScript syntax validation passed for `functions/api/contact.js`; `git diff --check` passed with no whitespace errors.
+- A residual-content scan found no matches for the targeted repetitive confirmation wording or the removed unsupported equipment, free-trial, selection and credential phrases.
+- Local Python static hosting does not implement the production extensionless-route rewrites, so direct `http://127.0.0.1:4173/about` checks are not representative. The browser smoke script maps extensionless public routes to their HTML source templates.
