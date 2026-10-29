@@ -15,7 +15,7 @@ The location above was provided as confirmed for this implementation. Phone, ema
 
 | Area | Pages containing the claims | Confirm before publishing or retaining |
 | --- | --- | --- |
-| Experience and scale | `index.html`, `about.html`, `coach.html`, coach profiles | Years of coaching, players trained, coach count, batch ratio, net/pitch count and match counts. Current source contains conflicting figures. |
+| Experience and scale | Historical and legacy templates; any future page revisions | Years of coaching, players trained, coach count, batch ratio, net/pitch count and match counts. Do not restore claims without evidence. |
 | Coach biographies | `coach.html`, all `coach-*.html`, `coach-detail.html` | Current role, employment, qualification, certification, playing history, awards, state/Ranji/first-class/IPL association and stated specialties for every coach. |
 | Programme details | `our-programs.html`, all `program-*.html`, `program-detail.html` | Age suitability, admission status, timings, duration, session length, curriculum, equipment, match practice, assessment process, fees and trial availability. |
 | Selection/results | Homepage, programme pages, training/net pages, coach pages and contact FAQs | District/state/BCCI trial nominations, selector/scout access, tournament participation, selection preparation and any player outcome. None should imply a guaranteed result. |
@@ -23,7 +23,7 @@ The location above was provided as confirmed for this implementation. Phone, ema
 | Hostel | `hostel.html`, `program-cricket-hostel.html`, homepage/program cards/contact FAQ | Whether accommodation is currently available; eligibility; room setup; meals; Wi-Fi; study support; security; CCTV; supervision; laundry; medical support; distance from ground; visiting hours; fees and year-round availability. |
 | Gym and health claims | `gym.html`, `program-gym-fitness.html`, homepage/program cards | Equipment, supervision, age minimums, programme inclusion, external memberships, personalised plans, injury-prevention/recovery claims and performance benefits. |
 | Contact and local data | `contact.html`, footer/sitewide schema | Current admissions hours, training shifts, response time, trial terms, metro/travel time, parking, official social profiles and the exact map/business location. |
-| Structured data | `index.html` JSON-LD | Telephone, email, address, geocoordinates, opening hours, price range, service catalogue and social `sameAs` values. Generic social-platform URLs must be replaced by official profile URLs or removed. |
+| Structured data | `index.html` JSON-LD | Telephone, email, address, geocoordinates, opening hours, price range, service catalogue and social `sameAs` values. Placeholder social links have been removed; add only official URLs supplied by the academy. |
 
 ## Safe publication rule
 
