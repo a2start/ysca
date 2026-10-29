@@ -1,12 +1,12 @@
 # YSCA SEO implementation plan
 
 Date: 29 October 2026  
-Branch: `seo-optimization`  
+Branch: `seo-final-implementation`  
 Primary source: `MD/deep-research-report.md`
 
 ## Research position
 
-Greater Noida is the primary location because the repository identifies the academy at Delta II, Greater Noida. Noida, Noida Extension and nearby areas are travel catchments only; no branch or location-specific service claim will be added without owner confirmation. The report provides qualitative search-intent evidence only: Search Console and Keyword Planner metrics were not available, so no volume, difficulty, CTR, position or competitor-performance figures will be added.
+Greater Noida is the primary search target. The confirmed physical location is `FFW9+CM, Malakpur, Uttar Pradesh, India` (28.4960774, 77.4691473). Noida, Noida Extension and nearby areas are travel catchments only; no branch or location-specific service claim will be added without owner confirmation. The report provides qualitative search-intent evidence only: Search Console and Keyword Planner metrics were not available, so no volume, difficulty, CTR, position or competitor-performance figures will be added.
 
 The linked implementation playbook referenced by the report is not present in this repository or accessible at its `sandbox:` path. This plan therefore uses the complete report, the existing `seo-research/` artifacts, and the current source as its implementation evidence.
 

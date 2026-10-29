@@ -2,14 +2,14 @@
 
 Status: owner confirmation required before publication or reuse in SEO metadata, schema, page copy, ads or Google Business Profile.
 
-## Confirmed only from the repository
+## Confirmed for the current website source
 
 - Business name shown on the site: Young Star Cricket Academy.
 - Public contact details currently shown: +91 99105 43666 and youngstarcricketacademy123@gmail.com.
-- Published location: J-1, Block J, Delta II, Greater Noida, Uttar Pradesh 201310, near Aster Public School.
+- Confirmed physical location: FFW9+CM, Malakpur, Uttar Pradesh, India (28.4960774, 77.4691473).
 - Public programme labels: Foundation (6–10), Junior Development (11–14), Senior Performance (15–19), and one-to-one coaching by enquiry.
 
-These are not independently verified. Confirm them against the academy’s approved business record before changing external listings or structured data.
+The location above was provided as confirmed for this implementation. Phone, email and programme availability still require owner confirmation before changing external listings or expanding structured data.
 
 ## Claims requiring confirmation
 
