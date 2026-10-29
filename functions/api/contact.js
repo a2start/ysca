@@ -73,6 +73,13 @@ export async function onRequestPost({ request, env }) {
     }
 
     try {
+      const clientAddress = request.headers.get("CF-Connecting-IP") || "unknown";
+      const rateKey = `contact-rate:${await hashValue(clientAddress)}:${Math.floor(Date.now() / 3600000)}`;
+      const attempts = Number(await env.CONTACTS_KV.get(rateKey)) || 0;
+      if (attempts >= 5) {
+        return json({ success: false, error: "Too many enquiries were sent from this connection. Please wait and try again later." }, 429);
+      }
+      await env.CONTACTS_KV.put(rateKey, String(attempts + 1), { expirationTtl: 3600 });
       await env.CONTACTS_KV.put(`inquiry:${submission.id}`, JSON.stringify(submission));
     } catch (kvErr) {
       console.error("Contact storage error:", kvErr);
@@ -107,6 +114,12 @@ function json(body, status = 200) {
     status,
     headers: { "Content-Type": "application/json", "Cache-Control": "no-store" }
   });
+}
+
+async function hashValue(value) {
+  const bytes = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
 export async function onRequestGet({ request }) {

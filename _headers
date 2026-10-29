@@ -1,0 +1,4 @@
+# Cloudflare Pages only: prevent preview/branch deployment indexing.
+# GitHub Pages ignores this file; it does not emit HTTP headers from it.
+/*
+  X-Robots-Tag: noindex, nofollow
