@@ -38,6 +38,7 @@ Recommendation: **BLOCKED — not ready to merge to production**
 | Sitemap and canonicals | XML parsed successfully; all 21 sitemap source targets exist; every HTML canonical uses the production `.com` host. | Passed source check |
 | Internal references | Static local `href` and `src` target checks found no missing targets. | Passed source check |
 | Social metadata | Every sitemap page has an Open Graph title, description, URL and type plus a Twitter card declaration. | Passed source check |
+| Location consistency | Public HTML uses the confirmed Malakpur address and coordinates; no Delta II, Aster Public School or former postcode references remain. | Passed source check |
 | Contact Function | Local mock tests: valid KV-backed POST returns 200 and stores one inquiry; invalid input returns 400; missing `CONTACTS_KV` returns 503. | Passed local check |
 | Preview middleware | Local host-policy tests pass for `ysca.pages.dev`, `*.ysca.pages.dev`, `ysca-live.pages.dev`, `*.ysca-live.pages.dev`, and the production custom domain. | Passed local check |
 | Production home | `https://youngstarcricketacademy.com/` returned HTTP 200 without `X-Robots-Tag` on the live baseline check. | Passed live baseline |
