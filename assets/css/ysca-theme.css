@@ -1,0 +1,115 @@
+/*
+ * YSCA global design tokens and safe shared accessibility primitives.
+ * Loaded after the legacy stylesheet so existing page modules stay intact.
+ */
+:root:root {
+  --ysca-color-navy-950: #07162c;
+  --ysca-color-navy-900: #0b1747;
+  --ysca-color-navy-800: #0e1b2e;
+  --ysca-color-gold-500: #fea630;
+  --ysca-color-gold-hover: #e89903;
+  --ysca-color-white: #ffffff;
+  --ysca-color-surface: #f8fafc;
+  --ysca-color-border: #e2e8f0;
+  --ysca-color-text: #1c1d1e;
+  --ysca-color-text-muted: #475569;
+
+  --ysca-color-primary: var(--ysca-color-navy-900);
+  --ysca-color-accent: var(--ysca-color-gold-500);
+  --ysca-color-on-accent: var(--ysca-color-navy-950);
+  --ysca-color-on-dark: var(--ysca-color-white);
+
+  --ysca-font-heading: "Philosopher", Georgia, serif;
+  --ysca-font-body: "Plus Jakarta Sans", Arial, sans-serif;
+  --ysca-font-ui: var(--ysca-font-body);
+
+  --ysca-container-max: 1240px;
+  --ysca-radius-sm: 6px;
+  --ysca-radius-md: 12px;
+  --ysca-radius-lg: 20px;
+  --ysca-space-1: 4px;
+  --ysca-space-2: 8px;
+  --ysca-space-3: 12px;
+  --ysca-space-4: 16px;
+  --ysca-space-6: 24px;
+  --ysca-space-8: 32px;
+  --ysca-space-12: 48px;
+  --ysca-space-16: 64px;
+  --ysca-duration-fast: 160ms;
+  --ysca-duration-normal: 260ms;
+
+  /* Compatibility aliases retained for legacy CSS. */
+  --primary-color: var(--ysca-color-gold-500);
+  --heading-color: var(--ysca-color-navy-900);
+  --primary-black-color: var(--ysca-color-text);
+  --gray-color: var(--ysca-color-surface);
+  --white-color: var(--ysca-color-white);
+  --text-color: var(--ysca-color-text);
+  --border-color: var(--ysca-color-border);
+  --heading-font: var(--ysca-font-heading);
+  --body-font: var(--ysca-font-body);
+}
+
+/* Keep defaults modest: specialised page modules may intentionally override them. */
+body {
+  font-family: var(--ysca-font-body);
+  color: var(--ysca-color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ysca-font-heading);
+}
+
+/* Keyboard focus is visible without changing mouse or touch interactions. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--ysca-color-gold-500);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(7, 22, 44, 0.22);
+}
+
+.zite-mobile-toggle:focus-visible {
+  outline: 3px solid var(--ysca-color-gold-500);
+  outline-offset: 3px;
+}
+
+/* Opt-in shared primitives. Existing page-specific components are not restyled globally. */
+.ysca-ui-button {
+  align-items: center;
+  border-radius: var(--ysca-radius-sm);
+  display: inline-flex;
+  font-family: var(--ysca-font-ui);
+  font-weight: 700;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  transition: background-color var(--ysca-duration-fast) ease, color var(--ysca-duration-fast) ease,
+    border-color var(--ysca-duration-fast) ease, box-shadow var(--ysca-duration-fast) ease,
+    transform var(--ysca-duration-fast) ease;
+}
+
+.ysca-ui-button--accent {
+  background: var(--ysca-color-accent);
+  color: var(--ysca-color-on-accent);
+}
+
+.ysca-ui-card {
+  background: var(--ysca-color-white);
+  border: 1px solid var(--ysca-color-border);
+  border-radius: var(--ysca-radius-md);
+  box-shadow: 0 10px 24px rgba(7, 22, 44, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
