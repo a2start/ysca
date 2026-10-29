@@ -58,7 +58,7 @@ export async function onRequestPost({ request, env }) {
     // 4. Log or Store if Cloudflare KV/D1 is configured
     // If env.CONTACTS_KV or env.DB exists in Cloudflare Pages dashboard:
     const submission = {
-      id: crypto.randomUUID(),
+      id: createSubmissionId(),
       name,
       email,
       phone,
@@ -117,9 +117,31 @@ function json(body, status = 200) {
 }
 
 async function hashValue(value) {
-  const bytes = new TextEncoder().encode(value);
-  const digest = await crypto.subtle.digest("SHA-256", bytes);
-  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+  try {
+    if (globalThis.crypto?.subtle) {
+      const bytes = new TextEncoder().encode(value);
+      const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);
+      return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    }
+  } catch (error) {
+    // Fall through to the deterministic local hash below. Rate limiting must
+    // not make a valid enquiry fail when a runtime lacks Web Crypto support.
+  }
+
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return `fallback-${(hash >>> 0).toString(16)}`;
+}
+
+function createSubmissionId() {
+  if (typeof globalThis.crypto?.randomUUID === "function") {
+    return globalThis.crypto.randomUUID();
+  }
+
+  return `inquiry-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
 }
 
 export async function onRequestGet({ request }) {
