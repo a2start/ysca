@@ -113,3 +113,45 @@ summary:focus-visible,
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Reusable editorial sections. These are opt-in so legacy page layouts stay intact. */
+.ysca-content-guide {
+  background: var(--ysca-color-surface);
+  color: var(--ysca-color-text);
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.ysca-content-guide__intro {
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.ysca-content-guide__intro h2,
+.ysca-content-guide__card h3 {
+  color: var(--ysca-color-navy-900);
+}
+
+.ysca-content-guide__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.25rem;
+}
+
+.ysca-content-guide__card {
+  background: var(--ysca-color-white);
+  border: 1px solid var(--ysca-color-border);
+  border-radius: var(--ysca-radius-lg);
+  box-shadow: var(--ysca-shadow-card);
+  padding: 1.5rem;
+}
+
+.ysca-content-guide__card p:last-child {
+  margin-bottom: 0;
+}
+
+.ysca-content-guide__action {
+  margin: 2rem auto 0;
+  max-width: 48rem;
+  text-align: center;
+}

@@ -28,3 +28,7 @@ The location above was provided as confirmed for this implementation. Phone, ema
 ## Safe publication rule
 
 Until written owner confirmation is available, prefer wording such as “contact the academy to confirm current availability” over a specific promise. Do not replace missing confirmation with estimates, “industry standard” details, competitor facts or generated credentials.
+
+## Content-enrichment implementation note
+
+The public pages now use general cricket education to explain batting, bowling, fielding, wicketkeeping, match awareness, fitness and residential-enquiry considerations. These explanations are not claims that a particular drill, piece of equipment, timetable, meal plan, coach credential or accommodation arrangement is currently provided by the academy. Owner confirmation is still required before publishing operational details listed above.
