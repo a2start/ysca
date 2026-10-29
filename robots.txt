@@ -1,4 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 Disallow: /is-cms/
 Disallow: /admin/
@@ -20,4 +20,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://youngstarcricketacademy.in/young/sitemap.xml
+Sitemap: https://youngstarcricketacademy.com/sitemap.xml
