@@ -1,0 +1,122 @@
+# MASTER PROMPT — Young Star Cricket Academy SEO Audit & Safe Implementation
+
+> **Role:** Act as a senior technical SEO specialist, local SEO strategist, content strategist and careful static-site engineer. Your assignment is to audit and prepare a safe SEO improvement plan for Young Star Cricket Academy. The goal is better relevant organic visibility and qualified enquiries from Greater Noida first, and Noida/Greater Noida West where genuinely served.
+>
+> **Primary site requested:** `https://youngstarcricketacademy.com/`  
+> **Public repository to inspect:** `https://github.com/a2start/ysca`  
+> **Location evidence currently visible:** Delta II, Greater Noida, near Aster Public School; exact address/PIN/coordinates must be confirmed with the owner and Google Business Profile before schema or redirect changes.  
+> **Safety constraint:** Start in READ-ONLY mode. Do not edit files, write to the repository, commit, push, deploy, change DNS, change settings, alter forms, replace assets, or create redirects during the audit. First deliver a complete report and proposed diff/implementation plan. Only implement after explicit user approval in a separate phase. Never deploy to production without a separate release approval.
+>
+> ## A. First confirm the current state
+>
+> 1. Open the current production `.com` site and crawl all linked public pages. Inspect the home page, `/about`, `/our-programs`, `/program-foundation-cricket`, `/program-junior-development`, `/program-senior-performance`, `/program-professional-coaching`, `/coach`, each coach profile, `/cricket-training`, `/net-practice`, `/hostel`, `/gym`, `/photo-gallery`, `/contact`, and `/contact?action=trial`.
+> 2. Inspect the repository and identify the active deployment workflow and actual production host. Do not assume `.htaccess` works until the hosting platform is confirmed; a static host may ignore Apache rewrite rules.
+> 3. Verify current production source—not only GitHub source—because cached pages and repository source can differ. Search for `localhost`, `youngstarcricketacademy.in`, `/young/`, generic social root URLs, stale contacts and duplicate page templates.
+> 4. Make a baseline table: URL, status, indexability, title, description, H1, canonical, robots directive, Open Graph URL/image, JSON-LD, sitemap inclusion, internal links, broken assets and observations. Do not claim a 404/status/header/score if you did not directly measure it.
+> 5. Record current design/functionality before recommending changes. The site must retain its appearance, forms, program filters, internal navigation, gallery, phone/WhatsApp CTAs, trial-form prefill and mobile behavior.
+>
+> ## B. Resolve critical technical risks in the proposed plan
+>
+> - The repository currently contains a homepage canonical reference to `http://localhost/young/`; the related Open Graph and structured-data identifiers/URLs/images also contain localhost. Validate production output, then recommend changing all intended production references to absolute HTTPS `.com` URLs.
+> - Repository `robots.txt` points to `https://youngstarcricketacademy.in/young/sitemap.xml`, while `sitemap.xml` lists `.in/young/` URLs. The requested primary site is `.com` at root. Recommend a sitemap of approved canonical `.com` URLs and an updated sitemap directive in `robots.txt`.
+> - The sitemap source appears to include only part of the page set and omits visible `/cricket-training`, `/net-practice` and individual coach profiles. Generate the final sitemap from the real crawl and approved indexable URL inventory, not by guessing.
+> - Check whether `.in` and `.com` are both accessible/indexed with duplicate content. Recommend `.com` as primary only if confirmed. If the old `.in` version is to be retired, prepare a one-to-one redirect map after approval; preserve meaningful old paths and never redirect every URL to the homepage by default.
+> - Canonicalize `/contact?action=trial` to `/contact` while preserving form prefill/CTA behavior. Do not include the query variant in the sitemap.
+> - The repository’s About and Contact source pages do not show canonical tags; `our-programs.html` has generic metadata (`Young Star Cricket Academy` as title/description). Inspect all pages and propose unique metadata/canonicals for each.
+> - The Facilities top-level link and “All Academy Facilities” target appear mismatched. Recommend the correct existing page/hub and test all nav links.
+> - The gallery Gym category currently shows zero photos and a typo. Recommend adding real authorized photos or hiding that category; do not index empty albums.
+>
+> ## C. Business fact validation is a gate, not an assumption
+>
+> The site/source contains conflicting phone and achievement details. Contact lists `+91 99999 99000` and `+91 99999 99001`; other buttons/source use `+91 99105 43666`; JSON-LD uses `+91-9999999000`; the contact email shown is `youngstarcricketacademy123@gmail.com`. Home claims 20+ years, 5,000+ trained players and 10+ nets; About claims 15+ years, 500+ trained players and 12+ nets/pitches plus 8+ coaches. These must be verified and standardized. Ask the owner / use authorized official source data; do not choose a number by intuition.
+>
+> Create a source-of-truth fact sheet for the exact brand name, phone, WhatsApp, email, address, postcode, map pin, opening/training hours, age groups, schedules, fees/fee policy, trial offer, facility counts, coaching certificates, affiliation, match counts and player counts. Remove unsupported or misleading claims. Validate all schema fields and social profiles against this fact sheet.
+>
+> ## D. Research local keywords using real tools
+>
+> Do not invent volumes, keyword difficulty, traffic estimates or current rank positions. I want live tool exports or explicit “not measured” labels.
+>
+> **Tools and tasks:**
+> 1. Google Ads Keyword Planner: “Discover new keywords,” use seed terms and competitor URLs, set geography to the closest available Noida/Greater Noida/Gautam Buddha Nagar targeting, review 12 months, export monthly-search estimates, competition and top-of-page bid. Test English and Hindi/Hinglish only where useful.
+> 2. Search Console: export 16 months of Queries and Pages, review clicks/impressions/CTR/position, query/page mapping, device segments, Indexing, URL Inspection, Core Web Vitals and sitemap errors. If no authorized access exists, leave the corresponding fields unmeasured.
+> 3. Google Trends: compare key terms for Uttar Pradesh/available local area and 12 months plus five years. Trends is relative interest, not absolute search volume.
+> 4. Google autocomplete and People Also Ask: collect actual parent questions and local modifiers.
+> 5. Current local SERPs/Google Maps: compare the exact competitors appearing for the address and target phrases. Local examples already found include RRCA (Omega II), Greater Noida Cricket Club Ground, Brigade Cricket Academy (Omega 1), Young Talent Cricket Academy (Knowledge Park V area), TWO7 (Greater Noida West/Sector 1), Push Cricket Academy (Tech Zone IV), Panjiyars (Sector 128 Noida) and Glory Cricket Club (Sector 73 Noida). Do not describe them as a ranked top list unless rankings are measured.
+> 6. Technical crawl and PageSpeed Insights: use Screaming Frog or equivalent and PageSpeed on Home, Contact, one program and one facility page.
+>
+> **Seed terms:** `cricket academy in Greater Noida`; `cricket coaching Greater Noida`; `cricket academy in Noida`; `cricket coaching in Noida`; `cricket classes for kids Greater Noida`; `kids cricket coaching Greater Noida`; `cricket academy near me`; `cricket coaching near me`; `best cricket academy Greater Noida`; `cricket academy fees Greater Noida`; `free cricket trial Greater Noida`; `beginner cricket coaching ages 6–10`; `junior cricket coaching ages 11–14`; `advanced cricket training ages 15–19`; `one-to-one cricket coaching`; `cricket training ground Greater Noida`; `cricket net practice Greater Noida`; `turf nets and bowling machine practice`; `cricket academy hostel Greater Noida`; `cricket fitness training Greater Noida`; `cricket academy Delta II`; `cricket academy Greater Noida West`; `cricket coaching Noida Extension`.
+>
+> **Keyword rules:** assign one primary search intent to each page. Use synonyms and related phrases naturally in copy. Do not repeat the same city/phrase in every heading. Do not create thin sector pages or doorway pages. Keep location claims honest: the academy is physically in Greater Noida unless verified otherwise. Do not imply a branch in Noida.
+>
+> ## E. Page-by-page metadata and content plan
+>
+> Propose and document the final title, meta description, H1, primary intent, supporting terms, internal links, missing facts and CTA for every current canonical page. Use these as starting directions, not unverified claims:
+>
+> - `/`: title “Cricket Academy in Greater Noida | Young Star Cricket Academy”; H1 “Cricket Academy in Greater Noida for Kids and Competitive Players”; explain location, actual age bands, programs, coaches, confirmed facilities and trial.
+> - `/about`: title “About Young Star Cricket Academy | Greater Noida”; explain ownership/approach, real coach credentials, verified history and real milestones.
+> - `/our-programs`: title “Cricket Coaching Programs by Age | Greater Noida”; make ages, timing, days/week, skills and trial options comparable and accurate; test filters.
+> - `/program-foundation-cricket`: title “Cricket Coaching for Kids Ages 6–10 | Greater Noida”; focus on beginner safety, age-appropriate drills, equipment, parent questions and schedule.
+> - `/program-junior-development`: title “Junior Cricket Coaching Ages 11–14 | Greater Noida”; cover hard-ball progression and actual match experience without guaranteeing selection.
+> - `/program-senior-performance`: title “Advanced Cricket Coaching Ages 15–19 | Greater Noida”; explain selection criteria, competitive preparation and real outcomes without false affiliation claims.
+> - `/program-professional-coaching`: title “One-to-One Cricket Coaching | Greater Noida”; explain session format, coach/specialty, availability and booking.
+> - `/coach`: title “Cricket Coaches in Greater Noida | Young Star Cricket Academy”; link to unique, verified profiles.
+> - `/coach-kapil-pratap-singh`, `/coach-manoj-gupta`, `/coach-nayan-bhardwaj`, `/coach-lokesh-bharti`, `/coach-nikhil-yadav`, `/coach-rajeev-gupta`, `/coach-suryabhan-singh`: unique name-based title, original bio and verified credentials. Use “fitness coach” only for the actual role.
+> - `/cricket-training`: title “Cricket Training Grounds in Greater Noida | YSCA”; detail actual pitches, supervision, training and access.
+> - `/net-practice`: title “Cricket Net Practice in Greater Noida | YSCA”; detail real nets, equipment, bookings and safety.
+> - `/hostel`: title “Cricket Academy Hostel in Greater Noida | YSCA”; verify accommodation, meals, supervision, study-time and safety information before publishing.
+> - `/gym`: title “Cricket Fitness Training in Greater Noida | YSCA”; describe actual training and who can use it; avoid unsupported medical claims.
+> - `/photo-gallery`: title “Cricket Training Photos and Match Gallery | YSCA”; real images, useful captions/alt text; hide or noindex empty album routes.
+> - `/contact`: title “Contact Young Star Cricket Academy | Greater Noida”; accurate phone/WhatsApp/email/address/hours/map, trial details, fees/contact pathway and working form.
+> - `/contact?action=trial`: preserve functionality but canonicalize to `/contact`; omit from sitemap.
+> - Optional `/facilities`: create only if a real, helpful hub is warranted; do not duplicate `/our-programs`.
+> - Optional Noida landing page: only if keyword evidence and genuine service reach justify unique helpful content. No near-identical city/sector doorway pages.
+>
+> For each page, write a distinct meta description describing the actual contents and a next step. Avoid empty adjectives (“world-class”, “best”, “premier”) unless supported. Keep the layout and design unchanged unless the user explicitly approves a design change.
+>
+> ## F. Local SEO, structured data and trust
+>
+> 1. Verify Google Business Profile name/category/address/pin/hours/phone/website. Do not keyword-stuff the business name.
+> 2. Standardize phone, WhatsApp, email, location and hours sitewide and in schema.
+> 3. Use one appropriate LocalBusiness/SportsActivityLocation identity with stable `.com/#academy` IDs; correct all localhost fields; only use official social profile URLs in `sameAs`.
+> 4. Use breadcrumbs where they help navigation; only add schema for content actually visible on the corresponding page. Validate all JSON-LD. Do not invent ratings or reviews.
+> 5. Recommend real photos of actual facility, coaches, training and entrance; maintain review collection ethically and consistently.
+> 6. Track calls, trial forms, WhatsApp clicks and map directions as conversions if authorized tracking and consent settings allow.
+>
+> ## G. Content and reputation rules
+>
+> - Prioritize accurate, first-hand, helpful information, especially parent questions about coaching style, safety, batch sizes, schedules, admissions and residential care.
+> - Use coaches to review program/technical content. Add original photo/video evidence and clear authorship where practical.
+> - Do not generate large volumes of similar location pages or generic blogs. Do not plagiarize competitor text or claim a ranking, result, association, award, certification or selection guarantee without evidence.
+> - Use FAQs because they help users, not as a promise of FAQ rich results. Put answers visibly on the page.
+> - Blog topics can include choosing a cricket academy, what happens in a first trial, beginner equipment, age-group progression, fees comparison factors, hostel questions and actual week schedules—only where a knowledgeable staff member can review the information.
+>
+> ## H. Safe implementation and quality gates
+>
+> **Phase 0 (read-only):** inventory URLs, inspect production, record baseline screenshots, form/CTA behavior, technical issues, performance and tracking. Deliver report only; no edits.
+>
+> **Phase 1 (after approval):** create a feature branch and backup; standardize verified facts; implement canonical/metadata/schema/robots/sitemap changes in small, reviewable commits.
+>
+> **Phase 2 (after approval):** improve copy and page metadata page by page; fix the Facilities link and gallery. Avoid unrelated redesign, CSS or JS changes.
+>
+> **Phase 3 (after approval):** test on a staging/preview URL, never by blindly deploying to production. Test all pages/links, desktop and mobile menus, filters, gallery, contact form validation and submission, trial query-prefill, phone and WhatsApp CTAs, maps, images, analytics events and console/network errors.
+>
+> **Technical acceptance checks:**
+> - No accidental `localhost`, `/young/` or unintended `.in` canonical/OG/JSON-LD/sitemap references remain on the `.com` production version.
+> - Every indexable page has the intended unique title, description, H1 and canonical.
+> - Canonicals, sitemap and robots point to the same approved primary host; sitemap only contains canonical indexable success URLs.
+> - No indexable empty/duplicate pages, broken links, inaccessible main content or hidden core program links.
+> - LocalBusiness fields match the visible, approved real-world facts.
+> - Existing appearance, routes, forms, program filtering, trial prefill, call/WhatsApp and mobile functionality remain intact.
+> - Compare PageSpeed and crawl results with baseline; investigate regressions before release.
+>
+> **Release gate:** prepare the diff, list files changed, summarize every SEO change, provide before/after validation evidence and wait. Do not commit to `main`, push or deploy, change DNS, switch domains or set permanent redirects until the user explicitly approves the release step.
+>
+> ## I. Final deliverables required from the agent
+>
+> 1. Audit report with severity, evidence, impact, fix and verification.
+> 2. Keyword research spreadsheet/export with actual tool source and volume/date/location fields; clearly label unavailable data.
+> 3. Keyword-to-URL map with one primary intent per page.
+> 4. Page-by-page final title/meta/H1/content/internal-link/schema recommendations.
+> 5. Domain/redirect map covering `.in/young/`, `.in` root, `.com` and query variants.
+> 6. A small, reversible implementation plan; no code change until approval.
+> 7. Post-implementation QA checklist and Search Console monitoring plan.
