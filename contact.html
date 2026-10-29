@@ -17,7 +17,7 @@
     <!-- End Google Tag Manager -->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Contact YSCA in Delta II, Greater Noida (near Aster Public School). Phone/WhatsApp: +91 99105 43666. Book a free 1-day net assessment or inquire about fees.">
+    <meta name="description" content="Contact Young Star Cricket Academy in Delta II, Greater Noida. Ask about admissions, programmes, timings, facilities and trial-session availability.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Contact Young Star Cricket Academy | Admissions Greater Noida</title>
         <link rel="canonical" href="https://youngstarcricketacademy.com/contact">
@@ -1520,11 +1520,11 @@
                                 <div class="contact-form-card" data-aos="fade-up" data-aos-duration="900">
                                     <div class="contact-form-header">
                                         <span class="form-badge-pill">
-                                            <i class="fas fa-paper-plane"></i> Quick Response Within 24 Hours
+                                            <i class="fas fa-paper-plane"></i> Admissions Enquiry
                                         </span>
-                                        <h2>Register for Admission or Free Trial</h2>
+                                        <h2>Ask About Admission or a Trial Session</h2>
                                         <p>
-                                            Complete the form below to receive batch timings, fee structures, or to reserve a complimentary 1-day net assessment session.
+                                            Share the player's age, experience and question. The academy can confirm suitable batches, timings, fees and whether a trial session is available.
                                         </p>
                                     </div>
 
@@ -1558,7 +1558,8 @@
                                         </div>
                                     </div>
 
-                                    <form id="contact-form" class="contact-form" action="contact-submit.php" method="POST">
+                                    <form id="contact-form" class="contact-form" action="/api/contact" method="POST">
+                                        <input type="text" name="_gotcha" style="display:none !important;" tabindex="-1" autocomplete="off">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-field-wrap">
@@ -1566,7 +1567,7 @@
                                                         Player / Parent Full Name <span class="req">*</span>
                                                     </label>
                                                     <div class="input-pod">
-                                                        <input type="text" id="form_name" class="form-control-pro" placeholder="e.g. Rahul Sharma" name="name" required>
+                                                        <input type="text" id="form_name" class="form-control-pro" placeholder="e.g. Rahul Sharma" name="name" autocomplete="name" maxlength="100" required>
                                                         <i class="far fa-user"></i>
                                                     </div>
                                                 </div>
@@ -1578,7 +1579,7 @@
                                                         Email Address <span class="req">*</span>
                                                     </label>
                                                     <div class="input-pod">
-                                                        <input type="email" id="form_email" class="form-control-pro" placeholder="e.g. rahul@example.com" name="email" required>
+                                                        <input type="email" id="form_email" class="form-control-pro" placeholder="e.g. rahul@example.com" name="email" autocomplete="email" maxlength="254" required>
                                                         <i class="far fa-envelope"></i>
                                                     </div>
                                                 </div>
@@ -1590,7 +1591,7 @@
                                                         Phone / WhatsApp Number <span class="req">*</span>
                                                     </label>
                                                     <div class="input-pod">
-                                                        <input type="tel" id="form_phone" class="form-control-pro" placeholder="e.g. +91 98765 43210" name="phone" required>
+                                                        <input type="tel" id="form_phone" class="form-control-pro" placeholder="e.g. +91 98765 43210" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" required>
                                                         <i class="far fa-phone"></i>
                                                     </div>
                                                 </div>
@@ -1602,7 +1603,7 @@
                                                         Inquiry Subject / Program <span class="req">*</span>
                                                     </label>
                                                     <div class="input-pod">
-                                                        <input type="text" id="form_subject" class="form-control-pro" placeholder="e.g. For Junior Development Program" name="subject" value="Cricket Training Admission Inquiry" required>
+                                                        <input type="text" id="form_subject" class="form-control-pro" placeholder="e.g. Junior Development Program" name="subject" value="Cricket Training Admission Inquiry" maxlength="120" required>
                                                         <i class="far fa-tag"></i>
                                                     </div>
                                                 </div>
@@ -1614,7 +1615,7 @@
                                                         Message &amp; Player Details (Age, Experience, Questions)
                                                     </label>
                                                     <div class="input-pod">
-                                                        <textarea id="form_message" class="form-control-pro" placeholder="Please share the student's age, whether they are a beginner or intermediate player, and preferred batch timing (morning/evening)..." name="message" rows="4"></textarea>
+                                                        <textarea id="form_message" class="form-control-pro" placeholder="Please share the student's age, whether they are a beginner or intermediate player, and preferred batch timing (morning/evening)..." name="message" rows="4" maxlength="2000"></textarea>
                                                         <i class="far fa-comment-dots" style="top:18px;"></i>
                                                     </div>
                                                 </div>
@@ -1626,10 +1627,11 @@
                                                     <i class="fas fa-arrow-right"></i>
                                                 </button>
                                                 <p class="form-trust-note">
-                                                    <i class="fas fa-lock" style="color:#16a34a;"></i> 100% Confidential. Your details are safe with Young Star Cricket Academy.
+                                                    <i class="fas fa-lock" style="color:#16a34a;"></i> We use these details only to respond to your enquiry.
                                                 </p>
                                             </div>
                                         </div>
+                                        <div id="form-feedback" role="status" aria-live="polite" style="display:none; margin-top:16px; padding:14px; border-radius:8px; font-size:14px; line-height:1.5;"></div>
                                     </form>
                                 </div>
                             </div>
@@ -1926,12 +1928,89 @@
                 });
             });
 
+            var subjectByProgram = {
+                grassroots: 'For Foundation Cricket Program (Age 6-10)',
+                foundation: 'For Foundation Cricket Program (Age 6-10)',
+                junior: 'For Junior Development Program (Age 11-14)',
+                senior: 'For Senior Performance Program (Age 15-19)',
+                professional: 'For Professional 1-on-1 Coaching',
+                hostel: 'For Academy Hostel Accommodation',
+                gym: 'For Gym & Fitness Center'
+            };
+            var params = new URLSearchParams(window.location.search);
+            var program = (params.get('program') || '').toLowerCase();
+            var requestedSubject = (params.get('subject') || '').toLowerCase();
+            var selectedSubject = subjectByProgram[program];
+
+            if (!selectedSubject && params.get('action') === 'trial') {
+                selectedSubject = 'Trial Session Enquiry';
+            }
+            if (!selectedSubject) {
+                Object.keys(subjectByProgram).some(function(key) {
+                    if (requestedSubject.indexOf(key) !== -1) {
+                        selectedSubject = subjectByProgram[key];
+                        return true;
+                    }
+                    return false;
+                });
+            }
+            if (subjectInput && selectedSubject) {
+                subjectInput.value = selectedSubject;
+            }
+
             if (subjectInput && subjectInput.value) {
                 var currentVal = subjectInput.value.toLowerCase();
                 chips.forEach(function(chip) {
                     var chipVal = chip.getAttribute('data-subject').toLowerCase();
                     if (chipVal.indexOf(currentVal) !== -1 || currentVal.indexOf(chipVal) !== -1) {
                         chip.classList.add('active');
+                    }
+                });
+            }
+
+            var form = document.getElementById('contact-form');
+            var feedback = document.getElementById('form-feedback');
+            if (form && feedback && window.fetch) {
+                form.addEventListener('submit', async function(event) {
+                    event.preventDefault();
+                    if (!form.reportValidity()) return;
+
+                    var submitButton = form.querySelector('button[type="submit"]');
+                    var originalLabel = submitButton ? submitButton.innerHTML : '';
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.setAttribute('aria-busy', 'true');
+                        submitButton.textContent = 'Sending enquiry...';
+                    }
+                    feedback.style.display = 'block';
+                    feedback.style.background = '#eff6ff';
+                    feedback.style.color = '#1e3a8a';
+                    feedback.textContent = 'Sending your enquiry…';
+
+                    try {
+                        var response = await fetch(form.action, {
+                            method: 'POST',
+                            headers: { 'Accept': 'application/json' },
+                            body: new FormData(form)
+                        });
+                        var result = await response.json();
+                        if (!response.ok || !result.success) {
+                            throw new Error(result.error || 'We could not submit your enquiry. Please call or WhatsApp the academy instead.');
+                        }
+                        feedback.style.background = '#ecfdf5';
+                        feedback.style.color = '#166534';
+                        feedback.textContent = result.message || 'Your enquiry has been received.';
+                        form.reset();
+                    } catch (error) {
+                        feedback.style.background = '#fef2f2';
+                        feedback.style.color = '#991b1b';
+                        feedback.textContent = error.message || 'We could not submit your enquiry. Please call or WhatsApp the academy instead.';
+                    } finally {
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.removeAttribute('aria-busy');
+                            submitButton.innerHTML = originalLabel;
+                        }
                     }
                 });
             }
