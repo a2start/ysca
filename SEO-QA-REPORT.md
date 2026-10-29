@@ -50,7 +50,6 @@ Recommendation: **BLOCKED — not ready to merge to production**
 | Production robots and sitemap | `robots.txt` and `sitemap.xml` returned HTTP 200; robots allows crawlers and declares the production sitemap. | Passed live baseline |
 | Programme navigation | All public HTML templates use Foundation (ages 6–10), Junior (ages 11–14) and Senior (ages 15–19) labels. | Passed source check |
 | Image accuracy | The reviewed hostel and gym stock-style images use illustrative alt text on the canonical sitemap pages. | Passed source check |
-| Placeholder social profiles | Generic Facebook, Instagram, LinkedIn, X and YouTube home-page links were removed from all 21 canonical sitemap pages. | Passed source check |
 
 ## Cloudflare configuration needed before release
 
@@ -69,7 +68,7 @@ Recommendation: **BLOCKED — not ready to merge to production**
 
 ## Technical notes
 
-- Every sitemap page has baseline Open Graph and Twitter metadata. The home page is the only page with JSON-LD; expand entity schema only with verified facts. Add official social profiles only after the academy confirms their URLs.
+- Every sitemap page has baseline Open Graph and Twitter metadata. The home page is the only page with JSON-LD; expand entity schema only with verified facts. The current `sameAs` entries are generic social-platform homepages and should be replaced with official academy profiles or removed.
 - `.htaccess` and `is-cms/` are Apache/PHP-oriented, while the report describes Cloudflare Pages static hosting. They do not validate the live Pages routing and should not be treated as deployment proof.
 - Canonicals and sitemap entries consistently use the `.com` host. This follows Google’s recommendation to align canonical hints and sitemap URLs; redirects are the stronger signal for duplicate URLs when a verified hosting configuration permits them.
 
