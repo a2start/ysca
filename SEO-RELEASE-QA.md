@@ -15,6 +15,7 @@
 - `ysca.pages.dev`, `ysca-live.pages.dev` and an actual branch-preview hostname: 200 with `X-Robots-Tag: noindex, nofollow`.
 - Production `robots.txt` and `sitemap.xml`: 200 and production-only URLs.
 - Cloudflare `CONTACTS_KV` binding: real non-sensitive submission stores successfully.
+- The staging API health endpoint is live, but its submission/storage flow remains unverified after an inconclusive client-side test attempt.
 - Desktop/mobile navigation, gallery, trial prefill and contact feedback: manual browser pass.
 
 ## Release blockers

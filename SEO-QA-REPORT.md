@@ -41,6 +41,8 @@ Recommendation: **BLOCKED — not ready to merge to production**
 | Preview middleware | Local host-policy tests pass for `ysca.pages.dev`, `*.ysca.pages.dev`, `ysca-live.pages.dev`, `*.ysca-live.pages.dev`, and the production custom domain. | Passed local check |
 | Production home | `https://youngstarcricketacademy.com/` returned HTTP 200 without `X-Robots-Tag` on the live baseline check. | Passed live baseline |
 | Staging home | `https://ysca.pages.dev/` returned HTTP 200 with `X-Robots-Tag: noindex, nofollow`. | Passed live baseline |
+| Staging contact health | `https://ysca.pages.dev/api/contact` returned HTTP 200 with its expected JSON health response and the noindex header. | Passed live baseline |
+| Staging contact submission | Not verified. A malformed shell request and a local PowerShell client error did not provide a reliable backend result. | Requires one valid browser or HTTP-client submission with non-sensitive data and KV-storage confirmation |
 | Live project default host | `https://ysca-live.pages.dev/` returned HTTP 200 **without** `X-Robots-Tag`. Source is corrected on this branch but it is not deployed. | Failed pending deployment |
 | Production robots and sitemap | `robots.txt` and `sitemap.xml` returned HTTP 200; robots allows crawlers and declares the production sitemap. | Passed live baseline |
 
