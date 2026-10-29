@@ -42,17 +42,15 @@ Recommendation: **BLOCKED — not ready to merge to production**
 | Factual-claim sweep | Canonical public pages contain no identified unverified coach certification/affiliation, experience-total, selection, ratio, net-count or meal-count claims. | Passed source check |
 | Contact Function | Local mock tests: valid KV-backed POST returns 200 and stores one inquiry; invalid input returns 400; missing `CONTACTS_KV` returns 503. | Passed local check |
 | Preview middleware | Local host-policy tests pass for `ysca.pages.dev`, `*.ysca.pages.dev`, `ysca-live.pages.dev`, `*.ysca-live.pages.dev`, and the production custom domain. | Passed local check |
-| Production home | `https://youngstarcricketacademy.com/` returned HTTP 200 without `X-Robots-Tag` on the live baseline check repeated 29 October 2026. | Passed live baseline |
+| Production home | `https://youngstarcricketacademy.com/` returned HTTP 200 without `X-Robots-Tag` on the live baseline check. | Passed live baseline |
 | Staging home | `https://ysca.pages.dev/` returned HTTP 200 with `X-Robots-Tag: noindex, nofollow`. | Passed live baseline |
 | Staging contact health | `https://ysca.pages.dev/api/contact` returned HTTP 200 with its expected JSON health response and the noindex header. | Passed live baseline |
 | Staging contact submission | Not verified. A malformed shell request and a local PowerShell client error did not provide a reliable backend result. | Requires one valid browser or HTTP-client submission with non-sensitive data and KV-storage confirmation |
-| Live project default host | `https://ysca-live.pages.dev/` returned HTTP 200 **without** `X-Robots-Tag` on the repeated 29 October 2026 check. Source is corrected on this branch but it is not deployed. | Failed pending deployment |
+| Live project default host | `https://ysca-live.pages.dev/` returned HTTP 200 **without** `X-Robots-Tag`. Source is corrected on this branch but it is not deployed. | Failed pending deployment |
 | Production robots and sitemap | `robots.txt` and `sitemap.xml` returned HTTP 200; robots allows crawlers and declares the production sitemap. | Passed live baseline |
 | Programme navigation | All public HTML templates use Foundation (ages 6–10), Junior (ages 11–14) and Senior (ages 15–19) labels. | Passed source check |
 | Image accuracy | The reviewed hostel and gym stock-style images use illustrative alt text on the canonical sitemap pages. | Passed source check |
 | Placeholder social profiles | Generic Facebook, Instagram, LinkedIn, X and YouTube home-page links were removed from all 21 canonical sitemap pages. | Passed source check |
-| Static internal links | All local `href` targets resolve to a repository file after normalising extensionless public routes. | Passed source check |
-| HTML robots directives | No public HTML source contains a `noindex` or `nofollow` meta directive. | Passed source check |
 
 ## Cloudflare configuration needed before release
 
