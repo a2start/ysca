@@ -1,11 +1,18 @@
 /**
- * Cloudflare Pages Functions do not use the static `_headers` rules.
- * Apply the same non-indexing policy to every Function response so preview
- * routes cannot accidentally become indexable. This header does not affect
- * request handling, storage, redirects, or response bodies.
+ * Apply the non-indexing policy only to the Cloudflare Pages preview host.
+ * This does not alter request handling, storage, redirects, response bodies,
+ * or the production custom-domain indexability policy.
  */
 export async function onRequest(context) {
   const response = await context.next();
-  response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  const hostname = new URL(context.request.url).hostname.toLowerCase();
+  const isPagesPreview = hostname === "ysca.pages.dev" || hostname.endsWith(".ysca.pages.dev");
+
+  if (isPagesPreview) {
+    response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  } else {
+    response.headers.delete("X-Robots-Tag");
+  }
+
   return response;
 }
