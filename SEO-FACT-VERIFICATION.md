@@ -1,6 +1,6 @@
 # YSCA fact-verification register
 
-Status: owner confirmation required before publication or reuse in SEO metadata, schema, page copy, ads or Google Business Profile.
+Status: owner confirmation required before publication or reuse in SEO metadata, schema, page copy, ads or Google Business Profile, except where specifically approved below.
 
 ## Confirmed for the current website source
 
@@ -10,6 +10,17 @@ Status: owner confirmation required before publication or reuse in SEO metadata,
 - Public programme labels: Foundation (6–10), Junior Development (11–14), Senior Performance (15–19), and one-to-one coaching by enquiry.
 
 The location above was provided as confirmed for this implementation. Phone, email and programme availability still require owner confirmation before changing external listings or expanding structured data.
+
+## Owner-approved academy-content source — 29 October 2026
+
+The owner approved `https://youngstarcricketacademy.in/` as a source for restoring academy operational and curriculum information to this website. The approved material has been reconciled before reuse with these controlling facts:
+
+- The physical training-ground address remains **FFW9+CM, Malakpur, Uttar Pradesh, India**; no address or map destination from the `.in` site may replace it.
+- The current public age pathways remain Foundation **6–10**, Junior Development **11–14** and Senior Performance **15–19**.
+- Hostel wording uses one consistent published arrangement: twin- and triple-sharing rooms; three meals and an evening snack; a resident warden, security and CCTV coverage; study space, common areas and Wi-Fi.
+- Curriculum pages may describe approved cricket-learning themes, including beginner fundamentals, technical development, match awareness, physical preparation and individual goal-setting. They must not imply selection, professional outcomes or a guaranteed trial.
+
+This approval permits the reconciled published copy only. It does not authorise a new street address, fees, a new age group, a player-count claim, a coach credential not shown in the approved source, a ranking claim, or a change to schema/Google Business Profile data without separate confirmation.
 
 ## Claims requiring confirmation
 
