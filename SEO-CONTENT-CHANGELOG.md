@@ -55,3 +55,12 @@ The target phrases are qualitative intent themes, not volume-verified metrics. G
 | `/about`, `/cricket-training`, `/hostel`, `/gym`, `/coach`, `/photo-gallery` | Generic or mismatched H1/title/description. | Distinct intent-led metadata and H1s. | Improves relevance without keyword repetition. |
 | `functions/_middleware.js` | Only the `ysca` Pages host family was protected from indexing. | Added `ysca-live.pages.dev` and branch-preview host protection; custom domains are left indexable. | Keeps preview noindex separate from production. |
 | `SEO-OWNER-FACTS.md`, `SEO-PAGE-METADATA.csv`, `SEO-IMAGE-ALT-AUDIT.csv` | No consolidated evidence/implementation record. | Added owner-fact, page metadata and reviewed image-alt records. | Supports safe future updates and release review. |
+
+## Consistency pass — `seo-final-implementation`
+
+| URL / file group | Previous content | Revised content | Reason |
+| --- | --- | --- | --- |
+| All public desktop/mobile navigation templates | Used conflicting U-12, U-16 and U-19+ labels. | Uses Foundation (ages 6–10), Junior (ages 11–14) and Senior (ages 15–19), matching the programme pages. | Keeps programme eligibility consistent. |
+| `/about` | Included unverified net counts, programme totals, match-exposure percentages and a promised one-day free trial. | Uses enquiry-led wording for current facilities, match practice and trial availability. | Removes unsupported numerical and availability claims. |
+| `/` and `/our-programs` | Used non-descriptive alt text for illustrative hostel/gym images; some accommodation copy implied fixed meals and arrangements. | Uses accurate illustrative alt text and directs visitors to confirm current accommodation and meal arrangements. | Image accessibility and fact accuracy. |
+| `/coach` | CTA promised a free trial. | CTA asks visitors to enquire about a trial session. | Trial availability and pricing require confirmation. |

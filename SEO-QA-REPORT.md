@@ -1,14 +1,14 @@
 # SEO QA report
 
-Date: 29 October 2026  
-Branch: `seo-final-implementation`  
+Date: 29 October 2026
+Branch: `seo-final-implementation`
 Recommendation: **BLOCKED — not ready to merge to production**
 
 ## Passed source checks
 
 | Check | Result |
 | --- | --- |
-| Branch | Confirmed `seo-optimization`. |
+| Branch | Confirmed `seo-final-implementation`. |
 | Public-page inventory | 25 HTML documents reviewed. |
 | Metadata cardinality | Every public HTML document has exactly one title, H1 and canonical link. |
 | Canonical/sitemap alignment | 21 intended canonical `.com` URLs in `sitemap.xml`; legacy aliases are excluded and canonicalise to their primary page. |
@@ -17,7 +17,7 @@ Recommendation: **BLOCKED — not ready to merge to production**
 | Structured data syntax | All JSON-LD blocks parse successfully. |
 | Function syntax | `functions/api/contact.js` imports as an ES module. |
 | Form function behaviour | Mock tests: invalid request = 400; valid request without `CONTACTS_KV` = 503; stored valid request = 200; sixth request from the same mocked IP/hour = 429. The function uses a hashed-IP, five-per-hour KV rate limit. |
-| Diff hygiene | `git diff --check` passed. |
+| Diff hygiene | Passed after each committed source-level change. |
 
 ## Not verified / failed by environment
 
@@ -48,6 +48,8 @@ Recommendation: **BLOCKED — not ready to merge to production**
 | Staging contact submission | Not verified. A malformed shell request and a local PowerShell client error did not provide a reliable backend result. | Requires one valid browser or HTTP-client submission with non-sensitive data and KV-storage confirmation |
 | Live project default host | `https://ysca-live.pages.dev/` returned HTTP 200 **without** `X-Robots-Tag`. Source is corrected on this branch but it is not deployed. | Failed pending deployment |
 | Production robots and sitemap | `robots.txt` and `sitemap.xml` returned HTTP 200; robots allows crawlers and declares the production sitemap. | Passed live baseline |
+| Programme navigation | All public HTML templates use Foundation (ages 6–10), Junior (ages 11–14) and Senior (ages 15–19) labels. | Passed source check |
+| Image accuracy | The reviewed hostel and gym stock-style images use illustrative alt text on the canonical sitemap pages. | Passed source check |
 
 ## Cloudflare configuration needed before release
 
@@ -66,6 +68,6 @@ Recommendation: **BLOCKED — not ready to merge to production**
 
 ## Technical notes
 
-- The home page is the only page with social metadata and JSON-LD. Expand these only with verified page/entity facts. The current `sameAs` entries are generic social-platform homepages and should be replaced with official academy profiles or removed.
+- Every sitemap page has baseline Open Graph and Twitter metadata. The home page is the only page with JSON-LD; expand entity schema only with verified facts. The current `sameAs` entries are generic social-platform homepages and should be replaced with official academy profiles or removed.
 - `.htaccess` and `is-cms/` are Apache/PHP-oriented, while the report describes Cloudflare Pages static hosting. They do not validate the live Pages routing and should not be treated as deployment proof.
 - Canonicals and sitemap entries consistently use the `.com` host. This follows Google’s recommendation to align canonical hints and sitemap URLs; redirects are the stronger signal for duplicate URLs when a verified hosting configuration permits them.
