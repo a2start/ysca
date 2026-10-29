@@ -137,10 +137,6 @@ async function hashValue(value) {
 }
 
 function createSubmissionId() {
-  if (typeof globalThis.crypto?.randomUUID === "function") {
-    return globalThis.crypto.randomUUID();
-  }
-
   return `inquiry-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
 }
 
