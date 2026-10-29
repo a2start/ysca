@@ -35,6 +35,8 @@ Recommendation: **BLOCKED — not ready to merge to production**
 | Check | Result | Status |
 | --- | --- | --- |
 | 21 sitemap pages | Every sitemap URL has one H1, a production canonical and a meta description in source. | Passed source check |
+| Sitemap and canonicals | XML parsed successfully; all 21 sitemap source targets exist; every HTML canonical uses the production `.com` host. | Passed source check |
+| Internal references | Static local `href` and `src` target checks found no missing targets. | Passed source check |
 | Contact Function | Local mock tests: valid KV-backed POST returns 200 and stores one inquiry; invalid input returns 400; missing `CONTACTS_KV` returns 503. | Passed local check |
 | Preview middleware | Local host-policy tests pass for `ysca.pages.dev`, `*.ysca.pages.dev`, `ysca-live.pages.dev`, `*.ysca-live.pages.dev`, and the production custom domain. | Passed local check |
 | Production home | `https://youngstarcricketacademy.com/` returned HTTP 200 without `X-Robots-Tag` on the live baseline check. | Passed live baseline |
