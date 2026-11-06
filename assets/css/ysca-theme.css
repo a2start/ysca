@@ -155,3 +155,32 @@ summary:focus-visible,
   max-width: 48rem;
   text-align: center;
 }
+
+
+/* Keep LightGallery above the fixed navigation (z-index: 99999).
+   Only target the modal; avoid changing header/navigation stacking. */
+.lg-backdrop {
+  z-index: 100000 !important;
+}
+.lg-outer {
+  z-index: 100001 !important;
+}
+/* Keep the close action accessible even after other toolbar icons fade. */
+.lg-outer .lg-toolbar {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+.lg-outer .lg-close {
+  color: #ffffff !important;
+  background: rgba(7, 22, 44, 0.86);
+  border-radius: 50%;
+  margin: 8px;
+  min-width: 44px;
+  min-height: 44px;
+}
+.lg-outer .lg-close:hover,
+.lg-outer .lg-close:focus-visible {
+  color: #fea630 !important;
+  background: #07162c;
+}
