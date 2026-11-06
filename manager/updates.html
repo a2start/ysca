@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Manager Dashboard | Young Star Cricket Academy</title>
+<style>
+:root{font-family:Inter,"Plus Jakarta Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#182741;background:#f5f7fb;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.65}a{color:inherit}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #f4aa33;outline-offset:2px}
+.hidden,[hidden]{display:none!important}
+.shell{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}
+.sidebar{background:#0b1c35;color:#fff;display:flex;flex-direction:column;gap:28px;padding:26px 18px}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 8px;text-decoration:none}
+.brand-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:12px;background:#f3a933;color:#0b1c35;font-size:25px;font-weight:900}
+.brand strong{display:block;font-size:15px}.brand small{font-size:11px;color:#acb9cd}
+.sidebar h2{font-size:11px;letter-spacing:.14em;color:#8ca0bb;text-transform:uppercase;margin:0 10px 12px}
+.nav{display:grid;gap:6px}.nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;border-radius:11px;padding:13px 14px;background:transparent;color:#c5d1e4;text-align:left;font-weight:600}
+.nav button.active,.nav button:hover{background:#193454;color:#fff}.sidebar-note{margin-top:auto;padding:14px;border:1px solid #314762;border-radius:13px;color:#bccde2;font-size:12px;line-height:1.5}
+.main{padding:clamp(20px,3vw,44px);min-width:0;max-width:1500px;width:100%;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:32px}
+.eyebrow{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:#c08217}
+h1{margin:6px 0 6px;font-size:clamp(25px,3vw,35px);line-height:1.2;color:#0b1c35}
+.sub{margin:0;color:#6d7c93;font-size:14px;line-height:1.6}.top-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid #d6deea;border-radius:10px;padding:10px 17px;background:white;color:#162d4e;font-weight:700;font-size:13px;display:inline-flex;gap:8px;align-items:center;justify-content:center}
+.btn.primary{background:#f1a62a;color:#14233a;border-color:#f1a62a}.btn.dark{background:#0b1c35;border-color:#0b1c35;color:#fff}.btn:hover{filter:brightness(.97)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:26px}
+.stat,.panel{background:white;border:1px solid #e7ebf2;border-radius:15px;box-shadow:0 5px 20px rgba(12,32,65,.035)}
+.stat{padding:20px}.stat .k{display:block;font-size:12px;color:#72819a;font-weight:600}.stat strong{display:block;margin-top:10px;font-size:29px;color:#112746}
+.cardhead{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:23px 25px;border-bottom:1px solid #edf0f5}.cardhead h2{font-size:18px;color:#0b1c35;margin:0}.cardhead p{margin:5px 0 0;color:#718098;font-size:13px}
+.formbody{padding:24px 25px;display:grid;gap:22px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:8px;min-width:0}.field>label,.field>span{font-size:12px;font-weight:750;color:#283d59}
+.field input,.field textarea,.field select{width:100%;border:1px solid #d8e0eb;border-radius:10px;background:#fff;padding:12px 13px;color:#172b46}
+.field textarea{min-height:135px;resize:vertical;line-height:1.6}
+.hint{font-size:12px;color:#78869b;line-height:1.5;margin:0}
+.destinations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.destination{display:flex;gap:10px;align-items:flex-start;border:1px solid #dde4ee;border-radius:12px;padding:14px;background:#fcfdff;cursor:pointer}
+.destination input,.groupcheck input{accent-color:#e5a028;width:17px;height:17px;margin:2px 0 0;flex-shrink:0}
+.destination strong{display:block;font-size:13px;color:#172d4c}.destination small{display:block;color:#72829a;font-size:11px;margin-top:4px;line-height:1.5}
+.groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.groupcheck{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid #e1e7ee;border-radius:9px;font-size:12px;font-weight:600}
+.warning{padding:13px 16px;background:#fff8e7;border:1px solid #f4dda8;color:#76501b;border-radius:10px;font-size:12px;line-height:1.65}
+.actions{border-top:1px solid #edf0f5;padding-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.status{font-size:13px;min-height:21px;line-height:1.5}.status.error{color:#b42f26}.status.good{color:#187346}
+.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}
+.table th,.table td{padding:15px 17px;border-bottom:1px solid #edf0f5;vertical-align:top}
+.table th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#718198;background:#fafbfe}
+.table td strong{font-size:13px}.muted{color:#8190a4;font-size:12px}.pill{display:inline-block;padding:5px 9px;border-radius:40px;background:#eef2f9;color:#526783;font-weight:700;font-size:10px;white-space:nowrap}
+.pill.published{background:#e8f7f1;color:#138055}.mini-actions{display:flex;gap:6px;flex-wrap:wrap}.mini-actions button{padding:6px 9px;border:1px solid #dce4ee;border-radius:7px;background:white;color:#203752;font-size:11px;font-weight:650}
+.login-screen{min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 75% 20%,#213b60,#0b1c35 62%)}
+.login-card{background:white;border-radius:18px;box-shadow:0 20px 60px #0003;padding:34px;width:min(100%,410px)}
+.login-card h1{font-size:27px}.login-card .btn{width:100%;padding:13px}
+.login-card .field{margin:22px 0 16px}
+footer{margin-top:28px;color:#718199;font-size:12px}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.destinations{grid-template-columns:1fr}.groups{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.shell{grid-template-columns:1fr}.sidebar{padding:12px;gap:10px}.brand{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap}.sidebar h2,.sidebar-note{display:none}.main{padding:20px 14px}.formbody{padding:18px}.formgrid{grid-template-columns:1fr}.cardhead{padding:18px}.top{align-items:flex-start;flex-direction:column}}
+@media(max-width:420px){.groups{grid-template-columns:1fr}.stats{gap:9px}.stat{padding:13px}}
+</style>
+</head>
+<body>
+<section id="login-screen" class="login-screen">
+  <form id="login-form" class="login-card">
+    <div class="eyebrow">Young Star Cricket Academy</div>
+    <h1>Manager sign in</h1>
+    <p class="sub">Securely manage announcements, group notices and website updates.</p>
+    <div class="field"><label for="password">Manager password</label><input id="password" type="password" required autocomplete="current-password"></div>
+    <button class="btn primary" type="submit">Sign in →</button>
+    <p class="status" id="login-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+<div class="shell hidden" id="app">
+  <aside class="sidebar">
+    <a class="brand" href="/manager/updates.html"><div class="brand-icon">Y</div><div><strong>YSCA Manager</strong><small>Academy Management</small></div></a>
+    <div><h2>Workspace</h2><nav class="nav" aria-label="Manager navigation">
+      <button data-view="overview" class="active">◫ &nbsp; Overview</button>
+      <button data-view="compose">✎ &nbsp; Create Update</button>
+      <button data-view="history">▤ &nbsp; All Updates</button>
+      <button data-view="groups">☷ &nbsp; WhatsApp Groups</button>
+    </nav></div>
+    <p class="sidebar-note">Private fee reminders never appear on the public website. WhatsApp groups use manual sharing until an officially supported delivery method exists.</p>
+  </aside>
+  <main class="main">
+    <header class="top">
+      <div><div class="eyebrow">Operations hub</div><h1 id="page-title">Academy dashboard</h1><p class="sub" id="page-sub">Plan, publish and organize updates from one place.</p></div>
+      <div class="top-actions"><button class="btn" id="logout" type="button">Sign out</button><button class="btn primary" id="new-update" type="button">+ New Update</button></div>
+    </header>
+    <section class="stats" id="stats" aria-label="Overview metrics">
+      <div class="stat"><span class="k">Total updates</span><strong id="stat-total">0</strong></div>
+      <div class="stat"><span class="k">Published to website</span><strong id="stat-public">0</strong></div>
+      <div class="stat"><span class="k">Drafts</span><strong id="stat-draft">0</strong></div>
+      <div class="stat"><span class="k">Telegram sent</span><strong id="stat-telegram">0</strong></div>
+    </section>
+    <section class="panel" id="compose-panel">
+      <div class="cardhead"><div><h2>Create an update</h2><p>Write once, select where it belongs, and choose to save or publish.</p></div></div>
+      <form id="update-form" class="formbody">
+        <div class="formgrid">
+          <div class="field"><label for="category">Update category</label>
+            <select id="category"><option value="announcement">Announcement</option><option value="fee">Fee reminder (private)</option><option value="training">Training / Schedule</option><option value="match">Match / Result</option><option value="event">Event</option><option value="holiday">Holiday / Closure</option><option value="photo">Photo update</option><option value="video">Video update</option><option value="general">General update</option></select>
+          </div>
+          <div class="field"><label for="visibility">Visibility</label><select id="visibility"><option value="public">Public announcement</option><option value="private">Private notice</option></select></div>
+        </div>
+        <div class="field"><label for="title">Title</label><input id="title" placeholder="Example: Saturday net practice schedule" maxlength="140" required></div>
+        <div class="field"><label for="body">Message / description</label><textarea id="body" required maxlength="3500" placeholder="Write your academy announcement, match update or fee reminder here..."></textarea><p class="hint">Avoid personal student names, phone numbers and balances in public updates.</p></div>
+        <div class="formgrid">
+          <div class="field"><label for="media">Image or video (optional)</label><input id="media" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm"><p class="hint">Max 10 MB. Stored privately unless the update is published publicly. Requires Cloudflare R2.</p></div>
+          <div class="field"><label for="video-url">YouTube video URL (optional)</label><input id="video-url" type="url" maxlength="300" placeholder="https://www.youtube.com/watch?v=..."></div>
+        </div>
+        <div><div class="field"><span>Where should this go?</span></div>
+          <div class="destinations" style="margin-top:10px">
+            <label class="destination"><input id="dest-website" type="checkbox" checked><span><strong>YSCA website</strong><small>Publish on the public Updates page</small></span></label>
+            <label class="destination"><input id="dest-telegram" type="checkbox"><span><strong>Telegram channel</strong><small>Automatically send when connected</small></span></label>
+            <label class="destination"><input id="dest-whatsapp" type="checkbox"><span><strong>WhatsApp groups</strong><small>Prepare a group-specific share message</small></span></label>
+          </div>
+        </div>
+        <div id="group-picker" class="hidden">
+          <div class="field"><span>Select WhatsApp groups</span></div>
+          <div class="groups" id="group-options" style="margin-top:10px"></div>
+          <p class="hint" style="margin-top:8px">You can select multiple groups. WhatsApp's native share dialog requires choosing each group and pressing Send; selection here does not send messages.</p>
+        </div>
+        <div class="warning" id="privacy-note">Public announcements can appear on the academy website and be indexed. Check that everything is approved for publication, especially children's images.</div>
+        <div class="actions">
+          <button class="btn dark" type="submit" data-action="publish" id="publish">Publish selected destinations</button>
+          <button class="btn" type="submit" data-action="draft" id="save-draft">Save draft</button>
+          <span id="form-status" role="status" aria-live="polite" class="status"></span>
+        </div>
+      </form>
+    </section>
+    <section class="panel hidden" id="history-panel">
+      <div class="cardhead"><div><h2>Updates history</h2><p>Publication records and prepared WhatsApp messages.</p></div><button class="btn" id="refresh">Refresh</button></div>
+      <div class="tablewrap"><table class="table"><thead><tr><th>Update</th><th>Category</th><th>Status</th><th>Channels</th><th>Actions</th></tr></thead><tbody id="history-body"></tbody></table></div>
+    </section>
+    <section class="panel hidden" id="groups-panel">
+      <div class="cardhead"><div><h2>WhatsApp group names</h2><p>Change the group labels for easier selection. These are not API connections.</p></div></div>
+      <form id="groups-form" class="formbody"><div id="groups-settings" class="formgrid"></div><button class="btn primary" type="submit">Save group names</button><div id="groups-status" class="status" role="status"></div></form>
+    </section>
+    <footer>YSCA Manager v1 · WhatsApp messages are prepared, never sent automatically. Website publishing requires Cloudflare configuration.</footer>
+  </main>
+</div>
+<script>
+(function(){
+ 'use strict';
+ var api='/api/manager';
+ var items=[], groups=[];
+ var $=id=>document.getElementById(id);
+ function message(id,value,error){var el=$(id);el.textContent=value;el.className='status '+(error?'error':value?'good':'');}
+ async function request(path,opts){
+  var r=await fetch(api+path,{credentials:'same-origin',headers:opts&&opts.body instanceof FormData?{}:{'Content-Type':'application/json'},...opts});
+  var json=await r.json().catch(()=>({error:'Service unavailable'}));
+  if(!r.ok)throw new Error(json.error||'Request failed');
+  return json;
+ }
+ function showAuthenticated(yes){$('app').classList.toggle('hidden',!yes);$('login-screen').classList.toggle('hidden',yes);}
+ async function load(){
+  var data=await request('/updates'); items=data.items||[];groups=data.groups||[];
+  $('stat-total').textContent=items.length;
+  $('stat-public').textContent=items.filter(i=>i.status==='published'&&i.visibility==='public'&&i.publish_website).length;
+  $('stat-draft').textContent=items.filter(i=>i.status==='draft').length;
+  $('stat-telegram').textContent=items.filter(i=>i.telegram_status==='sent').length;
+  renderGroups();renderHistory();
+ }
+ function create(tag,text,cls){var el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(cls)el.className=cls;return el;}
+ function renderGroups(){
+  $('group-options').replaceChildren();$('groups-settings').replaceChildren();
+  groups.forEach(g=>{
+   var label=create('label',undefined,'groupcheck'),input=create('input');
+   input.type='checkbox';input.value=g.id;input.name='group';label.append(input,create('span',g.label));$('group-options').append(label);
+   var div=create('div',undefined,'field'),lbl=create('label',g.id);lbl.htmlFor='group-'+g.id;
+   var name=create('input');name.type='text';name.id='group-'+g.id;name.maxLength=60;name.value=g.label;
+   div.append(lbl,name);$('groups-settings').append(div);
+  });
+ }
+ function renderHistory(){
+  var body=$('history-body');body.replaceChildren();
+  if(!items.length){var tr=create('tr'),td=create('td','No updates yet. Create your first announcement.');td.colSpan=5;tr.append(td);body.append(tr);return;}
+  items.forEach(item=>{
+   var tr=create('tr'),info=create('td'),strong=create('strong',item.title),short=create('div',item.body.slice(0,90)+(item.body.length>90?'…':''),'muted');
+   info.append(strong,short,create('div',new Date(item.created_at).toLocaleString(),'muted'));
+   var cat=create('td',item.category),statusTd=create('td'),pill=create('span',item.status,'pill '+(item.status==='published'?'published':''));statusTd.append(pill);
+   var channels=create('td');
+   channels.append(create('div',(item.publish_website&&item.status==='published'?'Website live · ':'')+
+     (item.publish_telegram?'Telegram '+item.telegram_status+' · ':'')+
+     (item.whatsapp_groups.length?item.whatsapp_groups.length+' WhatsApp group(s) selected':'Not shared'),'muted'));
+   var actions=create('td'),wrap=create('div',undefined,'mini-actions');
+   if(item.whatsapp_groups.length){
+    var share=create('button','Share to WhatsApp');share.type='button';
+    share.addEventListener('click',()=>shareItem(item));wrap.append(share);
+   }
+   if(item.status==='draft'){
+    var publish=create('button','Publish');publish.type='button';
+    publish.addEventListener('click',()=>changeItem(item,'publish'));wrap.append(publish);
+   }
+   if(item.status!=='archived'){
+    var archive=create('button','Archive');archive.type='button';
+    archive.addEventListener('click',()=>changeItem(item,'archive'));wrap.append(archive);
+   }
+   actions.append(wrap);tr.append(info,cat,statusTd,channels,actions);body.append(tr);
+  });
+ }
+ async function changeItem(item,action){
+  if(!confirm(action==='archive'?'Archive this update and remove it from the website?':'Publish this draft to its selected supported destinations?'))return;
+  try{await request('/updates/'+item.id,{method:'PATCH',body:JSON.stringify({action})});await load();}
+  catch(e){alert(e.message);}
+ }
+ function shareItem(item){
+  var labels=item.whatsapp_groups.map(id=>groups.find(g=>g.id===id)?.label||id).join(', ');
+  var msg=item.title+'\n\n'+item.body;
+  if(item.status==='published'&&item.publish_website&&item.visibility==='public')msg+='\n\nhttps://youngstarcricketacademy.com/updates';
+  var url='https://api.whatsapp.com/send?text='+encodeURIComponent(msg);
+  // WhatsApp does NOT provide a supported API to preselect existing groups.
+  alert('Selected groups: '+labels+'\n\nWhatsApp will open with the message. Choose each intended group yourself and press Send. No delivery is recorded automatically.');
+  window.open(url,'_blank','noopener,noreferrer');
+ }
+ function switchView(view){
+  var views=['overview','compose','history','groups'];
+  if(!views.includes(view))view='overview';
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+  $('stats').classList.toggle('hidden',view!=='overview');
+  $('compose-panel').classList.toggle('hidden',view!=='overview'&&view!=='compose');
+  $('history-panel').classList.toggle('hidden',view!=='overview'&&view!=='history');
+  $('groups-panel').classList.toggle('hidden',view!=='groups');
+  $('page-title').textContent=({overview:'Academy dashboard',compose:'Create an update',history:'Updates history',groups:'WhatsApp groups'})[view];
+ }
+ document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>switchView(button.dataset.view)));
+ $('new-update').addEventListener('click',()=>switchView('compose'));
+ $('refresh').addEventListener('click',()=>load().catch(e=>alert(e.message)));
+ $('login-form').addEventListener('submit',async e=>{
+  e.preventDefault();message('login-status','Signing in…');
+  try{await request('/auth',{method:'POST',body:JSON.stringify({action:'login',password:$('password').value})});
+    $('password').value='';showAuthenticated(true);await load();message('login-status','');
+  }catch(err){message('login-status',err.message,true);}
+ });
+ $('logout').addEventListener('click',async()=>{
+  try{await request('/auth',{method:'POST',body:JSON.stringify({action:'logout'})});}catch(e){}
+  showAuthenticated(false);items=[];groups=[];
+ });
+ function categoryChange(){
+  var fee=$('category').value==='fee';
+  if(fee){$('visibility').value='private';$('dest-website').checked=false;$('dest-website').disabled=true;$('visibility').value='private';$('visibility').disabled=true;$('dest-whatsapp').checked=true;}
+  else{$('dest-website').disabled=false;$('visibility').disabled=false;}
+  $('privacy-note').textContent=fee?'Fee reminders are private. Personal balances, payment status and student details will not be published on the website. WhatsApp sharing requires the manager to send each message manually.':'Public announcements can be indexed on the website. Ensure student photos, personal information and schedules are approved for public display.';
+  $('group-picker').classList.toggle('hidden',!$('dest-whatsapp').checked);
+ }
+ $('category').addEventListener('change',categoryChange);
+ $('dest-whatsapp').addEventListener('change',categoryChange);
+ $('visibility').addEventListener('change',()=>{
+  if($('visibility').value==='private')$('dest-website').checked=false;
+ });
+ $('dest-website').addEventListener('change',()=>{
+  if($('dest-website').checked)$('visibility').value='public';
+ });
+ $('update-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  var action=e.submitter?.dataset.action||'draft';
+  var groupsSelected=[...document.querySelectorAll('input[name=group]:checked')].map(x=>x.value);
+  var body={action,title:$('title').value,body:$('body').value,category:$('category').value,
+   visibility:$('visibility').value,website:$('dest-website').checked,telegram:$('dest-telegram').checked,
+   groups:$('dest-whatsapp').checked?groupsSelected:[],video_url:$('video-url').value};
+  if($('dest-whatsapp').checked&&!groupsSelected.length){message('form-status','Select at least one WhatsApp group',true);return;}
+  if(!body.website&&!body.telegram&&!body.groups.length){message('form-status','Select a destination',true);return;}
+  var submit=$('publish'),draft=$('save-draft');submit.disabled=draft.disabled=true;message('form-status','Saving…');
+  try{
+   var file=$('media').files[0];
+   if(file){var form=new FormData();form.append('file',file);
+    var uploaded=await request('/media',{method:'POST',body:form});body.media_id=uploaded.media_id;
+   }
+   var saved=await request('/updates',{method:'POST',body:JSON.stringify(body)});
+   message('form-status',saved.status==='published'?'Saved and published to the website.':'Saved. WhatsApp sharing still requires manual Send.');
+   $('update-form').reset();categoryChange();await load();switchView('history');
+   if(body.groups.length&&action==='publish'){
+    var record=items.find(x=>x.id===saved.id);if(record)shareItem(record);
+   }
+  }catch(err){message('form-status',err.message,true);}
+  finally{submit.disabled=draft.disabled=false;}
+ });
+ $('groups-form').addEventListener('submit',async e=>{
+  e.preventDefault();message('groups-status','Saving…');
+  try{for(const g of groups){await request('/groups',{method:'POST',body:JSON.stringify({id:g.id,label:$('group-'+g.id).value})});}
+   await load();message('groups-status','Group names saved.');
+  }catch(err){message('groups-status',err.message,true);}
+ });
+ request('/auth').then(r=>{if(r.authenticated){showAuthenticated(true);return load();}})
+ .catch(e=>{message('login-status','Backend not configured: '+e.message,true);});
+ categoryChange();
+})();
+</script>
+</body>
+</html>
