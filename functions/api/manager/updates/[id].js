@@ -18,7 +18,7 @@ export async function onRequestPatch({ request, env, params }) {
   // Enforce the original destination choices, especially private fee reminders.
   const f = normalizeUpdate({ title: existing.title, body: existing.body,
     category: existing.category, visibility: existing.visibility,
-    website: !!JSON.parse('' + existing.publish_website), telegram: !!existing.publish_telegram,
+    website: !!existing.publish_website, telegram: !!existing.publish_telegram,
     groups: JSON.parse(existing.whatsapp_groups || '[]'),
     media_id: existing.media_id, video_url: existing.video_url });
   // Drafts store destinations, but do not publish until explicitly requested.
@@ -27,7 +27,7 @@ export async function onRequestPatch({ request, env, params }) {
   if (!website && !telegram) return json({ error: 'Only WhatsApp sharing is available for this draft; use the Share action' }, 400);
   const now = new Date().toISOString();
   await env.DB.prepare("UPDATE ysca_updates SET status=?, publish_website=?, updated_at=?, published_at=?, telegram_status=? WHERE id=?")
-    .bind(website ? 'published' : 'archived', website ? 1 : 0, now, website ? now : null, telegram ? 'pending' : 'not_requested', id).run();
+    .bind('published', website ? 1 : 0, now, website ? now : null, telegram ? 'pending' : 'not_requested', id).run();
   let telegramStatus = 'not_requested';
   if (telegram) {
     telegramStatus = await deliverTelegram(env, {
@@ -36,5 +36,5 @@ export async function onRequestPatch({ request, env, params }) {
     });
     await env.DB.prepare('UPDATE ysca_updates SET telegram_status=? WHERE id=?').bind(telegramStatus,id).run();
   }
-  return json({ success: true, status: website ? 'published' : 'archived', telegram_status: telegramStatus });
+  return json({ success: true, status: 'published', telegram_status: telegramStatus });
 }
