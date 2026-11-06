@@ -17,12 +17,12 @@
     <!-- End Google Tag Manager -->
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Explore photos of cricket practice, match activities and training facilities featured by Young Star Cricket Academy in Greater Noida.">
+        <meta name="description" content="Explore Academy Moments at Young Star Cricket Academy: training photos, cricket match highlights, videos and life at our Greater Noida academy.">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Cricket Training Photos &amp; Match Gallery | YSCA Greater Noida</title>
+        <title>Academy Moments: Cricket Photos &amp; Highlights | YSCA</title>
         <link rel="canonical" href="https://youngstarcricketacademy.com/photo-gallery">
-        <meta property="og:title" content="Cricket Training Photos &amp; Academy Gallery | YSCA">
-        <meta property="og:description" content="Explore photos of cricket practice, match activities and training facilities featured by YSCA.">
+        <meta property="og:title" content="Academy Moments: Cricket Photos &amp; Videos | YSCA">
+        <meta property="og:description" content="See new cricket training photos, match highlights and academy moments from Young Star Cricket Academy.">
         <meta property="og:url" content="https://youngstarcricketacademy.com/photo-gallery">
         <meta property="og:type" content="website">
         <meta name="twitter:card" content="summary">
@@ -177,7 +177,9 @@
 }
 </style>
 
-    </head>
+    <link rel="stylesheet" href="assets/css/ysca-live-moments.css">
+<script src="assets/js/ysca-live-moments.js" defer></script>
+</head>
     <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
@@ -513,20 +515,33 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <div class="page-content text-center">
-                                        <h1>Cricket Training and Academy Photo Gallery</h1>
+                                        <h1>Academy Moments: Cricket Photos &amp; Highlights</h1>
                                         <ul>
                                             <li><a href="./">Home</a></li>
-                                            <li>Photo Gallery</li>
+                                            <li>Academy Moments</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
+                    <section id="ysca-live-moments-section" hidden aria-labelledby="ysca-live-moments-title">
+                      <div class="container">
+                        <div class="ysca-moments-intro">
+                          <span class="ysca-moments-eyebrow">Academy life, on and off the field</span>
+                          <h2 id="ysca-live-moments-title">Latest Academy Moments</h2>
+                          <p>Fresh cricket training photos, match highlights and videos shared by Young Star Cricket Academy.</p>
+                        </div>
+                        <h3 class="ysca-moments-media-heading" id="ysca-live-photos-heading" hidden>Latest Photos</h3>
+                        <div id="ysca-live-moments-gallery" class="ysca-moments-media-grid" aria-live="polite"></div>
+                        <h3 class="ysca-moments-media-heading" id="ysca-live-videos-heading" hidden>Latest Videos</h3>
+                        <div id="ysca-live-moments-videos" class="ysca-moments-media-grid" hidden aria-live="polite"></div>
+                      </div>
+                    </section>
                         <div class="row justify-content-center">
                             <div class="col-xl-8 col-lg-10">
                                 <div class="section-title text-center mb-55">
-                                                                            <h2 class="text-anm">Photo Gallery</h2>
+                                                                            <h2 class="text-anm">Explore Our Albums</h2>
                                                                     </div>
                             </div>
                         </div>
@@ -689,22 +704,27 @@
         <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"></script>
         <script>
         (function () {
-            var lgEl = document.getElementById('lightgallery');
-            if (lgEl && typeof lightGallery === 'function') {
-                lightGallery(lgEl, {
-                    speed: 400,
-                    thumbnail: true,
-                    zoom: true,
-                    download: false,
-                    actualSize: false,
-                    counter: true,
-                    mobileSettings: {
-                        controls: true,
-                        showCloseIcon: true,
-                        download: false
-                    }
-                });
-            }
+            var lgEl = document.getElementById('ysca-live-moments-gallery');
+            var instance = null;
+            window.yscaRefreshMomentsGallery = function () {
+                if (!lgEl || typeof lightGallery !== 'function' ||
+                    !lgEl.querySelector('a.ysca-moment-photo')) return;
+                if (!instance) {
+                    instance = lightGallery(lgEl, {
+                        selector: 'a.ysca-moment-photo',
+                        speed: 400,
+                        thumbnail: true,
+                        zoom: true,
+                        download: false,
+                        actualSize: false,
+                        counter: true,
+                        mobileSettings: {controls:true, showCloseIcon:true, download:false}
+                    });
+                } else {
+                    instance.refresh();
+                }
+            };
+            window.yscaRefreshMomentsGallery();
         })();
         </script>
         <script src="assets/js/plugins/popper.min.js"></script>
