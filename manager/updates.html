@@ -1,292 +1,417 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>Manager Dashboard | Young Star Cricket Academy</title>
+<meta name="theme-color" content="#0b1d36">
+<title>YSCA Manager | Academy Updates</title>
 <style>
-:root{font-family:Inter,"Plus Jakarta Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#182741;background:#f5f7fb;font-synthesis:none}
-*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}
-button:disabled{cursor:not-allowed;opacity:.65}a{color:inherit}
-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #f4aa33;outline-offset:2px}
-.hidden,[hidden]{display:none!important}
-.shell{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}
-.sidebar{background:#0b1c35;color:#fff;display:flex;flex-direction:column;gap:28px;padding:26px 18px}
-.brand{display:flex;align-items:center;gap:12px;padding:4px 8px;text-decoration:none}
-.brand-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:12px;background:#f3a933;color:#0b1c35;font-size:25px;font-weight:900}
-.brand strong{display:block;font-size:15px}.brand small{font-size:11px;color:#acb9cd}
-.sidebar h2{font-size:11px;letter-spacing:.14em;color:#8ca0bb;text-transform:uppercase;margin:0 10px 12px}
-.nav{display:grid;gap:6px}.nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;border-radius:11px;padding:13px 14px;background:transparent;color:#c5d1e4;text-align:left;font-weight:600}
-.nav button.active,.nav button:hover{background:#193454;color:#fff}.sidebar-note{margin-top:auto;padding:14px;border:1px solid #314762;border-radius:13px;color:#bccde2;font-size:12px;line-height:1.5}
-.main{padding:clamp(20px,3vw,44px);min-width:0;max-width:1500px;width:100%;margin:0 auto}
-.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:32px}
-.eyebrow{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.13em;color:#c08217}
-h1{margin:6px 0 6px;font-size:clamp(25px,3vw,35px);line-height:1.2;color:#0b1c35}
-.sub{margin:0;color:#6d7c93;font-size:14px;line-height:1.6}.top-actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn{border:1px solid #d6deea;border-radius:10px;padding:10px 17px;background:white;color:#162d4e;font-weight:700;font-size:13px;display:inline-flex;gap:8px;align-items:center;justify-content:center}
-.btn.primary{background:#f1a62a;color:#14233a;border-color:#f1a62a}.btn.dark{background:#0b1c35;border-color:#0b1c35;color:#fff}.btn:hover{filter:brightness(.97)}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:26px}
-.stat,.panel{background:white;border:1px solid #e7ebf2;border-radius:15px;box-shadow:0 5px 20px rgba(12,32,65,.035)}
-.stat{padding:20px}.stat .k{display:block;font-size:12px;color:#72819a;font-weight:600}.stat strong{display:block;margin-top:10px;font-size:29px;color:#112746}
-.cardhead{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:23px 25px;border-bottom:1px solid #edf0f5}.cardhead h2{font-size:18px;color:#0b1c35;margin:0}.cardhead p{margin:5px 0 0;color:#718098;font-size:13px}
-.formbody{padding:24px 25px;display:grid;gap:22px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field{display:grid;gap:8px;min-width:0}.field>label,.field>span{font-size:12px;font-weight:750;color:#283d59}
-.field input,.field textarea,.field select{width:100%;border:1px solid #d8e0eb;border-radius:10px;background:#fff;padding:12px 13px;color:#172b46}
+:root{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#172840;background:#f5f7fb;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.58;cursor:not-allowed}
+a{color:inherit}.hidden,[hidden]{display:none!important}
+:focus-visible{outline:3px solid #ffbb45;outline-offset:3px}
+.shell{min-height:100vh;display:grid;grid-template-columns:228px minmax(0,1fr)}
+.sidebar{background:#0b1d36;color:white;padding:23px 14px;display:flex;flex-direction:column;gap:28px}
+.logo{display:flex;align-items:center;gap:11px;padding:9px;text-decoration:none}
+.logo-mark{height:39px;width:39px;border-radius:12px;display:grid;place-items:center;background:#f8ad2b;color:#10223c;font-weight:900;font-size:22px}
+.logo strong{display:block;font-size:14px}.logo small{display:block;color:#abbbcf;font-size:11px;margin-top:3px}
+.sidebar-label{font-size:10px;color:#90a4c1;margin:0 12px 12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.menu{display:grid;gap:6px}.menu button{background:none;border:0;color:#c7d5e8;width:100%;display:flex;align-items:center;gap:12px;border-radius:11px;padding:13px 14px;text-align:left;font-size:13px;font-weight:700}
+.menu button.on,.menu button:hover{background:#1a385a;color:white}.menu button span:first-child{font-size:17px;width:24px;text-align:center}
+.sidebar-note{margin-top:auto;font-size:11px;color:#a4b7d0;line-height:1.7;padding:15px;border:1px solid #3a4d67;border-radius:12px}
+.workspace{padding:clamp(18px,3vw,42px);min-width:0;width:100%;max-width:1440px;margin:auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:29px}
+.kicker{font-size:11px;font-weight:900;color:#ba7c0d;letter-spacing:.12em;text-transform:uppercase}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(25px,3vw,34px);letter-spacing:-.04em;color:#0b1d36;margin:6px 0}
+.hint{font-size:12px;color:#7c8da4;line-height:1.65;margin:0}
+.topbuttons{display:flex;gap:8px}.btn{background:white;border:1px solid #dbe3ef;color:#163050;padding:11px 16px;border-radius:11px;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{filter:brightness(.97)}.btn.primary{background:#f5aa28;border-color:#f5aa28;color:#10203a}.btn.dark{background:#0b1d36;color:white;border-color:#0b1d36}
+.panel{background:#fff;border:1px solid #e4eaf2;border-radius:18px;box-shadow:0 8px 28px rgba(20,37,72,.045)}
+.sectiontitle{font-size:18px;color:#0b1d36;margin:0 0 7px}.sectiondesc{color:#7b8ba2;font-size:13px;line-height:1.6;margin:0}
+.quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:19px 0 27px}
+.quick{background:#fff;border:1px solid #e1e8f1;border-radius:17px;text-align:left;padding:22px 17px;display:flex;flex-direction:column;gap:10px;min-height:155px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.quick:hover{transform:translateY(-3px);border-color:#ecad38;box-shadow:0 9px 22px rgba(8,30,59,.08)}
+.quick .emoji{height:43px;width:43px;border-radius:13px;background:#fff5e5;display:grid;place-items:center;font-size:23px}.quick strong{font-size:15px;color:#132c4a}.quick small{font-size:12px;color:#7c8da4;line-height:1.45}
+.panelhead{padding:22px 25px;border-bottom:1px solid #edf1f6;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.panelhead h2{font-size:19px;margin:0 0 5px;color:#142b48}
+.panelbody{padding:23px 25px}.recent-row,.history-row{display:flex;align-items:center;gap:14px;justify-content:space-between;padding:14px 0;border-bottom:1px solid #edf1f6}
+.recent-row:last-child,.history-row:last-child{border-bottom:none}
+.rowmain{min-width:0;flex:1}.rowmain strong{display:block;color:#1a314e;font-size:14px;overflow-wrap:anywhere}
+.rowmain small{font-size:12px;color:#7b8ca4;line-height:1.5}
+.pill{display:inline-flex;align-items:center;font-size:11px;border-radius:99px;background:#edf2f9;color:#546a86;padding:5px 10px;font-weight:800;white-space:nowrap}
+.pill.public{background:#e8f7ef;color:#16815c}.pill.private{background:#fff4e5;color:#a77726}
+.create-head{display:flex;gap:12px;align-items:center;margin-bottom:22px}
+.back{background:#f3f6fa;border:1px solid #e1e8f0;border-radius:11px;padding:11px;font-size:16px}
+.type-icon{font-size:26px;background:#fff3df;border-radius:13px;width:47px;height:47px;display:grid;place-items:center}
+.form{display:grid;gap:20px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{display:grid;gap:7px;min-width:0}
+.field>label,.field>span{font-size:12px;color:#2c405c;font-weight:800}
+.field input,.field textarea,.field select{border:1px solid #d7e0ed;border-radius:11px;padding:12px 13px;width:100%;color:#152f4d;background:#fff;outline-offset:1px}
 .field textarea{min-height:135px;resize:vertical;line-height:1.6}
-.hint{font-size:12px;color:#78869b;line-height:1.5;margin:0}
-.destinations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.destination{display:flex;gap:10px;align-items:flex-start;border:1px solid #dde4ee;border-radius:12px;padding:14px;background:#fcfdff;cursor:pointer}
-.destination input,.groupcheck input{accent-color:#e5a028;width:17px;height:17px;margin:2px 0 0;flex-shrink:0}
-.destination strong{display:block;font-size:13px;color:#172d4c}.destination small{display:block;color:#72829a;font-size:11px;margin-top:4px;line-height:1.5}
-.groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.groupcheck{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid #e1e7ee;border-radius:9px;font-size:12px;font-weight:600}
-.warning{padding:13px 16px;background:#fff8e7;border:1px solid #f4dda8;color:#76501b;border-radius:10px;font-size:12px;line-height:1.65}
-.actions{border-top:1px solid #edf0f5;padding-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.status{font-size:13px;min-height:21px;line-height:1.5}.status.error{color:#b42f26}.status.good{color:#187346}
-.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}
-.table th,.table td{padding:15px 17px;border-bottom:1px solid #edf0f5;vertical-align:top}
-.table th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#718198;background:#fafbfe}
-.table td strong{font-size:13px}.muted{color:#8190a4;font-size:12px}.pill{display:inline-block;padding:5px 9px;border-radius:40px;background:#eef2f9;color:#526783;font-weight:700;font-size:10px;white-space:nowrap}
-.pill.published{background:#e8f7f1;color:#138055}.mini-actions{display:flex;gap:6px;flex-wrap:wrap}.mini-actions button{padding:6px 9px;border:1px solid #dce4ee;border-radius:7px;background:white;color:#203752;font-size:11px;font-weight:650}
-.login-screen{min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 75% 20%,#213b60,#0b1c35 62%)}
-.login-card{background:white;border-radius:18px;box-shadow:0 20px 60px #0003;padding:34px;width:min(100%,410px)}
-.login-card h1{font-size:27px}.login-card .btn{width:100%;padding:13px}
-.login-card .field{margin:22px 0 16px}
-footer{margin-top:28px;color:#718199;font-size:12px}
-@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.destinations{grid-template-columns:1fr}.groups{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:720px){.shell{grid-template-columns:1fr}.sidebar{padding:12px;gap:10px}.brand{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap}.sidebar h2,.sidebar-note{display:none}.main{padding:20px 14px}.formbody{padding:18px}.formgrid{grid-template-columns:1fr}.cardhead{padding:18px}.top{align-items:flex-start;flex-direction:column}}
-@media(max-width:420px){.groups{grid-template-columns:1fr}.stats{gap:9px}.stat{padding:13px}}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:#e7a325}
+.templates{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}
+.template{border-radius:99px;background:#f3f6fa;border:1px solid #e1e6ef;color:#3f526f;padding:8px 12px;font-size:11px;font-weight:750}
+.template:hover{background:#fff3de;border-color:#eebc59}
+.share-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.share-opt{display:flex;align-items:flex-start;gap:10px;padding:15px 13px;border-radius:12px;border:1px solid #dce4ee;background:#fcfdff;cursor:pointer}
+.share-opt input{width:17px;height:17px;accent-color:#e5a22b;margin:2px 0 0}
+.share-opt strong{display:block;font-size:13px;color:#233d5b}.share-opt small{font-size:11px;color:#8592a5;line-height:1.5;display:block;margin-top:3px}
+.share-opt:has(input:checked){border-color:#f3c476;background:#fffbf4}
+.notice{background:#fff8eb;border:1px solid #f1daac;border-radius:11px;padding:13px 15px;color:#886021;font-size:12px;line-height:1.6}
+.notice.good{background:#ebf9f1;color:#1c8056;border-color:#c4ead5}
+.preview-card{white-space:pre-line;border:1px solid #dce4ed;padding:20px;background:#f9fbfe;border-radius:13px;font-size:14px;line-height:1.75;overflow-wrap:anywhere}
+.preview-title{font-size:16px;font-weight:800;color:#162f4d;margin:0 0 10px}
+.cta{display:flex;align-items:center;gap:11px;flex-wrap:wrap;border-top:1px solid #ebeff5;padding-top:18px}
+.status{font-size:12px;line-height:1.6;color:#207853;min-height:20px}.status.error{color:#b62d25}
+.history-top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:10px}
+.search{min-width:0;width:min(100%,270px);border-radius:10px;border:1px solid #dce4ec;background:#fff;padding:10px 12px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.filter{border:1px solid #e0e6ef;color:#536680;border-radius:99px;padding:8px 14px;font-size:12px;background:white;font-weight:750}
+.filter.on{background:#102742;color:white;border-color:#102742}
+.actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.tiny{font-size:11px;padding:7px 11px;border-radius:9px;border:1px solid #dbe4ee;background:white;color:#213c5a;font-weight:750}
+.tiny:hover{border-color:#c7a361;background:#fffaf1}
+.empty{text-align:center;padding:42px 18px;color:#8291a4;font-size:13px}
+.empty .emoji{font-size:32px;display:block;margin-bottom:9px}
+.login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 75% 20%,#234363,#0b1d36 70%);padding:20px}
+.login-card{width:min(100%,420px);background:white;padding:35px;border-radius:19px;box-shadow:0 30px 70px #0003}
+.login-card h1{margin:12px 0 10px}.login-card .field{margin:25px 0 16px}.login-card .btn{width:100%}
+.media-review{display:flex;gap:12px;align-items:center;padding:12px;border:1px dashed #cfd9e5;border-radius:10px}
+.media-review img,.media-review video{width:110px;height:80px;object-fit:cover;border-radius:8px}
+footer{color:#8995a7;font-size:11px;margin-top:28px}
+@media(max-width:1150px){.quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:880px){.shell{display:block}.sidebar{padding:10px 14px;gap:0}.logo,.sidebar-label,.sidebar-note{display:none}.menu{display:flex;overflow:auto;gap:4px}.menu button{width:auto;white-space:nowrap;padding:11px}.workspace{padding:20px}.share-options{grid-template-columns:1fr}}
+@media(max-width:560px){.workspace{padding:15px 12px}.topbar{align-items:flex-start}.topbuttons .btn{padding:10px}.quick-grid{gap:10px}.quick{padding:14px;min-height:138px}.quick strong{font-size:13px}.quick small{font-size:11px}.panelhead,.panelbody{padding:17px}.twocol{grid-template-columns:1fr}.recent-row,.history-row{align-items:flex-start}.actions{justify-content:flex-start;margin-top:9px}.history-row{flex-wrap:wrap}.history-row .rowmain{flex-basis:100%}.cta .btn{flex-grow:1}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<section id="login-screen" class="login-screen">
-  <form id="login-form" class="login-card">
-    <div class="eyebrow">Young Star Cricket Academy</div>
-    <h1>Manager sign in</h1>
-    <p class="sub">Securely manage announcements, group notices and website updates.</p>
-    <div class="field"><label for="password">Manager password</label><input id="password" type="password" required autocomplete="current-password"></div>
-    <button class="btn primary" type="submit">Sign in →</button>
-    <p class="status" id="login-status" role="status" aria-live="polite"></p>
-  </form>
+<section class="login" id="login-screen">
+ <form id="login-form" class="login-card">
+  <div class="kicker">Young Star Cricket Academy</div><h1>Welcome back</h1>
+  <p class="hint">Sign in to manage academy announcements and updates.</p>
+  <div class="field"><label for="login-password">Manager password</label><input id="login-password" type="password" autocomplete="current-password" required></div>
+  <button type="submit" class="btn primary">Sign in →</button><p id="login-status" class="status" role="status" aria-live="polite"></p>
+ </form>
 </section>
 <div class="shell hidden" id="app">
-  <aside class="sidebar">
-    <a class="brand" href="/manager/updates.html"><div class="brand-icon">Y</div><div><strong>YSCA Manager</strong><small>Academy Management</small></div></a>
-    <div><h2>Workspace</h2><nav class="nav" aria-label="Manager navigation">
-      <button data-view="overview" class="active">◫ &nbsp; Overview</button>
-      <button data-view="compose">✎ &nbsp; Create Update</button>
-      <button data-view="history">▤ &nbsp; All Updates</button>
-      <button data-view="groups">☷ &nbsp; WhatsApp Groups</button>
-    </nav></div>
-    <p class="sidebar-note">Private fee reminders never appear on the public website. WhatsApp groups use manual sharing until an officially supported delivery method exists.</p>
-  </aside>
-  <main class="main">
-    <header class="top">
-      <div><div class="eyebrow">Operations hub</div><h1 id="page-title">Academy dashboard</h1><p class="sub" id="page-sub">Plan, publish and organize updates from one place.</p></div>
-      <div class="top-actions"><button class="btn" id="logout" type="button">Sign out</button><button class="btn primary" id="new-update" type="button">+ New Update</button></div>
-    </header>
-    <section class="stats" id="stats" aria-label="Overview metrics">
-      <div class="stat"><span class="k">Total updates</span><strong id="stat-total">0</strong></div>
-      <div class="stat"><span class="k">Published to website</span><strong id="stat-public">0</strong></div>
-      <div class="stat"><span class="k">Drafts</span><strong id="stat-draft">0</strong></div>
-      <div class="stat"><span class="k">Telegram sent</span><strong id="stat-telegram">0</strong></div>
-    </section>
-    <section class="panel" id="compose-panel">
-      <div class="cardhead"><div><h2>Create an update</h2><p>Write once, select where it belongs, and choose to save or publish.</p></div></div>
-      <form id="update-form" class="formbody">
-        <div class="formgrid">
-          <div class="field"><label for="category">Update category</label>
-            <select id="category"><option value="announcement">Announcement</option><option value="fee">Fee reminder (private)</option><option value="training">Training / Schedule</option><option value="match">Match / Result</option><option value="event">Event</option><option value="holiday">Holiday / Closure</option><option value="photo">Photo update</option><option value="video">Video update</option><option value="general">General update</option></select>
-          </div>
-          <div class="field"><label for="visibility">Visibility</label><select id="visibility"><option value="public">Public announcement</option><option value="private">Private notice</option></select></div>
-        </div>
-        <div class="field"><label for="title">Title</label><input id="title" placeholder="Example: Saturday net practice schedule" maxlength="140" required></div>
-        <div class="field"><label for="body">Message / description</label><textarea id="body" required maxlength="3500" placeholder="Write your academy announcement, match update or fee reminder here..."></textarea><p class="hint">Avoid personal student names, phone numbers and balances in public updates.</p></div>
-        <div class="formgrid">
-          <div class="field"><label for="media">Image or video (optional)</label><input id="media" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm"><p class="hint">Max 10 MB. Files are stored as protected Cloudinary assets and are shown publicly only after the update is published.</p></div>
-          <div class="field"><label for="video-url">YouTube video URL (optional)</label><input id="video-url" type="url" maxlength="300" placeholder="https://www.youtube.com/watch?v=..."></div>
-        </div>
-        <div><div class="field"><span>Where should this go?</span></div>
-          <div class="destinations" style="margin-top:10px">
-            <label class="destination"><input id="dest-website" type="checkbox" checked><span><strong>YSCA website</strong><small>Publish on the public Updates page</small></span></label>
-            <label class="destination"><input id="dest-telegram" type="checkbox"><span><strong>Telegram channel</strong><small>Automatically send when connected</small></span></label>
-            <label class="destination"><input id="dest-whatsapp" type="checkbox"><span><strong>WhatsApp groups</strong><small>Prepare a group-specific share message</small></span></label>
-          </div>
-        </div>
-        <div id="group-picker" class="hidden">
-          <div class="field"><span>Select WhatsApp groups</span></div>
-          <div class="groups" id="group-options" style="margin-top:10px"></div>
-          <p class="hint" style="margin-top:8px">You can select multiple groups. WhatsApp's native share dialog requires choosing each group and pressing Send; selection here does not send messages.</p>
-        </div>
-        <div class="warning" id="privacy-note">Public announcements can appear on the academy website and be indexed. Check that everything is approved for publication, especially children's images.</div>
-        <div class="actions">
-          <button class="btn dark" type="submit" data-action="publish" id="publish">Publish selected destinations</button>
-          <button class="btn" type="submit" data-action="draft" id="save-draft">Save draft</button>
-          <span id="form-status" role="status" aria-live="polite" class="status"></span>
-        </div>
-      </form>
-    </section>
-    <section class="panel hidden" id="history-panel">
-      <div class="cardhead"><div><h2>Updates history</h2><p>Publication records and prepared WhatsApp messages.</p></div><button class="btn" id="refresh">Refresh</button></div>
-      <div class="tablewrap"><table class="table"><thead><tr><th>Update</th><th>Category</th><th>Status</th><th>Channels</th><th>Actions</th></tr></thead><tbody id="history-body"></tbody></table></div>
-    </section>
-    <section class="panel hidden" id="groups-panel">
-      <div class="cardhead"><div><h2>WhatsApp group names</h2><p>Change the group labels for easier selection. These are not API connections.</p></div></div>
-      <form id="groups-form" class="formbody"><div id="groups-settings" class="formgrid"></div><button class="btn primary" type="submit">Save group names</button><div id="groups-status" class="status" role="status"></div></form>
-    </section>
-    <footer>YSCA Manager v1 · WhatsApp messages are prepared, never sent automatically. Website publishing requires Cloudflare configuration.</footer>
-  </main>
+ <aside class="sidebar">
+  <a class="logo" href="/manager/updates.html"><span class="logo-mark">Y</span><span><strong>YSCA Manager</strong><small>Academy updates</small></span></a>
+  <div><p class="sidebar-label">Workspace</p><nav class="menu" aria-label="Manager pages">
+   <button type="button" data-view="home" class="on"><span>⌂</span> Home</button>
+   <button type="button" data-view="compose"><span>✎</span> Create</button>
+   <button type="button" data-view="history"><span>▤</span> All updates</button>
+  </nav></div>
+  <div class="sidebar-note">Write once and share anywhere. Website updates publish automatically. WhatsApp opens for you to choose recipients and press Send.</div>
+ </aside>
+ <main class="workspace">
+  <header class="topbar">
+   <div><div class="kicker">Young Star Cricket Academy</div><h1 id="page-title">Manager dashboard</h1><p id="page-desc" class="hint">What would you like to share today?</p></div>
+   <div class="topbuttons"><button type="button" class="btn" id="logout">Sign out</button><button type="button" class="btn primary" id="new">+ New</button></div>
+  </header>
+  <section id="home-view">
+   <h2 class="sectiontitle">Quick actions</h2><p class="sectiondesc">Choose what you want to share. We'll prepare the rest.</p>
+   <div class="quick-grid">
+    <button class="quick" data-quick="announcement"><span class="emoji">📢</span><strong>Announcement</strong><small>News and important notices</small></button>
+    <button class="quick" data-quick="fee"><span class="emoji">💳</span><strong>Fee reminder</strong><small>Quick private WhatsApp notice</small></button>
+    <button class="quick" data-quick="schedule"><span class="emoji">📅</span><strong>Schedule / event</strong><small>Training, matches and holidays</small></button>
+    <button class="quick" data-quick="media"><span class="emoji">📸</span><strong>Photos & videos</strong><small>Academy moments and highlights</small></button>
+   </div>
+   <section class="panel"><div class="panelhead"><div><h2>Recent updates</h2><p class="sectiondesc">Everything you've created recently</p></div><button type="button" id="view-all" class="btn">View all</button></div><div class="panelbody" id="recent"></div></section>
+  </section>
+  <section id="compose-view" class="hidden">
+   <div class="panel"><div class="panelbody">
+    <div class="create-head"><button type="button" class="back" id="go-back" aria-label="Back to dashboard">←</button><div class="type-icon" id="type-icon">📢</div><div><h2 id="compose-title" class="sectiontitle">New announcement</h2><p class="hint" id="compose-desc">Write what you'd like to share.</p></div></div>
+    <form id="compose-form" class="form">
+     <div class="field" id="category-wrap"><label for="category">Update type</label><select id="category">
+      <option value="announcement">Announcement</option><option value="fee">Fee reminder</option><option value="training">Training update</option>
+      <option value="match">Match update</option><option value="holiday">Holiday notice</option><option value="event">Event</option>
+      <option value="photo">Photos</option><option value="video">Video</option><option value="general">Other update</option></select></div>
+     <div class="twocol hidden" id="fee-fields">
+      <div class="field"><label for="fee-month">Fee month</label><input id="fee-month" type="month"></div>
+      <div class="field"><label for="due-date">Payment due date</label><input id="due-date" type="date"></div>
+     </div>
+     <div class="twocol hidden" id="schedule-fields">
+      <div class="field"><label for="event-date">Date</label><input id="event-date" type="date"></div>
+      <div class="field"><label for="event-time">Time (optional)</label><input id="event-time" type="time"></div>
+     </div>
+     <div class="field"><label for="post-title">Title</label><input id="post-title" maxlength="140" placeholder="Enter a short title" required></div>
+     <div class="field"><label for="post-message">Message</label><textarea id="post-message" maxlength="3500" placeholder="Write your message here…" required></textarea>
+      <p class="hint">Keep it short and clear. You can edit it before publishing.</p></div>
+     <div><div class="field"><span>Quick templates</span></div><div class="templates" id="templates"></div></div>
+     <div id="media-fields" class="hidden">
+      <div class="twocol">
+       <div class="field"><label for="media-file">Attach photo or short video</label><input id="media-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm"><p class="hint">Up to 10 MB. For long videos, use YouTube.</p></div>
+       <div class="field"><label for="video-link">YouTube link (optional)</label><input id="video-link" type="url" placeholder="https://www.youtube.com/watch?v=..."></div>
+      </div><div class="media-review hidden" id="media-preview"></div>
+     </div>
+     <div>
+      <h3 class="sectiontitle">Where should this go?</h3><p class="sectiondesc">Choose one or more places.</p>
+      <div class="share-options" style="margin-top:12px">
+       <label class="share-opt" id="website-option"><input type="checkbox" id="dest-website" checked><span><strong>🌐 YSCA Website</strong><small>Published automatically</small></span></label>
+       <label class="share-opt"><input type="checkbox" id="dest-whatsapp"><span><strong>💬 WhatsApp</strong><small>You pick groups inside WhatsApp</small></span></label>
+       <label class="share-opt"><input type="checkbox" id="dest-telegram"><span><strong>✈️ Telegram</strong><small>Automatic when connected</small></span></label>
+      </div>
+     </div>
+     <div id="privacy-note" class="notice">Public posts may appear in search results. Only include student photos with appropriate permission.</div>
+     <div class="cta"><button type="button" class="btn dark" id="review">Review & continue →</button><button type="submit" name="action" value="draft" class="btn" id="save-draft">Save draft</button><span id="compose-status" class="status" role="status" aria-live="polite"></span></div>
+    </form>
+   </div></div>
+  </section>
+  <section id="review-view" class="hidden">
+   <div class="panel"><div class="panelhead"><div><h2>Review your update</h2><p class="sectiondesc">Check everything before sharing.</p></div><button type="button" id="review-edit" class="btn">← Edit</button></div>
+    <div class="panelbody">
+      <div class="preview-card"><div class="preview-title" id="review-title"></div><div id="review-message"></div></div>
+      <div id="review-file" class="hint" style="margin-top:12px"></div>
+      <div id="review-channels" class="notice good" style="margin:17px 0"></div>
+      <div class="cta"><button type="button" class="btn dark" id="confirm-publish">Confirm & continue</button><button type="button" class="btn" id="review-draft">Save draft instead</button><span id="review-status" class="status" role="status" aria-live="polite"></span></div>
+    </div>
+   </div>
+  </section>
+  <section id="history-view" class="hidden">
+   <div class="panel"><div class="panelhead"><div><h2>All updates</h2><p class="sectiondesc">Search, edit, share or archive any notice.</p></div><button class="btn" id="refresh" type="button">Refresh</button></div>
+   <div class="panelbody"><div class="history-top"><input class="search" type="search" id="search" placeholder="Search updates…" aria-label="Search updates"></div>
+    <div class="filters" role="group" aria-label="Filter updates">
+     <button type="button" class="filter on" data-filter="all">All</button><button type="button" class="filter" data-filter="published">Published</button>
+     <button type="button" class="filter" data-filter="draft">Drafts</button><button type="button" class="filter" data-filter="archived">Archived</button>
+    </div><div id="history-list"></div>
+   </div></div>
+  </section>
+  <footer>YSCA Manager · WhatsApp sharing requires selecting and sending to recipients inside WhatsApp. <a href="/updates.html" target="_blank" rel="noopener">View public updates ↗</a></footer>
+ </main>
 </div>
 <script>
 (function(){
- 'use strict';
- var api='/api/manager';
- var items=[], groups=[];
- var $=id=>document.getElementById(id);
- function message(id,value,error){var el=$(id);el.textContent=value;el.className='status '+(error?'error':value?'good':'');}
- async function request(path,opts){
-  var r=await fetch(api+path,{credentials:'same-origin',headers:opts&&opts.body instanceof FormData?{}:{'Content-Type':'application/json'},...opts});
-  var json=await r.json().catch(()=>({error:'Service unavailable'}));
-  if(!r.ok)throw new Error(json.error||'Request failed');
-  return json;
- }
- function showAuthenticated(yes){$('app').classList.toggle('hidden',!yes);$('login-screen').classList.toggle('hidden',yes);}
- async function load(){
-  var data=await request('/updates'); items=data.items||[];groups=data.groups||[];
-  $('stat-total').textContent=items.length;
-  $('stat-public').textContent=items.filter(i=>i.status==='published'&&i.visibility==='public'&&i.publish_website).length;
-  $('stat-draft').textContent=items.filter(i=>i.status==='draft').length;
-  $('stat-telegram').textContent=items.filter(i=>i.telegram_status==='sent').length;
-  renderGroups();renderHistory();
- }
- function create(tag,text,cls){var el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(cls)el.className=cls;return el;}
- function renderGroups(){
-  $('group-options').replaceChildren();$('groups-settings').replaceChildren();
-  groups.forEach(g=>{
-   var label=create('label',undefined,'groupcheck'),input=create('input');
-   input.type='checkbox';input.value=g.id;input.name='group';label.append(input,create('span',g.label));$('group-options').append(label);
-   var div=create('div',undefined,'field'),lbl=create('label',g.id);lbl.htmlFor='group-'+g.id;
-   var name=create('input');name.type='text';name.id='group-'+g.id;name.maxLength=60;name.value=g.label;
-   div.append(lbl,name);$('groups-settings').append(div);
-  });
- }
- function renderHistory(){
-  var body=$('history-body');body.replaceChildren();
-  if(!items.length){var tr=create('tr'),td=create('td','No updates yet. Create your first announcement.');td.colSpan=5;tr.append(td);body.append(tr);return;}
-  items.forEach(item=>{
-   var tr=create('tr'),info=create('td'),strong=create('strong',item.title),short=create('div',item.body.slice(0,90)+(item.body.length>90?'…':''),'muted');
-   info.append(strong,short,create('div',new Date(item.created_at).toLocaleString(),'muted'));
-   var cat=create('td',item.category),statusTd=create('td'),pill=create('span',item.status,'pill '+(item.status==='published'?'published':''));statusTd.append(pill);
-   var channels=create('td');
-   channels.append(create('div',(item.publish_website&&item.status==='published'?'Website live · ':'')+
-     (item.publish_telegram?'Telegram '+item.telegram_status+' · ':'')+
-     (item.whatsapp_groups.length?item.whatsapp_groups.length+' WhatsApp group(s) selected':'Not shared'),'muted'));
-   var actions=create('td'),wrap=create('div',undefined,'mini-actions');
-   if(item.whatsapp_groups.length){
-    var share=create('button','Share to WhatsApp');share.type='button';
-    share.addEventListener('click',()=>shareItem(item));wrap.append(share);
-   }
-   if(item.status==='draft' && (item.publish_website || item.publish_telegram)){
-    var publish=create('button','Publish');publish.type='button';
-    publish.addEventListener('click',()=>changeItem(item,'publish'));wrap.append(publish);
-   }
-   if(item.status!=='archived'){
-    var archive=create('button','Archive');archive.type='button';
-    archive.addEventListener('click',()=>changeItem(item,'archive'));wrap.append(archive);
-   }
-   actions.append(wrap);tr.append(info,cat,statusTd,channels,actions);body.append(tr);
-  });
- }
- async function changeItem(item,action){
-  if(!confirm(action==='archive'?'Archive this update and remove it from the website?':'Publish this draft to its selected supported destinations?'))return;
-  try{await request('/updates/'+item.id,{method:'PATCH',body:JSON.stringify({action})});await load();}
-  catch(e){alert(e.message);}
- }
- function shareItem(item){
-  var labels=item.whatsapp_groups.map(id=>groups.find(g=>g.id===id)?.label||id).join(', ');
-  var msg=item.title+'\n\n'+item.body;
-  if(item.status==='published'&&item.publish_website&&item.visibility==='public')msg+='\n\nhttps://youngstarcricketacademy.com/updates';
-  var url='https://api.whatsapp.com/send?text='+encodeURIComponent(msg);
-  // WhatsApp does NOT provide a supported API to preselect existing groups.
-  var opened = window.open(url,'_blank','noopener,noreferrer');
-  alert('Selected groups: '+labels+'\n\nChoose each intended group and press Send in WhatsApp. This dashboard cannot verify delivery. If the new tab was blocked, allow pop-ups for this page and try again.');
- }
- function switchView(view){
-  var views=['overview','compose','history','groups'];
-  if(!views.includes(view))view='overview';
-  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
-  $('stats').classList.toggle('hidden',view!=='overview');
-  $('compose-panel').classList.toggle('hidden',view!=='overview'&&view!=='compose');
-  $('history-panel').classList.toggle('hidden',view!=='overview'&&view!=='history');
-  $('groups-panel').classList.toggle('hidden',view!=='groups');
-  $('page-title').textContent=({overview:'Academy dashboard',compose:'Create an update',history:'Updates history',groups:'WhatsApp groups'})[view];
- }
- document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>switchView(button.dataset.view)));
- $('new-update').addEventListener('click',()=>switchView('compose'));
- $('refresh').addEventListener('click',()=>load().catch(e=>alert(e.message)));
- $('login-form').addEventListener('submit',async e=>{
-  e.preventDefault();message('login-status','Signing in…');
-  try{await request('/auth',{method:'POST',body:JSON.stringify({action:'login',password:$('password').value})});
-    $('password').value='';showAuthenticated(true);await load();message('login-status','');
-  }catch(err){message('login-status',err.message,true);}
+'use strict';
+const api='/api/manager';
+const $=id=>document.getElementById(id);
+let items=[], current='home', actionType='announcement', editingId=null, loadedMedia=null, currentFileUrl=null, selectedStatus='all', busy=false;
+const icons={announcement:'📢',fee:'💳',training:'🏏',match:'🏆',holiday:'🌴',event:'📅',photo:'📸',video:'🎬',general:'✎'};
+const labels={announcement:'Announcement',fee:'Fee reminder',training:'Training update',match:'Match update',holiday:'Holiday notice',event:'Event',photo:'Photo update',video:'Video update',general:'Other update'};
+const templates={
+ announcement:[['General notice','Dear Parents,\\n\\nPlease note the following important academy announcement:\\n\\n\\n\\nThank you,\\nYoung Star Cricket Academy.'],['Admissions open','Admissions enquiries are now open at Young Star Cricket Academy. Please contact the academy for current availability.']],
+ fee:[['Monthly fee reminder','Dear Parents,\\n\\nThis is a reminder to pay the academy fee for {month} by {date}.\\n\\nThank you,\\nYoung Star Cricket Academy.'],['Friendly reminder','Dear Parents,\\n\\nA gentle reminder that the fee for {month} is due on {date}. Please contact the academy if you have any questions.']],
+ training:[['Training schedule','Training session on {date} at {time}. Please arrive on time with your cricket kit.'],['Session cancelled','Training scheduled for {date} has been cancelled. We will share the revised schedule when confirmed.']],
+ match:[['Upcoming match','Upcoming match on {date} at {time}. Further details will be shared by the academy.'],['Match result','Young Star Cricket Academy match update:\\n\\nResult: \\nHighlights: ']],
+ holiday:[['Holiday notice','The academy will remain closed on {date}. Further training updates will be shared separately.']],
+ event:[['Academy event','Academy event on {date} at {time}. Please contact the academy for details.']],
+ photo:[['Training photos','A few moments from our cricket training sessions at Young Star Cricket Academy.']],
+ video:[['Match highlights','Watch highlights from Young Star Cricket Academy.']],
+ general:[['General update','Dear Parents,\\n\\nWe would like to share an update from Young Star Cricket Academy:\\n\\n']]
+};
+function node(tag,text,cls){const el=document.createElement(tag);if(text!==undefined&&text!==null)el.textContent=text;if(cls)el.className=cls;return el;}
+function status(id,txt,failed=false){const el=$(id);el.textContent=txt;el.className='status'+(failed?' error':'');}
+function alertErr(e,id){status(id,e?.message||'Something went wrong. Please try again.',true);}
+async function call(path,opts={}){const isForm=opts.body instanceof FormData;const r=await fetch(api+path,{credentials:'same-origin',...opts,headers:{...(isForm?{}:{'Content-Type':'application/json'}),...(opts.headers||{})}});const data=await r.json().catch(()=>({error:'Service unavailable'}));if(!r.ok)throw Error(data.error||'Request failed');return data;}
+function authenticate(yes){$('login-screen').classList.toggle('hidden',yes);$('app').classList.toggle('hidden',!yes);}
+async function reload(){
+ const response=await call('/updates');items=response.items||[];
+ renderRecent();renderHistory();
+}
+function view(v){current=v;for(const id of ['home','compose','review','history'])$(id+'-view').classList.toggle('hidden',id!==v);
+ document.querySelectorAll('.menu button').forEach(b=>b.classList.toggle('on',b.dataset.view===v));
+ $('page-title').textContent=({home:'Manager dashboard',compose:editingId?'Edit update':'Create an update',review:'Review & share',history:'All updates'})[v];
+ $('page-desc').textContent=({home:'What would you like to share today?',compose:'A few details, then you are ready.',review:'Check the details before proceeding.',history:'Everything in one place.'})[v];
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function safeDate(iso){if(!iso)return '';const d=new Date(iso);return Number.isNaN(d.getTime())?'':d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}
+function stateOf(x){if(x.status==='archived')return 'Archived';if(x.status==='draft')return 'Draft';return x.publish_website?'Published':'Processed'}
+function whatsappSelected(x){return Array.isArray(x.whatsapp_groups)&&x.whatsapp_groups.length>0;}
+function renderRecent(){
+ const list=$('recent');list.replaceChildren();
+ if(!items.length){list.append(node('div','No updates yet. Choose a quick action above to create your first notice.','empty'));return}
+ items.slice(0,5).forEach(x=>{const row=node('div',undefined,'recent-row'),info=node('div',undefined,'rowmain'),flag=node('span',stateOf(x),'pill '+(x.status==='published'?'public':x.status==='draft'?'private':''));
+ info.append(node('strong',x.title),node('small',labels[x.category]+' · '+safeDate(x.created_at)));row.append(info,flag);list.append(row);});
+}
+function renderHistory(){
+ const out=$('history-list');out.replaceChildren();
+ const q=$('search').value.trim().toLowerCase();
+ const filtered=items.filter(x=>(selectedStatus==='all'||x.status===selectedStatus)&&(!q||(x.title+' '+x.body+' '+x.category).toLowerCase().includes(q)));
+ if(!filtered.length){const empty=node('div',undefined,'empty');empty.append(node('div','🗂️','emoji'),node('div',q?'No results match your search.':'No updates in this section.'));out.append(empty);return}
+ filtered.forEach(x=>{
+  const row=node('div',undefined,'history-row'),info=node('div',undefined,'rowmain'),actions=node('div',undefined,'actions');
+  info.append(node('strong',x.title),node('small',labels[x.category]+' · '+stateOf(x)+' · '+safeDate(x.created_at)));
+  if(x.telegram_status==='failed')info.append(node('small',' · Telegram delivery failed'));
+  const add=(label,fn)=>{const b=node('button',label,'tiny');b.type='button';b.addEventListener('click',fn);actions.append(b)};
+  if(x.status!=='archived'){
+    add('Edit',()=>editItem(x));
+    add('Duplicate',()=>duplicateItem(x));
+    if(whatsappSelected(x))add('WhatsApp ↗',()=>shareWhatsapp(x));
+    if(x.status==='draft'&&(x.publish_website||x.publish_telegram))add('Publish',()=>changeItem(x,'publish'));
+    add('Archive',()=>changeItem(x,'archive'));
+  }else{add('Restore',()=>changeItem(x,'restore'));add('Duplicate',()=>duplicateItem(x))}
+  row.append(info,actions);out.append(row);
  });
- $('logout').addEventListener('click',async()=>{
-  try{await request('/auth',{method:'POST',body:JSON.stringify({action:'logout'})});}catch(e){}
-  showAuthenticated(false);items=[];groups=[];
- });
- function categoryChange(){
-  var fee=$('category').value==='fee';
-  if(fee){$('visibility').value='private';$('dest-website').checked=false;$('dest-website').disabled=true;$('visibility').value='private';$('visibility').disabled=true;$('dest-whatsapp').checked=true;}
-  else{$('dest-website').disabled=false;$('visibility').disabled=false;}
-  $('privacy-note').textContent=fee?'Fee reminders are private. Personal balances, payment status and student details will not be published on the website. WhatsApp sharing requires the manager to send each message manually.':'Public announcements can be indexed on the website. Ensure student photos, personal information and schedules are approved for public display.';
-  $('group-picker').classList.toggle('hidden',!$('dest-whatsapp').checked);
- }
- $('category').addEventListener('change',categoryChange);
- $('dest-whatsapp').addEventListener('change',categoryChange);
- $('visibility').addEventListener('change',()=>{
-  if($('visibility').value==='private')$('dest-website').checked=false;
- });
- $('dest-website').addEventListener('change',()=>{
-  if($('dest-website').checked)$('visibility').value='public';
- });
- $('update-form').addEventListener('submit',async e=>{
-  e.preventDefault();
-  var action=e.submitter?.dataset.action||'draft';
-  var groupsSelected=[...document.querySelectorAll('input[name=group]:checked')].map(x=>x.value);
-  var body={action,title:$('title').value,body:$('body').value,category:$('category').value,
-   visibility:$('visibility').value,website:$('dest-website').checked,telegram:$('dest-telegram').checked,
-   groups:$('dest-whatsapp').checked?groupsSelected:[],video_url:$('video-url').value};
-  if($('dest-whatsapp').checked&&!groupsSelected.length){message('form-status','Select at least one WhatsApp group',true);return;}
-  if(!body.website&&!body.telegram&&!body.groups.length){message('form-status','Select a destination',true);return;}
-  var submit=$('publish'),draft=$('save-draft');submit.disabled=draft.disabled=true;message('form-status','Saving…');
-  try{
-   var file=$('media').files[0];
-   if(file){var form=new FormData();form.append('file',file);
-    var uploaded=await request('/media',{method:'POST',body:form});body.media_id=uploaded.media_id;
-   }
-   var saved=await request('/updates',{method:'POST',body:JSON.stringify(body)});
-   message('form-status',saved.status==='published'?(body.website?'Published to the website.':'Published to selected automated channels.'):'Saved. WhatsApp sharing still requires manual Send.');
-   $('update-form').reset();categoryChange();await load();switchView('history');
-   if(body.groups.length&&action==='publish') {
-    alert('Your message is ready. Use the Share to WhatsApp button in Updates History to select the intended group(s) and press Send.');
-   }
-  }catch(err){message('form-status',err.message,true);}
-  finally{submit.disabled=draft.disabled=false;}
- });
- $('groups-form').addEventListener('submit',async e=>{
-  e.preventDefault();message('groups-status','Saving…');
-  try{for(const g of groups){await request('/groups',{method:'POST',body:JSON.stringify({id:g.id,label:$('group-'+g.id).value})});}
-   await load();message('groups-status','Group names saved.');
-  }catch(err){message('groups-status',err.message,true);}
- });
- if(location.hostname==='youngstarcricketacademy.com'||location.hostname==='www.youngstarcricketacademy.com'){
-  location.replace('https://ysca.pages.dev/manager/updates.html');return;
- }
- request('/auth').then(r=>{if(r.authenticated){showAuthenticated(true);return load();}})
- .catch(e=>{message('login-status','Backend not configured: '+e.message,true);});
- categoryChange();
+}
+function monthLabel(){if(!$('fee-month').value)return 'this month';const [year,month]=$('fee-month').value.split('-').map(Number);return new Date(year,month-1,1).toLocaleDateString('en-IN',{month:'long',year:'numeric'});}
+function dateLabel(value){if(!value)return 'the due date';const [y,m,d]=value.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});}
+function fillTemplate(message){
+ return message.replaceAll('{month}',monthLabel()).replaceAll('{date}',dateLabel(actionType==='fee'?$('due-date').value:$('event-date').value)).replaceAll('{time}',$('event-time').value||'the announced time');
+}
+function templateButtons(){
+ const el=$('templates');el.replaceChildren();
+ (templates[actionType]||templates.general).forEach(([name,msg])=>{const b=node('button',name,'template');b.type='button';b.addEventListener('click',()=>{
+  if($('post-message').value.trim()&&!confirm('Replace the current message with this template?'))return;
+  $('post-message').value=fillTemplate(msg);
+  if(!$('post-title').value.trim())$('post-title').value=name;
+ });el.append(b)});
+}
+function setType(type,keepText=false){
+ actionType=type;$('category').value=type;
+ $('fee-fields').classList.toggle('hidden',type!=='fee');
+ $('schedule-fields').classList.toggle('hidden',!['training','match','holiday','event'].includes(type));
+ $('media-fields').classList.toggle('hidden',!['photo','video'].includes(type));
+ $('type-icon').textContent=icons[type];
+ $('compose-title').textContent=(editingId?'Edit ':'New ')+labels[type].toLowerCase();
+ $('compose-desc').textContent=type==='fee'?'A private reminder for parents.':type==='photo'||type==='video'?'Share approved academy moments.':'Write your message and choose where to share.';
+ $('dest-website').disabled=type==='fee';$('website-option').classList.toggle('hidden',type==='fee');
+ if(type==='fee'){$('dest-website').checked=false;$('dest-whatsapp').checked=true;$('dest-telegram').checked=false;}
+ if(!keepText){$('post-title').value='';$('post-message').value=''}
+ $('privacy-note').textContent=type==='fee'?'Fee reminders stay private. WhatsApp opens so you can choose recipients; the manager dashboard cannot send to groups automatically.':'Public posts can be indexed by search engines. Only publish approved content and student photos with consent.';
+ templateButtons();
+}
+function resetForm(type='announcement'){
+ $('compose-form').reset();editingId=null;loadedMedia=null;
+ if(currentFileUrl){URL.revokeObjectURL(currentFileUrl);currentFileUrl=null;}
+ $('media-preview').classList.add('hidden');$('media-preview').replaceChildren();
+ $('dest-website').checked=true;$('dest-whatsapp').checked=false;$('dest-telegram').checked=false;
+ $('fee-month').value=new Date().toISOString().slice(0,7);
+ setType(type);status('compose-status','');
+ view('compose');
+}
+function editItem(x){
+ resetForm(x.category);
+ editingId=x.id;setType(x.category,true);
+ $('post-title').value=x.title;$('post-message').value=x.body;
+ $('dest-website').checked=!!x.publish_website && x.category!=='fee';
+ $('dest-telegram').checked=!!x.publish_telegram;
+ $('dest-whatsapp').checked=whatsappSelected(x);
+ $('video-link').value=x.video_url||'';
+ loadedMedia=x.media_id||null;
+ if(x.media_id){$('media-preview').classList.remove('hidden');$('media-preview').textContent='Existing attachment saved. Choose a new file to replace it.'}
+ $('compose-title').textContent='Edit '+labels[x.category].toLowerCase();
+ $('save-draft').textContent='Save changes';
+ view('compose');
+}
+function duplicateItem(x){
+ resetForm(x.category);$('post-title').value=x.title+' (copy)';$('post-message').value=x.body;
+ $('dest-website').checked=!!x.publish_website&&x.category!=='fee';
+ $('dest-telegram').checked=!!x.publish_telegram;$('dest-whatsapp').checked=whatsappSelected(x);
+ $('video-link').value=x.video_url||'';
+ loadedMedia=x.media_id||null;
+ if(x.media_id){$('media-preview').classList.remove('hidden');$('media-preview').textContent='Using existing attached media.'}
+}
+function dataFromForm(action){
+ return {action,title:$('post-title').value.trim(),body:$('post-message').value.trim(),
+  category:$('category').value,visibility:$('category').value==='fee'?'private':'public',
+  website:$('dest-website').checked&&$('category').value!=='fee',
+  whatsapp:$('dest-whatsapp').checked,telegram:$('dest-telegram').checked,
+  media_id:loadedMedia||'',video_url:['photo','video'].includes($('category').value)?$('video-link').value.trim():''
+ };
+}
+function formCheck(){
+ const x=dataFromForm('draft');
+ if(x.title.length<4||x.title.length>140){status('compose-status','Please add a title of at least 4 characters.',true);return false}
+ if(x.body.length<5){status('compose-status','Please write a short message.',true);return false}
+ if(!x.website&&!x.whatsapp&&!x.telegram){status('compose-status','Select at least one sharing option.',true);return false}
+ if(x.video_url){try{const url=new URL(x.video_url);if(url.protocol!=='https:'||!['youtube.com','www.youtube.com','youtu.be'].includes(url.hostname))throw Error();}catch(e){status('compose-status','Please enter a valid YouTube link or leave it empty.',true);return false}}
+ return true;
+}
+function renderReview(){
+ const x=dataFromForm('publish');
+ $('review-title').textContent=x.title;$('review-message').textContent=x.body;
+ $('review-file').textContent=$('media-file').files[0]?'Attached: '+$('media-file').files[0].name:x.media_id?'Existing media attached':x.video_url?'YouTube video included':'';
+ const channels=[x.website?'Website: automatic':null,x.telegram?'Telegram: automatic when configured':null,x.whatsapp?'WhatsApp: select recipients and press Send manually':null].filter(Boolean);
+ $('review-channels').textContent=channels.join(' · ');
+ $('confirm-publish').textContent=x.whatsapp&&!x.website&&!x.telegram?'Save & open WhatsApp':'Confirm & continue';
+}
+function shareWhatsapp(x){
+ let message=x.title+'\\n\\n'+x.body;
+ if(x.publish_website&&x.status==='published'&&x.visibility==='public') message+='\\n\\nhttps://ysca.pages.dev/updates.html';
+ const url='https://api.whatsapp.com/send?text='+encodeURIComponent(message);
+ // Native WhatsApp picker is responsible for choosing recipient(s). Do not claim delivery.
+ window.open(url,'_blank','noopener,noreferrer');
+}
+function whatsappPreviewMessage(){
+ return {title:$('post-title').value.trim(),body:$('post-message').value.trim(),status:'draft',publish_website:false,visibility:'private'};
+}
+async function uploadIfNeeded(){
+ const file=$('media-file').files[0];if(!file)return loadedMedia;
+ const form=new FormData();form.append('file',file);
+ const result=await call('/media',{method:'POST',body:form});return result.media_id;
+}
+async function submitUpdate(action){
+ if(busy)return;
+ if(!formCheck()){view('compose');return;}
+ busy=true;$('confirm-publish').disabled=true;$('save-draft').disabled=true;$('review-draft').disabled=true;
+ status('review-status','Saving…');status('compose-status','Saving…');
+ const data=dataFromForm(action);
+ const needsWhatsapp=action==='publish'&&data.whatsapp;
+ // Browsers may block windows opened after asynchronous file upload. Open the share handoff
+ // synchronously from the confirm click using an immediate prepared message.
+ if(needsWhatsapp)shareWhatsapp({...whatsappPreviewMessage(),title:data.title,body:data.body});
+ try{
+  data.media_id=await uploadIfNeeded()||'';
+  let result;
+  if(editingId){
+   // Editing existing posts changes website content, never resends Telegram.
+   result=await call('/updates/'+editingId,{method:'PATCH',body:JSON.stringify({...data,action:'edit'})});
+  }else{
+   result=await call('/updates',{method:'POST',body:JSON.stringify(data)});
+  }
+  await reload();
+  view('history');
+  if(needsWhatsapp)alert('Your notice is saved. In WhatsApp, choose the group(s) and press Send. This dashboard cannot verify delivery.');
+  else if(data.telegram&&result.telegram_status!=='sent'&&action==='publish')alert('Update saved. Telegram is not confirmed as sent; check the delivery status in history.');
+ }catch(e){
+  view('compose');alertErr(e,'compose-status');
+  if(needsWhatsapp)status('compose-status','The WhatsApp window opened, but the update was NOT saved: '+e.message,true);
+ }finally{busy=false;$('confirm-publish').disabled=false;$('save-draft').disabled=false;$('review-draft').disabled=false}
+}
+async function changeItem(x,action){
+ if(!confirm(action==='archive'?'Archive this update and hide it from the website?':action==='restore'?'Restore as a draft for review?':'Publish this saved draft?'))return;
+ try{await call('/updates/'+x.id,{method:'PATCH',body:JSON.stringify({action})});await reload()}
+ catch(e){alert(e.message)}
+}
+async function start(){
+ try{const r=await call('/auth');if(r.authenticated){authenticate(true);await reload();view('home')}}
+ catch(e){status('login-status','Backend not configured or unavailable. Contact the website administrator.',true)}
+}
+$('login-form').addEventListener('submit',async e=>{
+ e.preventDefault();status('login-status','Signing in…');
+ try{await call('/auth',{method:'POST',body:JSON.stringify({action:'login',password:$('login-password').value})});$('login-password').value='';authenticate(true);await reload();view('home');status('login-status','')}
+ catch(err){alertErr(err,'login-status')}
+});
+$('logout').addEventListener('click',async()=>{try{await call('/auth',{method:'POST',body:JSON.stringify({action:'logout'})})}catch(_){}
+ authenticate(false);items=[];editingId=null;});
+document.querySelectorAll('.menu button').forEach(b=>b.addEventListener('click',()=>b.dataset.view==='compose'?resetForm():view(b.dataset.view)));
+document.querySelectorAll('[data-quick]').forEach(b=>b.addEventListener('click',()=>resetForm(({schedule:'training',media:'photo'})[b.dataset.quick]||b.dataset.quick)));
+$('new').addEventListener('click',()=>resetForm());
+$('view-all').addEventListener('click',()=>view('history'));
+$('go-back').addEventListener('click',()=>view('home'));
+$('review-edit').addEventListener('click',()=>view('compose'));
+$('category').addEventListener('change',()=>setType($('category').value,true));
+$('search').addEventListener('input',renderHistory);
+document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{selectedStatus=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('on',x===b));renderHistory()}));
+$('refresh').addEventListener('click',()=>reload().catch(e=>alert(e.message)));
+$('review').addEventListener('click',()=>{if(!formCheck())return;renderReview();view('review')});
+$('review-draft').addEventListener('click',()=>submitUpdate('draft'));
+$('confirm-publish').addEventListener('click',()=>submitUpdate('publish'));
+$('compose-form').addEventListener('submit',e=>{e.preventDefault();submitUpdate('draft')});
+$('media-file').addEventListener('change',()=>{
+ const target=$('media-preview');target.replaceChildren();const file=$('media-file').files[0];
+ if(currentFileUrl){URL.revokeObjectURL(currentFileUrl);currentFileUrl=null}
+ if(!file){target.classList.add('hidden');return}
+ if(file.size>10*1024*1024){status('compose-status','Maximum media size is 10 MB. Use YouTube for longer videos.',true);$('media-file').value='';target.classList.add('hidden');return}
+ const url=URL.createObjectURL(file);currentFileUrl=url;
+ const preview=node(file.type.startsWith('video/')?'video':'img');preview.src=url;
+ if(preview.tagName==='VIDEO')preview.controls=true;
+ const label=node('div',file.name+' · '+(file.size/1024/1024).toFixed(2)+' MB','hint');
+ target.append(preview,label);target.classList.remove('hidden');
+});
+if(location.hostname==='youngstarcricketacademy.com'||location.hostname==='www.youngstarcricketacademy.com'){location.replace('https://ysca.pages.dev/manager/updates.html')}
+else start();
 })();
 </script>
-</body>
-</html>
+</body></html>
