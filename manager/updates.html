@@ -268,8 +268,8 @@ footer{margin-top:28px;color:#718199;font-size:12px}
    var saved=await request('/updates',{method:'POST',body:JSON.stringify(body)});
    message('form-status',saved.status==='published'?'Saved and published to the website.':'Saved. WhatsApp sharing still requires manual Send.');
    $('update-form').reset();categoryChange();await load();switchView('history');
-   if(body.groups.length&&action==='publish'){
-    var record=items.find(x=>x.id===saved.id);if(record)shareItem(record);
+   if(body.groups.length&&action==='publish') {
+    alert('Your message is ready. Use the Share to WhatsApp button in Updates History to select the intended group(s) and press Send.');
    }
   }catch(err){message('form-status',err.message,true);}
   finally{submit.disabled=draft.disabled=false;}
@@ -280,6 +280,9 @@ footer{margin-top:28px;color:#718199;font-size:12px}
    await load();message('groups-status','Group names saved.');
   }catch(err){message('groups-status',err.message,true);}
  });
+ if(location.hostname==='youngstarcricketacademy.com'||location.hostname==='www.youngstarcricketacademy.com'){
+  location.replace('https://ysca.pages.dev/manager/updates.html');return;
+ }
  request('/auth').then(r=>{if(r.authenticated){showAuthenticated(true);return load();}})
  .catch(e=>{message('login-status','Backend not configured: '+e.message,true);});
  categoryChange();
