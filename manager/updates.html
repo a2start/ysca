@@ -407,7 +407,6 @@ async function submitUpdate(action){
 async function deleteItem(x){
  if(busy)return;
  if(!confirm('Permanently delete "'+x.title+'"? This cannot be undone and will remove it from the public website.'))return;
- if(x.status==='published'&&prompt('This item is published. Type DELETE to confirm:')!=='DELETE')return;
  try{
   await call('/updates/'+x.id,{method:'DELETE',body:JSON.stringify({confirm:'DELETE',title:x.title})});
   await reload();
