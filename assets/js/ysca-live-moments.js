@@ -74,6 +74,7 @@
       img.height = 360;
       img.loading = "lazy";
       img.decoding = "async";
+      img.onerror = function () { img.onerror = null; img.src = "assets/images/video.jpg"; };
       var play = el("span", "ysca-home-video-play");
       play.setAttribute("aria-hidden", "true");
       poster.append(img, play);
@@ -87,6 +88,38 @@
 
     // Newest approved media first, followed by the existing curated videos.
     if (count) grid.prepend(fragment);
+  }
+
+  function renderHomePhotos(items) {
+    var gallery = document.getElementById("lightgallery");
+    if (!gallery || !document.getElementById("ysca-home-video-gallery")) return;
+    var fragment = document.createDocumentFragment();
+    var count = 0;
+    items.forEach(function (item) {
+      if (count >= 6 || !UUID.test(item.media_id) ||
+          typeof item.media_mime !== "string" || !item.media_mime.startsWith("image/")) return;
+      var src = MEDIA_BASE + encodeURIComponent(item.media_id);
+      var anchor = el("a", "ysca-live-home-photo");
+      anchor.href = src;
+      anchor.setAttribute("aria-label", "View photo: " + item.title);
+      var img = el("img");
+      img.src = src;
+      img.alt = item.title;
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.width = 400;
+      img.height = 266;
+      img.onerror = function () { anchor.hidden = true; };
+      anchor.append(img);
+      fragment.appendChild(anchor);
+      count += 1;
+    });
+    if (count) {
+      gallery.prepend(fragment);
+      if (typeof window.yscaRefreshHomeGallery === "function") {
+        window.yscaRefreshHomeGallery();
+      }
+    }
   }
 
   function makeCaption(item) {
@@ -139,6 +172,7 @@
     img.src = "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
     img.alt = "";
     img.loading = "lazy";
+    img.onerror = function () { img.onerror = null; img.src = "assets/images/video.jpg"; };
     var play = el("span", "ysca-moment-play", "\u25b6");
     play.setAttribute("aria-hidden", "true");
     poster.append(img, play);
@@ -247,6 +281,7 @@
     .then(function (data) {
       var items = validItems(data);
       renderHomeVideos(items);
+      renderHomePhotos(items);
       renderMoments(items);
     })
     .catch(function () {
