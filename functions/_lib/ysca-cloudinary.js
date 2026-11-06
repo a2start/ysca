@@ -55,13 +55,36 @@ export async function uploadCloudinary(env, bytes, mime, id, extension) {
   });
   const result = await response.json().catch(() => ({}));
   if (!response.ok) {
-    const error = String(result?.error?.message || 'Cloudinary upload failed');
-    console.error('Cloudinary upload rejected:', response.status, error.slice(0, 200));
-    throw new Error('Cloudinary rejected the media upload');
+    const providerError = String(result?.error?.message || '');
+    // Managers need an actionable error, but never expose any Cloudinary credentials.
+    const sanitized = providerError
+      .replaceAll(env.CLOUDINARY_API_SECRET, '[redacted]')
+      .replaceAll(env.CLOUDINARY_API_KEY, '[redacted]')
+      .replace(/[\r\n\t]+/g, ' ')
+      .slice(0, 180);
+    console.error('Cloudinary upload error:', { status: response.status, details: sanitized });
+    let reason = 'Cloudinary rejected the upload';
+    if (response.status === 400) reason = 'Invalid media file or upload parameters';
+    else if (response.status === 401) reason = 'Authentication rejected — check Cloudinary API key and secret';
+    else if (response.status === 403) reason = 'Upload forbidden — check account permissions';
+    else if (response.status === 404) reason = 'Cloudinary cloud name or upload endpoint not found';
+    else if (response.status === 429) reason = 'Too many requests';
+    const error = new Error('Cloudinary HTTP ' + response.status + ': ' + reason +
+      (sanitized ? '. Provider message: ' + sanitized : ''));
+    error.code = 'CLOUDINARY_HTTP_ERROR';
+    throw error;
   }
-  if (result.type !== 'authenticated' || !/^[\w-]{12,100}$/.test(String(result.asset_id || ''))) {
-    console.error('Cloudinary returned unexpected delivery type or asset ID');
-    throw new Error('Cloudinary did not confirm a protected upload');
+  if (result.type !== 'authenticated') {
+    console.error('Cloudinary unexpected delivery type');
+    const error = new Error('Cloudinary returned a non-protected file type. Upload rejected for privacy.');
+    error.code = 'CLOUDINARY_TYPE_ERROR';
+    throw error;
+  }
+  if (!/^[\w-]{12,100}$/.test(String(result.asset_id || ''))) {
+    console.error('Cloudinary response missing valid asset ID');
+    const error = new Error('Cloudinary did not return a valid media asset ID');
+    error.code = 'CLOUDINARY_ASSET_ID_ERROR';
+    throw error;
   }
   return 'cloudinary:' + result.asset_id;
 }
