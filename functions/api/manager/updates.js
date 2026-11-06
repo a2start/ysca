@@ -23,11 +23,10 @@ export async function onRequestPost({ request, env, context }) {
   if (!await authorize(request, env)) return json({ error: 'Login required' }, 401);
   if (!sameOrigin(request)) return json({ error: 'Invalid request origin' }, 403);
   if (!(request.headers.get('content-type') || '').includes('application/json')) return json({ error: 'JSON required' }, 415);
+  const input = await request.json().catch(() => null);
   let form;
-  try { form = normalizeUpdate(await request.json()); } catch (e) { return json({ error: e.message || 'Invalid data' }, 400); }
-  const status = form.visibility === 'public' && form.website && !request?.url?.includes('never') ? null : null;
+  try { form = normalizeUpdate(input); } catch (e) { return json({ error: e.message || 'Invalid data' }, 400); }
   // Publish only after an explicit action; saving a draft never sends anything.
-  const input = await request.clone().json().catch(() => ({}));
   const publish = input.action === 'publish';
   if (!['draft', 'publish'].includes(input.action)) return json({ error: 'Select Save draft or Publish' }, 400);
   if (form.mediaId) {
@@ -35,16 +34,16 @@ export async function onRequestPost({ request, env, context }) {
     if (!media) return json({ error: 'Uploaded file not found' }, 400);
   }
   const id = crypto.randomUUID(), now = new Date().toISOString();
-  const dbRecord = { ...form };
   const published = publish && form.website && form.visibility === 'public';
+  const activated = publish && (published || form.telegram);
   try {
     await env.DB.prepare(`INSERT INTO ysca_updates
       (id,title,body,category,visibility,status,publish_website,publish_telegram,
        whatsapp_groups,media_id,video_url,telegram_status,created_at,updated_at,published_at)
       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
       .bind(id, form.title, form.message, form.category, form.visibility,
-        published ? 'published' : 'draft',
-        published ? 1 : 0, publish && form.telegram ? 1 : 0,
+        activated ? 'published' : 'draft',
+        form.website ? 1 : 0, form.telegram ? 1 : 0,
         JSON.stringify(form.groups), form.mediaId || null, form.videoUrl || null,
         publish && form.telegram ? 'pending' : 'not_requested', now, now, published ? now : null).run();
   } catch (e) {
@@ -59,7 +58,7 @@ export async function onRequestPost({ request, env, context }) {
     await env.DB.prepare('UPDATE ysca_updates SET telegram_status = ? WHERE id = ?')
       .bind(telegramStatus, id).run().catch(e => console.error('Telegram delivery log failed', e));
   }
-  return json({ success: true, id, status: published ? 'published' : 'draft',
+  return json({ success: true, id, status: activated ? 'published' : 'draft',
     telegram_status: telegramStatus,
     whatsapp: form.groups.length ? 'ready_to_share_manually' : 'not_selected' }, 201);
 }
