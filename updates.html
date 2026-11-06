@@ -57,7 +57,7 @@ footer{background:#091b32;color:#c7d6e7;padding:34px 0;font-size:13px}
 (function(){
  'use strict';
  // This public endpoint runs on Cloudflare Pages; GitHub Pages serves this HTML.
- var PUBLIC_FEED_BASE='https://ysca.pages.dev';
+ var PUBLIC_FEED_BASE = location.hostname.endsWith('.pages.dev') ? location.origin : 'https://ysca.pages.dev';
  var feed=PUBLIC_FEED_BASE+'/api/updates';
  var items=[],filter='all';
  var cards=document.getElementById('cards'),empty=document.getElementById('empty');
