@@ -6,7 +6,7 @@ This feature is isolated on `feature/manager-updates-dashboard` for review. **Do
 
 - The live `youngstarcricketacademy.com` GitHub Pages deployment is STATIC and cannot execute `functions/` endpoints.
 - Run the management UI and API at a connected **Cloudflare Pages** deployment (for example `https://ysca.pages.dev/manager/updates.html`) with this repository deployed there. Pages preview remains `noindex`.
-- The public `updates.html` works on GitHub Pages by fetching the **public** API at `https://ysca.pages.dev/api/updates`. Change the `PUBLIC_FEED_BASE` constant if your Cloudflare host differs.
+- Preview `updates.html` uses its own Cloudflare Pages preview origin for the API. When served from GitHub Pages, the public `updates.html` fetches the API at `https://ysca.pages.dev/api/updates`. Change the `PUBLIC_FEED_BASE` constant if your Cloudflare host differs.
 - Bind D1 database as `DB`. Apply SQL in `database/ysca_updates.sql` to the same D1 database or a dedicated YSCA updates D1 DB. Existing contact tables are not changed.
 - Optionally bind Cloudflare R2 bucket as `YSCA_MEDIA` for photo and small video uploads; R2 may require billing setup. All images and media are private until referenced by a public published entry. Use YouTube links for larger videos.
 - Configure **Cloudflare Pages secrets** (never commit them):
