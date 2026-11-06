@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Read public announcements, cricket training updates, match news and academy notices from Young Star Cricket Academy in Greater Noida.">
+<link rel="canonical" href="https://youngstarcricketacademy.com/updates">
+<title>Academy Updates & Announcements | Young Star Cricket Academy</title>
+<link rel="icon" href="assets/images/favicon.png">
+<style>
+:root{font-family:"Plus Jakarta Sans",system-ui,sans-serif;color:#172b44;background:#f7f9fd}
+*{box-sizing:border-box}body{margin:0}a{color:inherit}button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #fea630;outline-offset:3px}
+.wrap{max-width:1170px;margin:auto;padding:0 24px}
+header{background:#0b1c35;color:#fff}
+.nav{min-height:82px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.logo{display:flex;align-items:center;gap:13px;text-decoration:none;font-weight:800;font-size:15px}
+.logo img{width:48px;height:48px;object-fit:contain}
+.home{display:inline-flex;align-items:center;gap:6px;padding:10px 17px;border:1px solid #516077;border-radius:10px;font-size:13px;text-decoration:none;font-weight:700}
+.home:hover{background:#1d3758}
+.hero{background:linear-gradient(130deg,#0b1c35,#16385c);color:#fff;padding:75px 0 80px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-120px;top:-250px;width:600px;height:600px;border:80px solid rgba(254,166,48,.06);border-radius:50%;pointer-events:none}
+.eyebrow{font-size:12px;letter-spacing:.17em;text-transform:uppercase;font-weight:800;color:#fea630}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif}
+h1{font-size:clamp(35px,5vw,58px);margin:14px 0;line-height:1.12}
+.hero p{max-width:640px;color:#c8d5e2;font-size:16px;line-height:1.75}
+main{padding:45px 0 90px}.filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:27px}
+.filter{border:1px solid #e0e6ee;color:#4e5e78;background:#fff;border-radius:100px;padding:9px 16px;font-size:12px;font-weight:750}
+.filter.active,.filter:hover{background:#0b1c35;color:#fff;border-color:#0b1c35}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{min-width:0;background:#fff;border:1px solid #e6eaf0;border-radius:17px;overflow:hidden;box-shadow:0 8px 30px rgba(13,36,65,.055);display:flex;flex-direction:column}
+.media{aspect-ratio:16/9;background:linear-gradient(135deg,#1a3857,#0b1c35);display:grid;place-items:center;overflow:hidden}
+.media img,.media video{width:100%;height:100%;object-fit:cover}.media a{width:100%;height:100%;display:block}
+.cardbody{padding:24px;display:flex;flex-direction:column;flex:1}
+.tag{color:#b57a19;text-transform:uppercase;font-size:11px;letter-spacing:.1em;font-weight:800}
+.date{font-size:12px;color:#7b889a;margin-left:10px}
+.card h2{margin:13px 0 10px;color:#0b1c35;line-height:1.28;font-size:23px}
+.card p{font-size:14px;line-height:1.8;white-space:pre-line;color:#52657a;overflow-wrap:anywhere;margin:0}
+.video{display:inline-block;margin-top:18px;font-weight:800;color:#0b1c35;font-size:13px}
+.note{padding:34px;border-radius:16px;background:white;border:1px solid #e5e9f2;color:#677991;text-align:center}
+.note.error{border-color:#ebc7c3;color:#b1372d}
+footer{background:#091b32;color:#c7d6e7;padding:34px 0;font-size:13px}
+@media(max-width:930px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.cards{grid-template-columns:1fr}.wrap{padding:0 17px}.hero{padding:50px 0 58px}.nav{min-height:72px}.logo{font-size:12px}.logo img{width:38px;height:38px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a href="./" class="logo"><img src="assets/images/ysca-logo1.png" alt="" width="48" height="48">Young Star Cricket Academy</a><a href="./" class="home">← Back to Home</a></div></header>
+<section class="hero"><div class="wrap"><div class="eyebrow">Stay informed</div><h1>Academy Updates</h1><p>Announcements, training schedules, match highlights and important news from Young Star Cricket Academy in Greater Noida.</p></div></section>
+<main><div class="wrap">
+<div class="filters" id="filters" role="group" aria-label="Filter academy updates"><button type="button" class="filter active" data-filter="all">All Updates</button><button type="button" class="filter" data-filter="announcement">Announcements</button><button type="button" class="filter" data-filter="training">Training</button><button type="button" class="filter" data-filter="match">Matches</button><button type="button" class="filter" data-filter="event">Events</button><button type="button" class="filter" data-filter="photo">Photos</button></div>
+<div class="cards" id="cards" aria-live="polite"></div>
+<div id="empty" class="note" role="status">Loading academy updates…</div>
+</div></main>
+<footer><div class="wrap">© 2026 Young Star Cricket Academy · <a href="contact">Contact Academy</a></div></footer>
+<script>
+(function(){
+ 'use strict';
+ // This public endpoint runs on Cloudflare Pages; GitHub Pages serves this HTML.
+ var PUBLIC_FEED_BASE='https://ysca.pages.dev';
+ var feed=PUBLIC_FEED_BASE+'/api/updates';
+ var items=[],filter='all';
+ var cards=document.getElementById('cards'),empty=document.getElementById('empty');
+ var labels={announcement:'Announcement',training:'Training',match:'Match',event:'Event',holiday:'Holiday',photo:'Photo',video:'Video',general:'Update'};
+ function render(){
+  cards.replaceChildren();
+  var list=items.filter(x=>filter==='all'||x.category===filter);
+  empty.hidden=list.length>0;
+  if(!list.length){empty.className='note';empty.textContent='No updates in this category yet. Please check back soon.';return;}
+  list.forEach(x=>{
+   var card=document.createElement('article');card.className='card';
+   if(x.media_id){
+    var media=document.createElement('div');media.className='media';
+    // API only serves approved, publicly published media.
+    var src=PUBLIC_FEED_BASE+'/api/updates/media/'+encodeURIComponent(x.media_id);
+    var image=document.createElement('img');image.src=src;image.alt=x.title;image.loading='lazy';
+    image.onerror=function(){media.remove()};
+    media.append(image);card.append(media);
+   }
+   var body=document.createElement('div');body.className='cardbody';
+   var meta=document.createElement('div'),tag=document.createElement('span'),date=document.createElement('span');
+   tag.className='tag';tag.textContent=labels[x.category]||'Update';
+   date.className='date';date.textContent=x.published_at?new Date(x.published_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'';
+   meta.append(tag,date);
+   var title=document.createElement('h2');title.textContent=x.title;
+   var text=document.createElement('p');text.textContent=x.body;
+   body.append(meta,title,text);
+   if(x.video_url){
+    try{var u=new URL(x.video_url);if(u.protocol==='https:'&&['www.youtube.com','youtube.com','youtu.be'].includes(u.hostname)){
+      var link=document.createElement('a');link.className='video';link.href=u.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Watch video ↗';body.append(link);
+    }}catch(_){}
+   }
+   card.append(body);cards.append(card);
+  });
+ }
+ document.getElementById('filters').addEventListener('click',e=>{
+  var button=e.target.closest('button[data-filter]');if(!button)return;
+  filter=button.dataset.filter;
+  document.querySelectorAll('button[data-filter]').forEach(b=>b.classList.toggle('active',b===button));render();
+ });
+ fetch(feed,{mode:'cors',credentials:'omit'}).then(async r=>{
+  if(!r.ok)throw new Error('Updates service unavailable');return r.json();
+ }).then(data=>{items=Array.isArray(data.items)?data.items:[];render();}).catch(()=>{
+  empty.hidden=false;empty.className='note error';
+  empty.textContent='Academy updates are temporarily unavailable. Please check again later.';
+ });
+})();
+</script>
+</body>
+</html>
