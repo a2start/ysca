@@ -49,6 +49,7 @@ h1{margin:6px 0 6px;font-size:clamp(25px,3vw,35px);line-height:1.2;color:#0b1c35
 .table th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#718198;background:#fafbfe}
 .table td strong{font-size:13px}.muted{color:#8190a4;font-size:12px}.pill{display:inline-block;padding:5px 9px;border-radius:40px;background:#eef2f9;color:#526783;font-weight:700;font-size:10px;white-space:nowrap}
 .pill.published{background:#e8f7f1;color:#138055}.mini-actions{display:flex;gap:6px;flex-wrap:wrap}.mini-actions button{padding:6px 9px;border:1px solid #dce4ee;border-radius:7px;background:white;color:#203752;font-size:11px;font-weight:650}
+.mini-actions button.delete-update{color:#aa2828;border-color:#f1cbcb;background:#fff8f8}.mini-actions button.delete-update:hover{background:#fce8e8}
 .login-screen{min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 75% 20%,#213b60,#0b1c35 62%)}
 .login-card{background:white;border-radius:18px;box-shadow:0 20px 60px #0003;padding:34px;width:min(100%,410px)}
 .login-card h1{font-size:27px}.login-card .btn{width:100%;padding:13px}
@@ -195,6 +196,9 @@ footer{margin-top:28px;color:#718199;font-size:12px}
     var archive=create('button','Archive');archive.type='button';
     archive.addEventListener('click',()=>changeItem(item,'archive'));wrap.append(archive);
    }
+   var del=create('button','Delete');del.type='button';del.className='delete-update';
+   del.setAttribute('aria-label','Delete update: '+item.title);
+   del.addEventListener('click',()=>deleteItem(item));wrap.append(del);
    actions.append(wrap);tr.append(info,cat,statusTd,channels,actions);body.append(tr);
   });
  }
@@ -202,6 +206,14 @@ footer{margin-top:28px;color:#718199;font-size:12px}
   if(!confirm(action==='archive'?'Archive this update and remove it from the website?':'Publish this draft to its selected supported destinations?'))return;
   try{await request('/updates/'+item.id,{method:'PATCH',body:JSON.stringify({action})});await load();}
   catch(e){alert(e.message);}
+ }
+ async function deleteItem(item){
+  if(!confirm('Permanently delete "'+item.title+'"? This cannot be undone and will remove it from the public website.'))return;
+  if(item.status==='published'&&prompt('This item is published. Type DELETE to confirm:')!=='DELETE')return;
+  try{
+   await request('/updates/'+item.id,{method:'DELETE',body:JSON.stringify({confirm:'DELETE',title:item.title})});
+   await load();
+  }catch(e){alert('Delete failed: '+e.message)}
  }
  function shareItem(item){
   var labels=item.whatsapp_groups.map(id=>groups.find(g=>g.id===id)?.label||id).join(', ');
