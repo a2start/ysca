@@ -66,3 +66,23 @@ export async function onRequestPatch({request, env, params}) {
  }
  return json({success:true,status:'published',telegram_status:telegramStatus});
 }
+
+/** Delete a notice permanently. Uploaded media is retained because it may be shared
+ * with other notices. The public media route requires a published parent notice. */
+export async function onRequestDelete({request,env,params}) {
+ if (!configured(env)||!await hasSession(request,env.YSCA_MANAGER_SESSION_SECRET)) return json({error:'Login required'},401);
+ if (!sameOrigin(request)) return json({error:'Invalid request origin'},403);
+ if (!(request.headers.get('content-type')||'').includes('application/json')) return json({error:'JSON required'},415);
+ const id=String(params.id||'');
+ if (!/^[0-9a-f-]{36}$/.test(id)) return json({error:'Invalid update ID'},400);
+ const input=await request.json().catch(()=>null);
+ if(!input||input.confirm!=='DELETE'||typeof input.title!=='string') return json({error:'Deletion confirmation required'},400);
+ try {
+  const existing=await env.DB.prepare('SELECT title FROM ysca_updates WHERE id=?').bind(id).first();
+  if(!existing)return json({error:'Update not found'},404);
+  if(existing.title!==input.title)return json({error:'Title changed; refresh your list and retry.'},409);
+  const r=await env.DB.prepare('DELETE FROM ysca_updates WHERE id=? AND title=?').bind(id,input.title).run();
+  if(r.meta?.changes!==1)return json({error:'Could not delete this item; refresh and retry.'},409);
+  return json({success:true,deleted_id:id,media_retained:true});
+ }catch(e){console.error('YSCA delete failed',e);return json({error:'Could not delete this update'},503)}
+}
