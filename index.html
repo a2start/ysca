@@ -2268,7 +2268,7 @@ document.addEventListener("DOMContentLoaded", function () {
     savedScrollTop = null;
   });
 
-  lightGallery(gallery, {
+  var galleryInstance = lightGallery(gallery, {
     speed: 400,
     thumbnail: true,
     zoom: true,
@@ -2283,6 +2283,12 @@ document.addEventListener("DOMContentLoaded", function () {
       download: false
     }
   });
+  // The published-image feed can insert new photo links after gallery initialization.
+  window.yscaRefreshHomeGallery = function () {
+    if (galleryInstance && typeof galleryInstance.refresh === "function") {
+      galleryInstance.refresh();
+    }
+  };
 });
 </script>
 
