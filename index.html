@@ -270,6 +270,120 @@
   padding: 0 14px 14px 14px !important;
 }
 
+/* ysca-home-video-2026: inline critical styles avoid stale external CSS. */
+#ysca-home-video-gallery.ysca-home-video-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+#ysca-home-video-gallery .ysca-home-video {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #07162c;
+  box-shadow: 0 5px 16px rgba(7,22,44,.1);
+}
+#ysca-home-video-gallery .ysca-home-video-poster,
+#ysca-home-video-gallery .ysca-home-video-iframe {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+#ysca-home-video-gallery .ysca-home-video-poster {
+  cursor: pointer;
+  overflow: hidden;
+}
+#ysca-home-video-gallery .ysca-home-video-poster[hidden],
+#ysca-home-video-gallery .ysca-home-video-close[hidden] { display:none!important; }
+#ysca-home-video-gallery .ysca-home-video-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+#ysca-home-video-gallery .ysca-home-video-poster:hover img,
+#ysca-home-video-gallery .ysca-home-video-poster:focus-visible img { transform:scale(1.04); }
+#ysca-home-video-gallery .ysca-home-video-poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:linear-gradient(0deg,rgba(7,22,44,.28),transparent 70%);
+  pointer-events: none;
+}
+#ysca-home-video-gallery .ysca-home-video-play {
+  position:absolute;
+  z-index:1;
+  top:50%;
+  left:50%;
+  width:58px;
+  height:58px;
+  transform:translate(-50%,-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:50%;
+  background:rgba(7,22,44,.82);
+  box-shadow:0 6px 20px rgba(0,0,0,.25);
+  pointer-events:none;
+  transition:background .2s ease;
+}
+#ysca-home-video-gallery .ysca-home-video-play::before {
+  content:"";
+  width:0;
+  height:0;
+  margin-left:4px;
+  border-top:10px solid transparent;
+  border-bottom:10px solid transparent;
+  border-left:16px solid #fea630;
+}
+#ysca-home-video-gallery .ysca-home-video-poster:hover .ysca-home-video-play,
+#ysca-home-video-gallery .ysca-home-video-poster:focus-visible .ysca-home-video-play {background:#07162c;}
+#ysca-home-video-gallery .ysca-home-video-poster:focus-visible,
+#ysca-home-video-gallery .ysca-home-video-close:focus-visible {
+  outline:3px solid #fea630;
+  outline-offset:-3px;
+}
+#ysca-home-video-gallery .ysca-home-video-close {
+  position:absolute;
+  z-index:3;
+  top:6px;
+  right:6px;
+  width:36px;
+  height:36px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:50%;
+  background:rgba(7,22,44,.9);
+  color:#fff;
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+}
+#ysca-home-video-gallery .ysca-home-video-close:hover {background:#fea630;color:#07162c;}
+@media (max-width:768px) {
+  #ysca-home-video-gallery.ysca-home-video-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+}
+@media (max-width:480px) {
+  #ysca-home-video-gallery.ysca-home-video-grid {grid-template-columns:minmax(0,1fr);}
+}
+@media (prefers-reduced-motion:reduce) {
+  #ysca-home-video-gallery .ysca-home-video-poster img,
+  #ysca-home-video-gallery .ysca-home-video-play {transition:none;}
+  #ysca-home-video-gallery .ysca-home-video-poster:hover img,
+  #ysca-home-video-gallery .ysca-home-video-poster:focus-visible img {transform:none;}
+}
+
 .custom-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1964,200 +2078,125 @@ document.addEventListener("DOMContentLoaded", function () {
                     </section>
                    
 
-<section class="ysca-video-gallery-section pt-70 pb-80" aria-labelledby="ysca-video-gallery-heading">
+<section class="renvia-team-sec pt-70 pb-80" style="background-color:#f8fafc; border-top:1px solid #e2e8f0" aria-labelledby="ysca-video-title">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-9">
-        <div class="section-title text-start mb-40">
-          <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">TRAINING IN ACTION<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
-          <h2 id="ysca-video-gallery-heading" class="text-anm">Video Gallery</h2>
-          <p>Explore featured cricket videos and highlights. Select a thumbnail to watch without leaving the page.</p>
-        </div>
+    <div class="row"><div class="col-lg-9">
+      <div class="section-title text-start mb-40">
+        <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">TRAINING IN ACTION<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
+        <h2 class="text-anm" id="ysca-video-title">Video Gallery</h2>
+        <p>Explore featured cricket videos and highlights. Select a thumbnail to watch without leaving the page.</p>
       </div>
-    </div>
-    <div class="ysca-video-grid" id="ysca-video-gallery">
-        <article class="ysca-video-card">
-          <div class="ysca-video-media">
-            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=A1kRs65K4io" data-video-id="A1kRs65K4io" data-video-title="Cricket Feature 01" aria-label="Play Cricket Feature 01">
-              <img src="https://i.ytimg.com/vi/A1kRs65K4io/hqdefault.jpg" alt="Thumbnail for Cricket Feature 01" width="480" height="270" loading="lazy" decoding="async">
-              <span class="ysca-video-play" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="ysca-video-card-content">
-            <span class="ysca-video-kicker">CRICKET VIDEO · 01</span>
-            <h3>Cricket Feature 01</h3>
-            <div class="ysca-video-card-actions">
-              <a href="https://www.youtube.com/watch?v=A1kRs65K4io" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 01 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              <button class="ysca-video-stop" type="button" hidden>Close player</button>
-            </div>
-          </div>
-        </article>
-        <article class="ysca-video-card">
-          <div class="ysca-video-media">
-            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=or6EIb_4Lm8" data-video-id="or6EIb_4Lm8" data-video-title="Cricket Feature 02" aria-label="Play Cricket Feature 02">
-              <img src="https://i.ytimg.com/vi/or6EIb_4Lm8/hqdefault.jpg" alt="Thumbnail for Cricket Feature 02" width="480" height="270" loading="lazy" decoding="async">
-              <span class="ysca-video-play" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="ysca-video-card-content">
-            <span class="ysca-video-kicker">CRICKET VIDEO · 02</span>
-            <h3>Cricket Feature 02</h3>
-            <div class="ysca-video-card-actions">
-              <a href="https://www.youtube.com/watch?v=or6EIb_4Lm8" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 02 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              <button class="ysca-video-stop" type="button" hidden>Close player</button>
-            </div>
-          </div>
-        </article>
-        <article class="ysca-video-card">
-          <div class="ysca-video-media">
-            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=TRxkZ_cCh6I" data-video-id="TRxkZ_cCh6I" data-video-title="Cricket Feature 03" aria-label="Play Cricket Feature 03">
-              <img src="https://i.ytimg.com/vi/TRxkZ_cCh6I/hqdefault.jpg" alt="Thumbnail for Cricket Feature 03" width="480" height="270" loading="lazy" decoding="async">
-              <span class="ysca-video-play" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="ysca-video-card-content">
-            <span class="ysca-video-kicker">CRICKET VIDEO · 03</span>
-            <h3>Cricket Feature 03</h3>
-            <div class="ysca-video-card-actions">
-              <a href="https://www.youtube.com/watch?v=TRxkZ_cCh6I" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 03 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              <button class="ysca-video-stop" type="button" hidden>Close player</button>
-            </div>
-          </div>
-        </article>
-        <article class="ysca-video-card">
-          <div class="ysca-video-media">
-            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=vBxw69ABRog" data-video-id="vBxw69ABRog" data-video-title="Cricket Feature 04" aria-label="Play Cricket Feature 04">
-              <img src="https://i.ytimg.com/vi/vBxw69ABRog/hqdefault.jpg" alt="Thumbnail for Cricket Feature 04" width="480" height="270" loading="lazy" decoding="async">
-              <span class="ysca-video-play" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="ysca-video-card-content">
-            <span class="ysca-video-kicker">CRICKET VIDEO · 04</span>
-            <h3>Cricket Feature 04</h3>
-            <div class="ysca-video-card-actions">
-              <a href="https://www.youtube.com/watch?v=vBxw69ABRog" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 04 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              <button class="ysca-video-stop" type="button" hidden>Close player</button>
-            </div>
-          </div>
-        </article>
-        <article class="ysca-video-card">
-          <div class="ysca-video-media">
-            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=4I0kKWUDXzM" data-video-id="4I0kKWUDXzM" data-video-title="Cricket Feature 05" aria-label="Play Cricket Feature 05">
-              <img src="https://i.ytimg.com/vi/4I0kKWUDXzM/hqdefault.jpg" alt="Thumbnail for Cricket Feature 05" width="480" height="270" loading="lazy" decoding="async">
-              <span class="ysca-video-play" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="ysca-video-card-content">
-            <span class="ysca-video-kicker">CRICKET VIDEO · 05</span>
-            <h3>Cricket Feature 05</h3>
-            <div class="ysca-video-card-actions">
-              <a href="https://www.youtube.com/watch?v=4I0kKWUDXzM" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 05 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              <button class="ysca-video-stop" type="button" hidden>Close player</button>
-            </div>
-          </div>
-        </article>
-        <article class="ysca-video-card">
-          <div class="ysca-video-media">
-            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=k-fmHVLbZIk" data-video-id="k-fmHVLbZIk" data-video-title="Cricket Feature 06" aria-label="Play Cricket Feature 06">
-              <img src="https://i.ytimg.com/vi/k-fmHVLbZIk/hqdefault.jpg" alt="Thumbnail for Cricket Feature 06" width="480" height="270" loading="lazy" decoding="async">
-              <span class="ysca-video-play" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="ysca-video-card-content">
-            <span class="ysca-video-kicker">CRICKET VIDEO · 06</span>
-            <h3>Cricket Feature 06</h3>
-            <div class="ysca-video-card-actions">
-              <a href="https://www.youtube.com/watch?v=k-fmHVLbZIk" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 06 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              <button class="ysca-video-stop" type="button" hidden>Close player</button>
-            </div>
-          </div>
-        </article>
-        <article class="ysca-video-card">
-          <div class="ysca-video-media">
-            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=zd9bIjZLRvc" data-video-id="zd9bIjZLRvc" data-video-title="Cricket Feature 07" aria-label="Play Cricket Feature 07">
-              <img src="https://i.ytimg.com/vi/zd9bIjZLRvc/hqdefault.jpg" alt="Thumbnail for Cricket Feature 07" width="480" height="270" loading="lazy" decoding="async">
-              <span class="ysca-video-play" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="ysca-video-card-content">
-            <span class="ysca-video-kicker">CRICKET VIDEO · 07</span>
-            <h3>Cricket Feature 07</h3>
-            <div class="ysca-video-card-actions">
-              <a href="https://www.youtube.com/watch?v=zd9bIjZLRvc" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 07 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              <button class="ysca-video-stop" type="button" hidden>Close player</button>
-            </div>
-          </div>
-        </article>
-        <article class="ysca-video-card">
-          <div class="ysca-video-media">
-            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=iURnpwgg-gU" data-video-id="iURnpwgg-gU" data-video-title="Cricket Feature 08" aria-label="Play Cricket Feature 08">
-              <img src="https://i.ytimg.com/vi/iURnpwgg-gU/hqdefault.jpg" alt="Thumbnail for Cricket Feature 08" width="480" height="270" loading="lazy" decoding="async">
-              <span class="ysca-video-play" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="ysca-video-card-content">
-            <span class="ysca-video-kicker">CRICKET VIDEO · 08</span>
-            <h3>Cricket Feature 08</h3>
-            <div class="ysca-video-card-actions">
-              <a href="https://www.youtube.com/watch?v=iURnpwgg-gU" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 08 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              <button class="ysca-video-stop" type="button" hidden>Close player</button>
-            </div>
-          </div>
-        </article>
+    </div></div>
+    <div id="ysca-home-video-gallery" class="ysca-home-video-grid">
+        <div class="ysca-home-video">
+          <a class="ysca-home-video-poster" href="https://www.youtube.com/watch?v=A1kRs65K4io" data-video-id="A1kRs65K4io" aria-label="Play cricket video 1">
+            <img src="https://i.ytimg.com/vi/A1kRs65K4io/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="ysca-home-video-play" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="ysca-home-video-close" aria-label="Close cricket video 1" hidden>×</button>
+        </div>
+        <div class="ysca-home-video">
+          <a class="ysca-home-video-poster" href="https://www.youtube.com/watch?v=or6EIb_4Lm8" data-video-id="or6EIb_4Lm8" aria-label="Play cricket video 2">
+            <img src="https://i.ytimg.com/vi/or6EIb_4Lm8/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="ysca-home-video-play" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="ysca-home-video-close" aria-label="Close cricket video 2" hidden>×</button>
+        </div>
+        <div class="ysca-home-video">
+          <a class="ysca-home-video-poster" href="https://www.youtube.com/watch?v=TRxkZ_cCh6I" data-video-id="TRxkZ_cCh6I" aria-label="Play cricket video 3">
+            <img src="https://i.ytimg.com/vi/TRxkZ_cCh6I/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="ysca-home-video-play" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="ysca-home-video-close" aria-label="Close cricket video 3" hidden>×</button>
+        </div>
+        <div class="ysca-home-video">
+          <a class="ysca-home-video-poster" href="https://www.youtube.com/watch?v=vBxw69ABRog" data-video-id="vBxw69ABRog" aria-label="Play cricket video 4">
+            <img src="https://i.ytimg.com/vi/vBxw69ABRog/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="ysca-home-video-play" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="ysca-home-video-close" aria-label="Close cricket video 4" hidden>×</button>
+        </div>
+        <div class="ysca-home-video">
+          <a class="ysca-home-video-poster" href="https://www.youtube.com/watch?v=4I0kKWUDXzM" data-video-id="4I0kKWUDXzM" aria-label="Play cricket video 5">
+            <img src="https://i.ytimg.com/vi/4I0kKWUDXzM/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="ysca-home-video-play" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="ysca-home-video-close" aria-label="Close cricket video 5" hidden>×</button>
+        </div>
+        <div class="ysca-home-video">
+          <a class="ysca-home-video-poster" href="https://www.youtube.com/watch?v=k-fmHVLbZIk" data-video-id="k-fmHVLbZIk" aria-label="Play cricket video 6">
+            <img src="https://i.ytimg.com/vi/k-fmHVLbZIk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="ysca-home-video-play" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="ysca-home-video-close" aria-label="Close cricket video 6" hidden>×</button>
+        </div>
+        <div class="ysca-home-video">
+          <a class="ysca-home-video-poster" href="https://www.youtube.com/watch?v=zd9bIjZLRvc" data-video-id="zd9bIjZLRvc" aria-label="Play cricket video 7">
+            <img src="https://i.ytimg.com/vi/zd9bIjZLRvc/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="ysca-home-video-play" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="ysca-home-video-close" aria-label="Close cricket video 7" hidden>×</button>
+        </div>
+        <div class="ysca-home-video">
+          <a class="ysca-home-video-poster" href="https://www.youtube.com/watch?v=iURnpwgg-gU" data-video-id="iURnpwgg-gU" aria-label="Play cricket video 8">
+            <img src="https://i.ytimg.com/vi/iURnpwgg-gU/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+            <span class="ysca-home-video-play" aria-hidden="true"></span>
+          </a>
+          <button type="button" class="ysca-home-video-close" aria-label="Close cricket video 8" hidden>×</button>
+        </div>
     </div>
   </div>
 </section>
-
 <script>
 (function () {
-  var gallery = document.getElementById('ysca-video-gallery');
+  "use strict";
+  var gallery = document.getElementById("ysca-home-video-gallery");
   if (!gallery) return;
+  var active = null;
 
-  // Each image is an ordinary YouTube link until clicked, so it also
-  // works when JavaScript or embedded YouTube playback is unavailable.
-  var activePlayer = null;
-
-  function closeActivePlayer(restoreFocus) {
-    if (!activePlayer) return;
-    var old = activePlayer;
-    activePlayer = null;
-    old.iframe.replaceWith(old.poster);
-    old.card.classList.remove('is-playing');
-    old.stop.hidden = true;
-    if (restoreFocus) old.poster.focus({ preventScroll: true });
+  function closeVideo(restoreFocus) {
+    if (!active) return;
+    var previous = active;
+    active = null;
+    previous.iframe.remove();
+    previous.poster.hidden = false;
+    previous.close.hidden = true;
+    if (restoreFocus) previous.poster.focus({preventScroll:true});
   }
 
-  gallery.addEventListener('click', function (event) {
-    var stop = event.target.closest('.ysca-video-stop');
-    if (stop && gallery.contains(stop)) {
-      closeActivePlayer(true);
+  gallery.addEventListener("click", function (event) {
+    var closeButton = event.target.closest(".ysca-home-video-close");
+    if (closeButton && gallery.contains(closeButton)) {
+      closeVideo(true);
       return;
     }
-
-    var poster = event.target.closest('.ysca-video-poster');
+    var poster = event.target.closest(".ysca-home-video-poster");
     if (!poster || !gallery.contains(poster)) return;
-    // Preserve normal browser link behavior for Ctrl/Cmd-click and new tabs.
-    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
-    var id = poster.getAttribute('data-video-id');
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    var id = poster.getAttribute("data-video-id");
     if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
     event.preventDefault();
-    closeActivePlayer(false); // Only one YouTube video plays at a time.
+    closeVideo(false); // Removes prior iframe and stops previous playback.
 
-    var iframe = document.createElement('iframe');
-    iframe.className = 'ysca-video-player';
-    iframe.title = 'Now playing: ' + poster.getAttribute('data-video-title');
-    iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0';
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    var wrapper = poster.parentElement;
+    var iframe = document.createElement("iframe");
+    iframe.className = "ysca-home-video-iframe";
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&playsinline=1&rel=0";
+    iframe.title = "Cricket video player";
+    iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+    iframe.setAttribute("allowfullscreen", "");
+    iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
 
-    var card = poster.closest('.ysca-video-card');
-    var stopButton = card.querySelector('.ysca-video-stop');
-    poster.replaceWith(iframe);
-    card.classList.add('is-playing');
-    stopButton.hidden = false;
-    activePlayer = { iframe: iframe, poster: poster, card: card, stop: stopButton };
+    poster.hidden = true;
+    wrapper.appendChild(iframe);
+    var close = wrapper.querySelector(".ysca-home-video-close");
+    close.hidden = false;
+    active = {poster:poster, iframe:iframe, close:close};
   });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeVideo(true);
+  });
+  window.addEventListener("pagehide", function () { closeVideo(false); });
 })();
 </script>
 
