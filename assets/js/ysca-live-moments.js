@@ -91,7 +91,7 @@
 
   function makeCaption(item) {
     var title = el("strong", "ysca-moment-title", item.title);
-    var label = el("span", "ysca-moment-label", item.category === "video" ? "Video" : "Academy Moment");
+    var label = el("span", "ysca-moment-label", (youtubeId(item.video_url) || String(item.media_mime || "").startsWith("video/")) ? "Video" : "Photo");
     var caption = el("div", "ysca-moment-caption");
     caption.append(label, title);
     return caption;
