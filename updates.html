@@ -73,9 +73,15 @@ footer{background:#091b32;color:#c7d6e7;padding:34px 0;font-size:13px}
     var media=document.createElement('div');media.className='media';
     // API only serves approved, publicly published media.
     var src=PUBLIC_FEED_BASE+'/api/updates/media/'+encodeURIComponent(x.media_id);
-    var image=document.createElement('img');image.src=src;image.alt=x.title;image.loading='lazy';
-    image.onerror=function(){media.remove()};
-    media.append(image);card.append(media);
+    if(x.media_mime&&x.media_mime.startsWith('video/')){
+      var video=document.createElement('video');video.src=src;video.controls=true;video.preload='none';video.setAttribute('playsinline','');video.setAttribute('aria-label',x.title);
+      media.append(video);
+    }else{
+      var image=document.createElement('img');image.src=src;image.alt=x.title;image.loading='lazy';
+      image.onerror=function(){media.remove()};
+      media.append(image);
+    }
+    card.append(media);
    }
    var body=document.createElement('div');body.className='cardbody';
    var meta=document.createElement('div'),tag=document.createElement('span'),date=document.createElement('span');
