@@ -2096,13 +2096,44 @@ document.querySelectorAll('.yt-video').forEach(el => {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  lightGallery(document.getElementById('lightgallery'), {
+  var gallery = document.getElementById('lightgallery');
+  if (!gallery || typeof lightGallery !== 'function') return;
+
+  var savedScrollTop = null;
+  var pausedSmoother = null;
+
+  // Pause GSAP's native-scroll smoothing before LightGallery locks the page.
+  // This prevents the background from jumping to the top when a photo opens.
+  gallery.addEventListener('lgBeforeOpen', function () {
+    var smoother = typeof ScrollSmoother !== 'undefined' ? ScrollSmoother.get() : null;
+    savedScrollTop = smoother ? smoother.scrollTop() : window.scrollY;
+    pausedSmoother = smoother && !smoother.paused() ? smoother : null;
+    if (pausedSmoother) pausedSmoother.paused(true);
+  });
+
+  gallery.addEventListener('lgAfterClose', function () {
+    if (savedScrollTop === null) return;
+
+    // Restore while paused, then resume normal scrolling at the same place.
+    if (pausedSmoother) {
+      pausedSmoother.scrollTop(savedScrollTop);
+      pausedSmoother.paused(false);
+      pausedSmoother = null;
+    } else {
+      window.scrollTo(0, savedScrollTop);
+    }
+    savedScrollTop = null;
+  });
+
+  lightGallery(gallery, {
     speed: 400,
     thumbnail: true,
     zoom: true,
     download: false,
     actualSize: false,
     counter: true,
+    showCloseIcon: true,
+    hideScrollbar: false, // GSAP handles scroll locking during the overlay.
     mobileSettings: {
       controls: true,
       showCloseIcon: true,
