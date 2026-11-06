@@ -37,8 +37,10 @@ export async function signCloudinaryParams(params, secret) {
 export async function uploadCloudinary(env, bytes, mime, id, extension) {
   if (!cloudinaryConfigured(env)) throw new Error('Cloudinary secrets are missing or invalid');
   const resource = mime.startsWith('video/') ? 'video' : 'image';
+  // Cloudinary's Upload API expects /image/upload or /video/upload.
+  // Protected delivery is requested using the `type` upload parameter.
   const url = 'https://api.cloudinary.com/v1_1/' +
-    encodeURIComponent(env.CLOUDINARY_CLOUD_NAME) + '/' + resource + '/authenticated';
+    encodeURIComponent(env.CLOUDINARY_CLOUD_NAME) + '/' + resource + '/upload';
   const publicId = 'ysca-update-' + id;
   const file = new Blob([bytes], { type: mime });
   const form = new FormData();
@@ -46,6 +48,8 @@ export async function uploadCloudinary(env, bytes, mime, id, extension) {
   form.append('public_id', publicId);
   form.append('folder', 'ysca-updates');
   form.append('overwrite', 'false');
+  // Fail closed if Cloudinary does not honor authenticated delivery.
+  form.append('type', 'authenticated');
   // Use server-side Basic Auth: never send API secret to the browser.
   const basicAuth = btoa(env.CLOUDINARY_API_KEY + ':' + env.CLOUDINARY_API_SECRET);
   const response = await fetch(url, {
