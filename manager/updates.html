@@ -187,7 +187,7 @@ footer{margin-top:28px;color:#718199;font-size:12px}
     var share=create('button','Share to WhatsApp');share.type='button';
     share.addEventListener('click',()=>shareItem(item));wrap.append(share);
    }
-   if(item.status==='draft'){
+   if(item.status==='draft' && (item.publish_website || item.publish_telegram)){
     var publish=create('button','Publish');publish.type='button';
     publish.addEventListener('click',()=>changeItem(item,'publish'));wrap.append(publish);
    }
@@ -209,8 +209,8 @@ footer{margin-top:28px;color:#718199;font-size:12px}
   if(item.status==='published'&&item.publish_website&&item.visibility==='public')msg+='\n\nhttps://youngstarcricketacademy.com/updates';
   var url='https://api.whatsapp.com/send?text='+encodeURIComponent(msg);
   // WhatsApp does NOT provide a supported API to preselect existing groups.
-  alert('Selected groups: '+labels+'\n\nWhatsApp will open with the message. Choose each intended group yourself and press Send. No delivery is recorded automatically.');
-  window.open(url,'_blank','noopener,noreferrer');
+  var opened = window.open(url,'_blank','noopener,noreferrer');
+  alert('Selected groups: '+labels+'\n\nChoose each intended group and press Send in WhatsApp. This dashboard cannot verify delivery. If the new tab was blocked, allow pop-ups for this page and try again.');
  }
  function switchView(view){
   var views=['overview','compose','history','groups'];
@@ -266,7 +266,7 @@ footer{margin-top:28px;color:#718199;font-size:12px}
     var uploaded=await request('/media',{method:'POST',body:form});body.media_id=uploaded.media_id;
    }
    var saved=await request('/updates',{method:'POST',body:JSON.stringify(body)});
-   message('form-status',saved.status==='published'?'Saved and published to the website.':'Saved. WhatsApp sharing still requires manual Send.');
+   message('form-status',saved.status==='published'?(body.website?'Published to the website.':'Published to selected automated channels.'):'Saved. WhatsApp sharing still requires manual Send.');
    $('update-form').reset();categoryChange();await load();switchView('history');
    if(body.groups.length&&action==='publish') {
     alert('Your message is ready. Use the Share to WhatsApp button in Updates History to select the intended group(s) and press Send.');
