@@ -1,0 +1,30 @@
+/* Academy Moments: standalone stylesheet so current pages keep their original layout. */
+#ysca-live-moments-section { padding: 56px 0 30px; background: #fff; }
+#ysca-live-moments-section[hidden],
+#ysca-live-moments-section [hidden] { display: none !important; }
+.ysca-moments-intro { margin-bottom: 28px; }
+.ysca-moments-eyebrow { display: block; text-transform: uppercase; letter-spacing: .14em; color: #b77711; font-size: 12px; font-weight: 800; margin-bottom: 10px; }
+.ysca-moments-intro h2 { margin: 0 0 8px; color: #0b1747; font-family: Philosopher, Georgia, serif; font-size: clamp(28px,3vw,38px); line-height: 1.2; }
+.ysca-moments-intro p { margin: 0; max-width: 690px; color: #5f6f81; line-height: 1.7; }
+.ysca-moments-media-heading { margin: 24px 0 14px; font-size: clamp(21px,2.4vw,27px); color: #0b1747; font-family: Philosopher, Georgia, serif; }
+.ysca-moments-media-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+.ysca-moment-card { position: relative; display: flex; flex-direction: column; overflow: hidden; min-width: 0; border: 1px solid #e6ecf3; border-radius: 14px; background: #fff; box-shadow: 0 4px 18px rgba(9,27,53,.07); text-decoration: none; color: inherit; transition: transform .2s ease, box-shadow .2s ease; }
+.ysca-moment-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(9,27,53,.11); }
+.ysca-moment-photo > img,
+.ysca-moment-youtube-poster img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.ysca-moment-video { width: 100%; aspect-ratio: 16 / 10; background: #08172d; object-fit: contain; display: block; }
+.ysca-moment-caption { padding: 13px 16px 16px; display: grid; gap: 4px; }
+.ysca-moment-title { font-size: 15px; font-weight: 700; color: #112743; line-height: 1.4; overflow-wrap: anywhere; }
+.ysca-moment-label { color: #ac741a; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
+.ysca-moment-youtube-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #08172d; }
+.ysca-moment-youtube-poster { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: transparent; display: block; }
+.ysca-moment-youtube-poster[hidden] { display: none !important; }
+.ysca-moment-youtube-poster img { width: 100%; height: 100%; }
+.ysca-moment-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: #fea630; color: #0b1747; font-size: 23px; box-shadow: 0 3px 20px rgba(0,0,0,.2); padding-left: 4px; }
+.ysca-moment-embed { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.ysca-moment-video-close { position: absolute; z-index: 5; top: 6px; right: 6px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgba(9,23,40,.87); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+.ysca-moment-video-close[hidden] { display: none !important; }
+.ysca-moments-existing { padding-top: 45px; border-top: 1px solid #edf1f6; margin-top: 35px; }
+@media(max-width:900px) { .ysca-moments-media-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; } }
+@media(max-width:575px) { .ysca-moments-media-grid { grid-template-columns: 1fr; } #ysca-live-moments-section { padding: 36px 0 22px; } .ysca-moment-card:hover { transform: none; } }
+@media(prefers-reduced-motion:reduce) { .ysca-moment-card { transition: none; } }
