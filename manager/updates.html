@@ -278,6 +278,7 @@ function setType(type,keepText=false){
 }
 function resetForm(type='announcement'){
  $('compose-form').reset();editingId=null;loadedMedia=null;
+ $('save-draft').textContent='Save draft';$('review-draft').textContent='Save draft instead';$('confirm-publish').textContent='Confirm & continue';
  if(currentFileUrl){URL.revokeObjectURL(currentFileUrl);currentFileUrl=null;}
  $('media-preview').classList.add('hidden');$('media-preview').replaceChildren();
  $('dest-website').checked=true;$('dest-whatsapp').checked=false;$('dest-telegram').checked=false;
@@ -296,7 +297,7 @@ function editItem(x){
  loadedMedia=x.media_id||null;
  if(x.media_id){$('media-preview').classList.remove('hidden');$('media-preview').textContent='Existing attachment saved. Choose a new file to replace it.'}
  $('compose-title').textContent='Edit '+labels[x.category].toLowerCase();
- $('save-draft').textContent='Save changes';
+ $('save-draft').textContent=x.status==='published'?'Save live changes':'Save draft';
  view('compose');
 }
 function duplicateItem(x){
@@ -329,7 +330,9 @@ function renderReview(){
  $('review-file').textContent=$('media-file').files[0]?'Attached: '+$('media-file').files[0].name:x.media_id?'Existing media attached':x.video_url?'YouTube video included':'';
  const channels=[x.website?'Website: automatic':null,x.telegram?'Telegram: automatic when configured':null,x.whatsapp?'WhatsApp: select recipients and press Send manually':null].filter(Boolean);
  $('review-channels').textContent=channels.join(' · ');
- $('confirm-publish').textContent=x.whatsapp&&!x.website&&!x.telegram?'Save & open WhatsApp':'Confirm & continue';
+ const previous=editingId?items.find(item=>item.id===editingId):null;
+ $('confirm-publish').textContent=previous?.status==='published'?'Update live post':x.whatsapp&&!x.website&&!x.telegram?'Save & open WhatsApp':'Confirm & continue';
+ $('review-draft').classList.toggle('hidden',previous?.status==='published');
 }
 function shareWhatsapp(x){
  let message=x.title+'\n\n'+x.body;
@@ -349,6 +352,8 @@ async function uploadIfNeeded(){
 async function submitUpdate(action){
  if(busy)return;
  if(!formCheck()){view('compose');return}
+ const previous=editingId?items.find(item=>item.id===editingId):null;
+ if(previous?.status==='published'&&!confirm('This will update the published website announcement immediately. Continue?'))return;
  busy=true;
  $('confirm-publish').disabled=true;$('save-draft').disabled=true;$('review-draft').disabled=true;
  status('review-status','Saving…');status('compose-status','Saving…');
