@@ -105,12 +105,16 @@ export function normalizeUpdate(body) {
   if (!visibility) throw new Error('Choose public or private visibility');
   const website = body.website === true;
   const telegram = body.telegram === true;
-  const groups = body.groups;
+  // V2: WhatsApp recipient choice happens inside WhatsApp, not on the website.
+  // Keep legacy group IDs readable without a D1 schema migration.
+  const groups = typeof body.whatsapp === 'boolean' ?
+    (body.whatsapp ? ['__share__'] : []) : body.groups;
   if (!Array.isArray(groups) || groups.length > 4 ||
-      groups.some(g => !GROUP_IDS.includes(g)) || new Set(groups).size !== groups.length) {
-    throw new Error('Select valid WhatsApp group(s)');
+      groups.some(g => g !== '__share__' && !GROUP_IDS.includes(g)) ||
+      new Set(groups).size !== groups.length) {
+    throw new Error('Choose a valid sharing destination');
   }
-  if (!website && !telegram && !groups.length) throw new Error('Choose at least one destination');
+  if (!website && !telegram && !groups.length) throw new Error('Choose at least one sharing destination');
   if (website && visibility !== 'public') throw new Error('Private updates cannot be published on the public website');
   // Financial reminders are private by default and never published to public news.
   if (category === 'fee' && (website || visibility !== 'private')) {
