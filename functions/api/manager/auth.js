@@ -1,7 +1,30 @@
 import { configured, json, sameOrigin, passwordMatches, sessionCookie, clearSessionCookie, hasSession, rateCheck } from '../../_lib/ysca-manager.js';
 
 export async function onRequestGet({ request, env }) {
-  if (!configured(env)) return json({ authenticated: false, configured: false }, 503);
+  if (!configured(env)) {
+    // Temporary staging-only diagnosis: expose missing setting names, never secret values.
+    // Keep production responses generic, and remove this branch-only diagnostic after setup.
+    const isDashboardPreview = new URL(request.url).hostname ===
+      'feature-manager-updates-dash.ysca.pages.dev';
+    if (!isDashboardPreview) return json({ authenticated: false, configured: false }, 503);
+
+    const missing = [];
+    if (!env?.DB) missing.push('DB (D1 database binding)');
+    if (typeof env?.YSCA_MANAGER_PASSWORD !== 'string' ||
+        env.YSCA_MANAGER_PASSWORD.length < 12) {
+      missing.push('YSCA_MANAGER_PASSWORD (minimum 12 characters)');
+    }
+    if (typeof env?.YSCA_MANAGER_SESSION_SECRET !== 'string' ||
+        env.YSCA_MANAGER_SESSION_SECRET.length < 32) {
+      missing.push('YSCA_MANAGER_SESSION_SECRET (minimum 32 characters)');
+    }
+    return json({
+      authenticated: false,
+      configured: false,
+      missing,
+      error: 'Preview setup incomplete: ' + missing.join('; ')
+    }, 503);
+  }
   return json({ authenticated: await hasSession(request, env.YSCA_MANAGER_SESSION_SECRET), configured: true });
 }
 
