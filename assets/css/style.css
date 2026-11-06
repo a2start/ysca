@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 :root {
   --primary-color: #ff970c;
   --heading-color: #1C1C25;
@@ -1898,7 +1898,7 @@ flex: 0 0 60%;
   color: #07162c;
   padding: 85px 0 90px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
 }
@@ -2048,13 +2048,16 @@ flex: 0 0 60%;
   .ysca-programs-layout-row {
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 32px;
   }
   .ysca-programs-filter-col {
     flex: 0 0 30%;
     width: 30%;
     max-width: 30%;
+    align-self: stretch;
+    height: auto;
+    transform: none !important;
   }
   .ysca-programs-cards-col {
     flex: 0 0 calc(70% - 32px);
@@ -2062,6 +2065,7 @@ flex: 0 0 60%;
     max-width: calc(70% - 32px);
   }
   .ysca-filter-sidebar-sticky {
+    position: -webkit-sticky;
     position: sticky;
     top: 95px;
     z-index: 10;
@@ -2925,16 +2929,21 @@ flex: 0 0 60%;
 .psc-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: rgba(254, 166, 48, 0.12) !important;
-  color: #b45309 !important;
-  border: 1px solid rgba(254, 166, 48, 0.35) !important;
+  padding: 5px 13px;
+  border-radius: 6px;
+  background: #091530 !important;
+  color: #ffffff !important;
+  border: 1.5px solid #fea630 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.psc-badge i {
+  color: #fea630 !important;
+  font-size: 12px;
 }
 
 .psc-icon-pod {
@@ -10133,19 +10142,25 @@ body.zite-menu-locked {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(14, 27, 46, 0.88);
-  color: #fea630;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(254, 166, 48, 0.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #091530 !important;
+  color: #ffffff !important;
+  border: 1.5px solid #fea630 !important;
   font-size: 11.5px;
   font-weight: 800;
-  padding: 4px 12px;
+  padding: 5px 13px;
   border-radius: 6px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  z-index: 2;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 3;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.psc-img-banner .psc-badge i {
+  color: #fea630 !important;
+  font-size: 12px;
 }
 
 .zite-facilities-overview-sec {
