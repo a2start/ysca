@@ -29,5 +29,11 @@ export async function onRequestPost({request,env}) {
   await env.DB.prepare('INSERT INTO ysca_update_media(id,object_key,mime,bytes,uploaded_at) VALUES (?,?,?,?,?)')
     .bind(id,key,file.type,file.size,now).run();
   return json({success:true,media_id:id},201);
- }catch(e){console.error('Cloudinary media upload failed',e);return json({error:'Media upload failed. Check Cloudinary credentials and upload settings.'},503)}
+ }catch(e){
+  console.error('YSCA Cloudinary upload:', e?.code || 'UPLOAD_FAILED', String(e?.message || '').slice(0,200));
+  if(e?.code==='CLOUDINARY_HTTP_ERROR'||e?.code==='CLOUDINARY_TYPE_ERROR'||e?.code==='CLOUDINARY_ASSET_ID_ERROR'){
+    return json({error:e.message,code:e.code},502);
+  }
+  return json({error:'Media upload failed. Check Cloudflare function logs if Cloudinary credentials are configured.',code:'UPLOAD_FAILED'},503);
+ }
 }
