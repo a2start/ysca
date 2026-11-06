@@ -270,43 +270,6 @@
   padding: 0 14px 14px 14px !important;
 }
 
-.yt-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  width: 100%;
-}
-
-.yt-video {
-  position: relative;
-  aspect-ratio: 16/9;
-  background: #000 url('https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg') center/cover no-repeat;
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-.yt-video::after {
-  content: "▶";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 48px;
-  color: #fff;
-}
-
-@media(max-width:768px){
-  .yt-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media(max-width:480px){
-  .yt-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .custom-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2001,62 +1964,201 @@ document.addEventListener("DOMContentLoaded", function () {
                     </section>
                    
 
-<section class="renvia-team-sec pt-70 pb-80" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div class="section-title text-start mb-40">
-                                        <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">TRAINING IN ACTION<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
-                                        <h2 class="text-anm">Video Gallery</h2>
-                                        <p>Watch our players in action during live turf training, net practice sessions, and competitive match simulations.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="yt-grid">
-                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play cricket batting drill training video" data-id="A1kRs65K4io"></div>
-                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play fast bowling technique training video" data-id="or6EIb_4Lm8"></div>
-                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play turf pitch match practice video" data-id="TRxkZ_cCh6I"></div>
-                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play spin bowling variations video" data-id="vBxw69ABRog"></div>
-                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play junior cricket masterclass video" data-id="4I0kKWUDXzM"></div>
-                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play agility and athletic fielding drill video" data-id="k-fmHVLbZIk"></div>
-                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play power hitting and stroke play video" data-id="zd9bIjZLRvc"></div>
-                                        <div class="yt-video" role="button" tabindex="0" aria-label="Play academy fixture highlights video" data-id="iURnpwgg-gU"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    
-                    
-                    <script>
-document.querySelectorAll('.yt-video').forEach(el => {
-  const id = el.dataset.id;
+<section class="ysca-video-gallery-section pt-70 pb-80" aria-labelledby="ysca-video-gallery-heading">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="section-title text-start mb-40">
+          <span class="sub-title" data-aos="fade-down" data-aos-duration="1000">TRAINING IN ACTION<img src="assets/images/line2.png" alt="" width="40" height="7" aria-hidden="true"></span>
+          <h2 id="ysca-video-gallery-heading" class="text-anm">Video Gallery</h2>
+          <p>Explore featured cricket videos and highlights. Select a thumbnail to watch without leaving the page.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ysca-video-grid" id="ysca-video-gallery">
+        <article class="ysca-video-card">
+          <div class="ysca-video-media">
+            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=A1kRs65K4io" data-video-id="A1kRs65K4io" data-video-title="Cricket Feature 01" aria-label="Play Cricket Feature 01">
+              <img src="https://i.ytimg.com/vi/A1kRs65K4io/hqdefault.jpg" alt="Thumbnail for Cricket Feature 01" width="480" height="270" loading="lazy" decoding="async">
+              <span class="ysca-video-play" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="ysca-video-card-content">
+            <span class="ysca-video-kicker">CRICKET VIDEO · 01</span>
+            <h3>Cricket Feature 01</h3>
+            <div class="ysca-video-card-actions">
+              <a href="https://www.youtube.com/watch?v=A1kRs65K4io" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 01 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              <button class="ysca-video-stop" type="button" hidden>Close player</button>
+            </div>
+          </div>
+        </article>
+        <article class="ysca-video-card">
+          <div class="ysca-video-media">
+            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=or6EIb_4Lm8" data-video-id="or6EIb_4Lm8" data-video-title="Cricket Feature 02" aria-label="Play Cricket Feature 02">
+              <img src="https://i.ytimg.com/vi/or6EIb_4Lm8/hqdefault.jpg" alt="Thumbnail for Cricket Feature 02" width="480" height="270" loading="lazy" decoding="async">
+              <span class="ysca-video-play" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="ysca-video-card-content">
+            <span class="ysca-video-kicker">CRICKET VIDEO · 02</span>
+            <h3>Cricket Feature 02</h3>
+            <div class="ysca-video-card-actions">
+              <a href="https://www.youtube.com/watch?v=or6EIb_4Lm8" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 02 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              <button class="ysca-video-stop" type="button" hidden>Close player</button>
+            </div>
+          </div>
+        </article>
+        <article class="ysca-video-card">
+          <div class="ysca-video-media">
+            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=TRxkZ_cCh6I" data-video-id="TRxkZ_cCh6I" data-video-title="Cricket Feature 03" aria-label="Play Cricket Feature 03">
+              <img src="https://i.ytimg.com/vi/TRxkZ_cCh6I/hqdefault.jpg" alt="Thumbnail for Cricket Feature 03" width="480" height="270" loading="lazy" decoding="async">
+              <span class="ysca-video-play" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="ysca-video-card-content">
+            <span class="ysca-video-kicker">CRICKET VIDEO · 03</span>
+            <h3>Cricket Feature 03</h3>
+            <div class="ysca-video-card-actions">
+              <a href="https://www.youtube.com/watch?v=TRxkZ_cCh6I" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 03 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              <button class="ysca-video-stop" type="button" hidden>Close player</button>
+            </div>
+          </div>
+        </article>
+        <article class="ysca-video-card">
+          <div class="ysca-video-media">
+            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=vBxw69ABRog" data-video-id="vBxw69ABRog" data-video-title="Cricket Feature 04" aria-label="Play Cricket Feature 04">
+              <img src="https://i.ytimg.com/vi/vBxw69ABRog/hqdefault.jpg" alt="Thumbnail for Cricket Feature 04" width="480" height="270" loading="lazy" decoding="async">
+              <span class="ysca-video-play" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="ysca-video-card-content">
+            <span class="ysca-video-kicker">CRICKET VIDEO · 04</span>
+            <h3>Cricket Feature 04</h3>
+            <div class="ysca-video-card-actions">
+              <a href="https://www.youtube.com/watch?v=vBxw69ABRog" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 04 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              <button class="ysca-video-stop" type="button" hidden>Close player</button>
+            </div>
+          </div>
+        </article>
+        <article class="ysca-video-card">
+          <div class="ysca-video-media">
+            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=4I0kKWUDXzM" data-video-id="4I0kKWUDXzM" data-video-title="Cricket Feature 05" aria-label="Play Cricket Feature 05">
+              <img src="https://i.ytimg.com/vi/4I0kKWUDXzM/hqdefault.jpg" alt="Thumbnail for Cricket Feature 05" width="480" height="270" loading="lazy" decoding="async">
+              <span class="ysca-video-play" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="ysca-video-card-content">
+            <span class="ysca-video-kicker">CRICKET VIDEO · 05</span>
+            <h3>Cricket Feature 05</h3>
+            <div class="ysca-video-card-actions">
+              <a href="https://www.youtube.com/watch?v=4I0kKWUDXzM" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 05 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              <button class="ysca-video-stop" type="button" hidden>Close player</button>
+            </div>
+          </div>
+        </article>
+        <article class="ysca-video-card">
+          <div class="ysca-video-media">
+            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=k-fmHVLbZIk" data-video-id="k-fmHVLbZIk" data-video-title="Cricket Feature 06" aria-label="Play Cricket Feature 06">
+              <img src="https://i.ytimg.com/vi/k-fmHVLbZIk/hqdefault.jpg" alt="Thumbnail for Cricket Feature 06" width="480" height="270" loading="lazy" decoding="async">
+              <span class="ysca-video-play" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="ysca-video-card-content">
+            <span class="ysca-video-kicker">CRICKET VIDEO · 06</span>
+            <h3>Cricket Feature 06</h3>
+            <div class="ysca-video-card-actions">
+              <a href="https://www.youtube.com/watch?v=k-fmHVLbZIk" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 06 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              <button class="ysca-video-stop" type="button" hidden>Close player</button>
+            </div>
+          </div>
+        </article>
+        <article class="ysca-video-card">
+          <div class="ysca-video-media">
+            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=zd9bIjZLRvc" data-video-id="zd9bIjZLRvc" data-video-title="Cricket Feature 07" aria-label="Play Cricket Feature 07">
+              <img src="https://i.ytimg.com/vi/zd9bIjZLRvc/hqdefault.jpg" alt="Thumbnail for Cricket Feature 07" width="480" height="270" loading="lazy" decoding="async">
+              <span class="ysca-video-play" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="ysca-video-card-content">
+            <span class="ysca-video-kicker">CRICKET VIDEO · 07</span>
+            <h3>Cricket Feature 07</h3>
+            <div class="ysca-video-card-actions">
+              <a href="https://www.youtube.com/watch?v=zd9bIjZLRvc" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 07 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              <button class="ysca-video-stop" type="button" hidden>Close player</button>
+            </div>
+          </div>
+        </article>
+        <article class="ysca-video-card">
+          <div class="ysca-video-media">
+            <a class="ysca-video-poster" href="https://www.youtube.com/watch?v=iURnpwgg-gU" data-video-id="iURnpwgg-gU" data-video-title="Cricket Feature 08" aria-label="Play Cricket Feature 08">
+              <img src="https://i.ytimg.com/vi/iURnpwgg-gU/hqdefault.jpg" alt="Thumbnail for Cricket Feature 08" width="480" height="270" loading="lazy" decoding="async">
+              <span class="ysca-video-play" aria-hidden="true"></span>
+            </a>
+          </div>
+          <div class="ysca-video-card-content">
+            <span class="ysca-video-kicker">CRICKET VIDEO · 08</span>
+            <h3>Cricket Feature 08</h3>
+            <div class="ysca-video-card-actions">
+              <a href="https://www.youtube.com/watch?v=iURnpwgg-gU" target="_blank" rel="noopener noreferrer" aria-label="Watch Cricket Feature 08 on YouTube">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              <button class="ysca-video-stop" type="button" hidden>Close player</button>
+            </div>
+          </div>
+        </article>
+    </div>
+  </div>
+</section>
 
-  el.style.backgroundImage = `url(https://img.youtube.com/vi/${id}/hqdefault.jpg)`;
+<script>
+(function () {
+  var gallery = document.getElementById('ysca-video-gallery');
+  if (!gallery) return;
 
-  function playVideo() {
-    el.innerHTML = `
-      <iframe
-        src="https://www.youtube.com/embed/${id}?autoplay=1"
-        title="Young Star Cricket Academy Training Video"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    `;
+  // Each image is an ordinary YouTube link until clicked, so it also
+  // works when JavaScript or embedded YouTube playback is unavailable.
+  var activePlayer = null;
+
+  function closeActivePlayer(restoreFocus) {
+    if (!activePlayer) return;
+    var old = activePlayer;
+    activePlayer = null;
+    old.iframe.replaceWith(old.poster);
+    old.card.classList.remove('is-playing');
+    old.stop.hidden = true;
+    if (restoreFocus) old.poster.focus({ preventScroll: true });
   }
 
-  el.addEventListener('click', playVideo);
-  el.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      playVideo();
+  gallery.addEventListener('click', function (event) {
+    var stop = event.target.closest('.ysca-video-stop');
+    if (stop && gallery.contains(stop)) {
+      closeActivePlayer(true);
+      return;
     }
+
+    var poster = event.target.closest('.ysca-video-poster');
+    if (!poster || !gallery.contains(poster)) return;
+    // Preserve normal browser link behavior for Ctrl/Cmd-click and new tabs.
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    var id = poster.getAttribute('data-video-id');
+    if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+    event.preventDefault();
+    closeActivePlayer(false); // Only one YouTube video plays at a time.
+
+    var iframe = document.createElement('iframe');
+    iframe.className = 'ysca-video-player';
+    iframe.title = 'Now playing: ' + poster.getAttribute('data-video-title');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0';
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+
+    var card = poster.closest('.ysca-video-card');
+    var stopButton = card.querySelector('.ysca-video-stop');
+    poster.replaceWith(iframe);
+    card.classList.add('is-playing');
+    stopButton.hidden = false;
+    activePlayer = { iframe: iframe, poster: poster, card: card, stop: stopButton };
   });
-});
+})();
 </script>
 
   <section class="home-gallery-sec" style="padding:70px 0; background:#ffffff; border-top: 1px solid #f1f5f9;">
