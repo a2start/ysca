@@ -209,7 +209,6 @@ footer{margin-top:28px;color:#718199;font-size:12px}
  }
  async function deleteItem(item){
   if(!confirm('Permanently delete "'+item.title+'"? This cannot be undone and will remove it from the public website.'))return;
-  if(item.status==='published'&&prompt('This item is published. Type DELETE to confirm:')!=='DELETE')return;
   try{
    await request('/updates/'+item.id,{method:'DELETE',body:JSON.stringify({confirm:'DELETE',title:item.title})});
    await load();
