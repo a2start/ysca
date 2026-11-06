@@ -122,13 +122,24 @@ export function normalizeUpdate(body) {
   }
   let videoUrl = '';
   if (body.video_url) {
-    if (typeof body.video_url !== 'string' || body.video_url.length > 300) throw new Error('Invalid video URL');
+    if (typeof body.video_url !== 'string' || body.video_url.length > 300) throw new Error('Invalid YouTube video URL');
     let parsed;
-    try { parsed = new URL(body.video_url); } catch (_) { throw new Error('Invalid video URL'); }
+    try { parsed = new URL(body.video_url); } catch (_) { throw new Error('Invalid YouTube video URL'); }
     if (parsed.protocol !== 'https:' || !['www.youtube.com','youtube.com','youtu.be'].includes(parsed.hostname)) {
-      throw new Error('Only YouTube video links are supported');
+      throw new Error('Please enter a YouTube video URL');
     }
-    videoUrl = parsed.href;
+    let videoId = '';
+    if (parsed.hostname === 'youtu.be') {
+      videoId = parsed.pathname.split('/')[1] || '';
+    } else {
+      const parts = parsed.pathname.split('/').filter(Boolean);
+      if (parts[0] === 'watch') videoId = parsed.searchParams.get('v') || '';
+      else if (['shorts','live','embed','v'].includes(parts[0])) videoId = parts[1] || '';
+    }
+    if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+      throw new Error('Please enter a link to a specific YouTube video, not a channel or playlist');
+    }
+    videoUrl = 'https://www.youtube.com/watch?v=' + videoId;
   }
   const mediaId = body.media_id ? String(body.media_id) : '';
   if (mediaId && !/^[0-9a-f-]{36}$/.test(mediaId)) throw new Error('Invalid media ID');
