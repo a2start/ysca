@@ -362,7 +362,14 @@ async function submitUpdate(action){
   data.media_id=await uploadIfNeeded()||'';
   let result;
   if(editingId){
+   const previous=items.find(x=>x.id===editingId);
    result=await call('/updates/'+editingId,{method:'PATCH',body:JSON.stringify({...data,action:'edit'})});
+   // Editing a draft and confirming publication must complete BOTH actions:
+   // save the revised draft, then explicitly publish it. Edits to already
+   // published posts never resend Telegram messages.
+   if(previous?.status==='draft'&&action==='publish'&&(data.website||data.telegram)){
+    result=await call('/updates/'+editingId,{method:'PATCH',body:JSON.stringify({action:'publish'})});
+   }
   }else{
    result=await call('/updates',{method:'POST',body:JSON.stringify(data)});
   }
