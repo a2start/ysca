@@ -143,13 +143,13 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
      <div id="media-fields" class="hidden">
       <div class="twocol">
        <div class="field"><label for="media-file">Attach photo or short video</label><input id="media-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm"><p class="hint">Up to 10 MB. For long videos, use YouTube.</p></div>
-       <div class="field"><label for="video-link">YouTube link (optional)</label><input id="video-link" type="url" placeholder="https://www.youtube.com/watch?v=..."></div>
+       <div class="field"><label for="video-link">YouTube link (optional)</label><input id="video-link" type="url" placeholder="https://www.youtube.com/watch?v=..."><p class="hint">YouTube videos appear as playable thumbnails in the homepage Training Highlights section. Photos and clips appear in Academy Moments.</p></div>
       </div><div class="media-review hidden" id="media-preview"></div>
      </div>
      <div>
       <h3 class="sectiontitle">Where should this go?</h3><p class="sectiondesc">Choose one or more places.</p>
       <div class="share-options" style="margin-top:12px">
-       <label class="share-opt" id="website-option"><input type="checkbox" id="dest-website" checked><span><strong>🌐 YSCA Website</strong><small>Published automatically</small></span></label>
+       <label class="share-opt" id="website-option"><input type="checkbox" id="dest-website" checked><span><strong>🌐 YSCA Website</strong><small id="website-routing-help">Published automatically to the right section</small></span></label>
        <label class="share-opt"><input type="checkbox" id="dest-whatsapp"><span><strong>💬 WhatsApp</strong><small>You pick groups inside WhatsApp</small></span></label>
        <label class="share-opt"><input type="checkbox" id="dest-telegram"><span><strong>✈️ Telegram</strong><small>Automatic when connected</small></span></label>
       </div>
@@ -265,6 +265,7 @@ function setType(type,keepText=false){
  $('type-icon').textContent=icons[type];
  $('compose-title').textContent=(editingId?'Edit ':'New ')+labels[type].toLowerCase();
  $('compose-desc').textContent=type==='fee'?'A private reminder for parents.':type==='photo'||type==='video'?'Share approved academy moments.':'Write your message and choose where to share.';
+ $('website-routing-help').textContent=type==='photo'?'New photos appear in Academy Moments':type==='video'?'YouTube links appear in homepage highlights and Academy Moments':'Public notices appear in Academy Updates; attached media also appears in Academy Moments';
  $('dest-website').disabled=type==='fee';$('website-option').classList.toggle('hidden',type==='fee');
  if(type==='fee'){$('dest-website').checked=false;$('dest-whatsapp').checked=true;$('dest-telegram').checked=false;}
  if(!keepText){$('post-title').value='';$('post-message').value=''}
