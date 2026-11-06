@@ -190,15 +190,15 @@ let items=[], current='home', actionType='announcement', editingId=null, loadedM
 const icons={announcement:'📢',fee:'💳',training:'🏏',match:'🏆',holiday:'🌴',event:'📅',photo:'📸',video:'🎬',general:'✎'};
 const labels={announcement:'Announcement',fee:'Fee reminder',training:'Training update',match:'Match update',holiday:'Holiday notice',event:'Event',photo:'Photo update',video:'Video update',general:'Other update'};
 const templates={
- announcement:[['General notice','Dear Parents,\\n\\nPlease note the following important academy announcement:\\n\\n\\n\\nThank you,\\nYoung Star Cricket Academy.'],['Admissions open','Admissions enquiries are now open at Young Star Cricket Academy. Please contact the academy for current availability.']],
- fee:[['Monthly fee reminder','Dear Parents,\\n\\nThis is a reminder to pay the academy fee for {month} by {date}.\\n\\nThank you,\\nYoung Star Cricket Academy.'],['Friendly reminder','Dear Parents,\\n\\nA gentle reminder that the fee for {month} is due on {date}. Please contact the academy if you have any questions.']],
+ announcement:[['General notice','Dear Parents,\n\nPlease note the following important academy announcement:\n\n\n\nThank you,\nYoung Star Cricket Academy.'],['Admissions open','Admissions enquiries are now open at Young Star Cricket Academy. Please contact the academy for current availability.']],
+ fee:[['Monthly fee reminder','Dear Parents,\n\nThis is a reminder to pay the academy fee for {month} by {date}.\n\nThank you,\nYoung Star Cricket Academy.'],['Friendly reminder','Dear Parents,\n\nA gentle reminder that the fee for {month} is due on {date}. Please contact the academy if you have any questions.']],
  training:[['Training schedule','Training session on {date} at {time}. Please arrive on time with your cricket kit.'],['Session cancelled','Training scheduled for {date} has been cancelled. We will share the revised schedule when confirmed.']],
- match:[['Upcoming match','Upcoming match on {date} at {time}. Further details will be shared by the academy.'],['Match result','Young Star Cricket Academy match update:\\n\\nResult: \\nHighlights: ']],
+ match:[['Upcoming match','Upcoming match on {date} at {time}. Further details will be shared by the academy.'],['Match result','Young Star Cricket Academy match update:\n\nResult: \nHighlights: ']],
  holiday:[['Holiday notice','The academy will remain closed on {date}. Further training updates will be shared separately.']],
  event:[['Academy event','Academy event on {date} at {time}. Please contact the academy for details.']],
  photo:[['Training photos','A few moments from our cricket training sessions at Young Star Cricket Academy.']],
  video:[['Match highlights','Watch highlights from Young Star Cricket Academy.']],
- general:[['General update','Dear Parents,\\n\\nWe would like to share an update from Young Star Cricket Academy:\\n\\n']]
+ general:[['General update','Dear Parents,\n\nWe would like to share an update from Young Star Cricket Academy:\n\n']]
 };
 function node(tag,text,cls){const el=document.createElement(tag);if(text!==undefined&&text!==null)el.textContent=text;if(cls)el.className=cls;return el;}
 function status(id,txt,failed=false){const el=$(id);el.textContent=txt;el.className='status'+(failed?' error':'');}
@@ -327,8 +327,8 @@ function renderReview(){
  $('confirm-publish').textContent=x.whatsapp&&!x.website&&!x.telegram?'Save & open WhatsApp':'Confirm & continue';
 }
 function shareWhatsapp(x){
- let message=x.title+'\\n\\n'+x.body;
- if(x.publish_website&&x.status==='published'&&x.visibility==='public') message+='\\n\\nhttps://ysca.pages.dev/updates.html';
+ let message=x.title+'\n\n'+x.body;
+ if(x.publish_website&&x.status==='published'&&x.visibility==='public') message+='\n\nhttps://ysca.pages.dev/updates.html';
  const url='https://api.whatsapp.com/send?text='+encodeURIComponent(message);
  // Native WhatsApp picker is responsible for choosing recipient(s). Do not claim delivery.
  window.open(url,'_blank','noopener,noreferrer');
@@ -343,31 +343,44 @@ async function uploadIfNeeded(){
 }
 async function submitUpdate(action){
  if(busy)return;
- if(!formCheck()){view('compose');return;}
- busy=true;$('confirm-publish').disabled=true;$('save-draft').disabled=true;$('review-draft').disabled=true;
+ if(!formCheck()){view('compose');return}
+ busy=true;
+ $('confirm-publish').disabled=true;$('save-draft').disabled=true;$('review-draft').disabled=true;
  status('review-status','Saving…');status('compose-status','Saving…');
  const data=dataFromForm(action);
  const needsWhatsapp=action==='publish'&&data.whatsapp;
- // Browsers may block windows opened after asynchronous file upload. Open the share handoff
- // synchronously from the confirm click using an immediate prepared message.
- if(needsWhatsapp)shareWhatsapp({...whatsappPreviewMessage(),title:data.title,body:data.body});
+ // Open a blank window synchronously (to avoid popup blockers), but navigate to WhatsApp
+ // only AFTER the server confirms the content was saved successfully.
+ const handoff=needsWhatsapp?window.open('about:blank','_blank'):null;
+ if(handoff)handoff.opener=null;
  try{
   data.media_id=await uploadIfNeeded()||'';
   let result;
   if(editingId){
-   // Editing existing posts changes website content, never resends Telegram.
    result=await call('/updates/'+editingId,{method:'PATCH',body:JSON.stringify({...data,action:'edit'})});
   }else{
    result=await call('/updates',{method:'POST',body:JSON.stringify(data)});
   }
   await reload();
   view('history');
-  if(needsWhatsapp)alert('Your notice is saved. In WhatsApp, choose the group(s) and press Send. This dashboard cannot verify delivery.');
-  else if(data.telegram&&result.telegram_status!=='sent'&&action==='publish')alert('Update saved. Telegram is not confirmed as sent; check the delivery status in history.');
+  if(needsWhatsapp){
+   const msg=data.title+'\n\n'+data.body+
+     (data.website?'\n\nhttps://ysca.pages.dev/updates.html':'');
+   const url='https://api.whatsapp.com/send?text='+encodeURIComponent(msg);
+   if(handoff&&!handoff.closed)handoff.location.replace(url);
+   else {
+    // The post is saved: manager can retry directly in Updates History.
+    alert('Update saved. Pop-up blocked: use the WhatsApp button in All updates to open sharing.');
+   }
+  }else if(data.telegram&&action==='publish'&&result.telegram_status!=='sent'){
+   alert('Update saved. Telegram is not confirmed as delivered; check the status in All updates.');
+  }
  }catch(e){
+  if(handoff&&!handoff.closed)handoff.close();
   view('compose');alertErr(e,'compose-status');
-  if(needsWhatsapp)status('compose-status','The WhatsApp window opened, but the update was NOT saved: '+e.message,true);
- }finally{busy=false;$('confirm-publish').disabled=false;$('save-draft').disabled=false;$('review-draft').disabled=false}
+ }finally{
+  busy=false;$('confirm-publish').disabled=false;$('save-draft').disabled=false;$('review-draft').disabled=false;
+ }
 }
 async function changeItem(x,action){
  if(!confirm(action==='archive'?'Archive this update and hide it from the website?':action==='restore'?'Restore as a draft for review?':'Publish this saved draft?'))return;
