@@ -216,7 +216,7 @@ function view(v){current=v;for(const id of ['home','compose','review','history']
  window.scrollTo({top:0,behavior:'instant'});
 }
 function safeDate(iso){if(!iso)return '';const d=new Date(iso);return Number.isNaN(d.getTime())?'':d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}
-function stateOf(x){if(x.status==='archived')return 'Archived';if(x.status==='draft')return 'Draft';return x.publish_website?'Published':'Processed'}
+function stateOf(x){if(x.status==='archived')return 'Archived';if(x.status==='draft'&&whatsappSelected(x)&&!x.publish_website&&!x.publish_telegram)return 'Ready for WhatsApp';if(x.status==='draft')return 'Draft';return x.publish_website?'Published':'Processed'}
 function whatsappSelected(x){return Array.isArray(x.whatsapp_groups)&&x.whatsapp_groups.length>0;}
 function renderRecent(){
  const list=$('recent');list.replaceChildren();
@@ -270,6 +270,11 @@ function setType(type,keepText=false){
  if(!keepText){$('post-title').value='';$('post-message').value=''}
  $('privacy-note').textContent=type==='fee'?'Fee reminders stay private. WhatsApp opens so you can choose recipients; the manager dashboard cannot send to groups automatically.':'Public posts can be indexed by search engines. Only publish approved content and student photos with consent.';
  templateButtons();
+ if(type==='fee'&&!keepText&&!editingId){
+  $('post-title').value='Monthly Fee Reminder';
+  $('post-message').value=fillTemplate(templates.fee[0][1]);
+  lastFeeAuto=$('post-message').value;
+ }
 }
 function resetForm(type='announcement'){
  $('compose-form').reset();editingId=null;loadedMedia=null;
@@ -405,6 +410,15 @@ $('view-all').addEventListener('click',()=>view('history'));
 $('go-back').addEventListener('click',()=>view('home'));
 $('review-edit').addEventListener('click',()=>view('compose'));
 $('category').addEventListener('change',()=>setType($('category').value,true));
+let lastFeeAuto='';
+function syncFeeTemplate(){
+ if(actionType!=='fee'||editingId)return;
+ const field=$('post-message');
+ const auto=fillTemplate(templates.fee[0][1]);
+ if(!field.value.trim()||field.value===lastFeeAuto){field.value=auto;lastFeeAuto=auto}
+}
+$('fee-month').addEventListener('change',syncFeeTemplate);
+$('due-date').addEventListener('change',syncFeeTemplate);
 $('search').addEventListener('input',renderHistory);
 document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{selectedStatus=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('on',x===b));renderHistory()}));
 $('refresh').addEventListener('click',()=>reload().catch(e=>alert(e.message)));
