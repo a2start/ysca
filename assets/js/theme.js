@@ -399,7 +399,7 @@
                 $('#shcBatchDate').text(data.batchDate);
                 $('#shcTimings').text(data.timings);
                 $('#shcCtaBtn').attr('href', data.ctaLink).html('<i class="fas fa-cricket"></i> ' + data.ctaText);
-                $('.btn-shc-whatsapp').attr('href', 'https://wa.me/919910543666?text=' + encodeURIComponent(data.waMsg));
+                $('.btn-shc-whatsapp').attr('href', 'https://wa.me/919891785053?text=' + encodeURIComponent(data.waMsg));
                 
                 $stageCol.fadeIn(200);
             }
