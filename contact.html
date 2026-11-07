@@ -281,6 +281,15 @@
             word-break: break-word;
         }
 
+        /* Keep the complete official address visible at every card width. */
+        .contact-quick-card.card-mail > div:last-child { min-width: 0; }
+        .contact-quick-email {
+            font-size: 13px;
+            line-height: 1.4;
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+
         .contact-quick-sub {
             font-size: 12.5px;
             color: var(--ys-muted);
@@ -1388,7 +1397,7 @@
                                     </div>
                                     <div>
                                         <span class="contact-quick-label">Official Email</span>
-                                        <div class="contact-quick-val" style="font-size:13.5px;">youngstarcricket...</div>
+                                        <div class="contact-quick-val contact-quick-email">contact@youngstarcricketacademy.com</div>
                                         <div class="contact-quick-sub">Send an admissions enquiry</div>
                                     </div>
                                 </a>
