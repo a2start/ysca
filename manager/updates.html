@@ -54,7 +54,7 @@ h1{font-size:clamp(25px,3vw,34px);letter-spacing:-.04em;color:#0b1d36;margin:6px
 .templates{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}
 .template{border-radius:99px;background:#f3f6fa;border:1px solid #e1e6ef;color:#3f526f;padding:8px 12px;font-size:11px;font-weight:750}
 .template:hover{background:#fff3de;border-color:#eebc59}
-.share-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.share-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 .share-opt{display:flex;align-items:flex-start;gap:10px;padding:15px 13px;border-radius:12px;border:1px solid #dce4ee;background:#fcfdff;cursor:pointer}
 .share-opt input{width:17px;height:17px;accent-color:#e5a22b;margin:2px 0 0}
 .share-opt strong{display:block;font-size:13px;color:#233d5b}.share-opt small{font-size:11px;color:#8592a5;line-height:1.5;display:block;margin-top:3px}
@@ -154,6 +154,7 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
        <label class="share-opt" id="website-option"><input type="checkbox" id="dest-website" checked><span><strong>🌐 YSCA Website</strong><small>Published automatically</small></span></label>
        <label class="share-opt"><input type="checkbox" id="dest-whatsapp"><span><strong>💬 WhatsApp</strong><small>You pick groups inside WhatsApp</small></span></label>
        <label class="share-opt"><input type="checkbox" id="dest-telegram"><span><strong>✈️ Telegram</strong><small>Automatic when connected</small></span></label>
+       <label class="share-opt" id="socials-option"><input type="checkbox" id="dest-socials"><span><strong>📢 All Socials</strong><small>Google, Facebook, Insta &amp; X</small></span></label>
       </div>
      </div>
      <div id="privacy-note" class="notice">Public posts may appear in search results. Only include student photos with appropriate permission.</div>
@@ -271,7 +272,8 @@ function setType(type,keepText=false){
  $('compose-title').textContent=(editingId?'Edit ':'New ')+labels[type].toLowerCase();
  $('compose-desc').textContent=type==='fee'?'A private reminder for parents.':type==='photo'||type==='video'?'Share approved academy moments.':'Write your message and choose where to share.';
  $('dest-website').disabled=type==='fee';$('website-option').classList.toggle('hidden',type==='fee');
- if(type==='fee'){$('dest-website').checked=false;$('dest-whatsapp').checked=true;$('dest-telegram').checked=false;}
+ $('dest-socials').disabled=type==='fee';$('socials-option').classList.toggle('hidden',type==='fee');
+ if(type==='fee'){$('dest-website').checked=false;$('dest-whatsapp').checked=true;$('dest-telegram').checked=false;$('dest-socials').checked=false;}
  if(!keepText){$('post-title').value='';$('post-message').value=''}
  $('privacy-note').textContent=type==='fee'?'Fee reminders stay private. WhatsApp opens so you can choose recipients; the manager dashboard cannot send to groups automatically.':'Public posts can be indexed by search engines. Only publish approved content and student photos with consent.';
  templateButtons();
@@ -286,7 +288,7 @@ function resetForm(type='announcement'){
  $('save-draft').textContent='Save draft';$('review-draft').textContent='Save draft instead';$('confirm-publish').textContent='Confirm & continue';
  if(currentFileUrl){URL.revokeObjectURL(currentFileUrl);currentFileUrl=null;}
  $('media-preview').classList.add('hidden');$('media-preview').replaceChildren();
- $('dest-website').checked=true;$('dest-whatsapp').checked=false;$('dest-telegram').checked=false;
+ $('dest-website').checked=true;$('dest-whatsapp').checked=false;$('dest-telegram').checked=false;$('dest-socials').checked=false;
  $('fee-month').value=new Date().toISOString().slice(0,7);
  setType(type);status('compose-status','');
  view('compose');
@@ -297,6 +299,7 @@ function editItem(x){
  $('post-title').value=x.title;$('post-message').value=x.body;
  $('dest-website').checked=!!x.publish_website && x.category!=='fee';
  $('dest-telegram').checked=!!x.publish_telegram;
+ $('dest-socials').checked=!!x.publish_socials && x.category!=='fee';
  $('dest-whatsapp').checked=whatsappSelected(x);
  $('video-link').value=x.video_url||'';
  loadedMedia=x.media_id||null;
@@ -308,7 +311,9 @@ function editItem(x){
 function duplicateItem(x){
  resetForm(x.category);$('post-title').value=x.title+' (copy)';$('post-message').value=x.body;
  $('dest-website').checked=!!x.publish_website&&x.category!=='fee';
- $('dest-telegram').checked=!!x.publish_telegram;$('dest-whatsapp').checked=whatsappSelected(x);
+ $('dest-telegram').checked=!!x.publish_telegram;
+ $('dest-socials').checked=!!x.publish_socials&&x.category!=='fee';
+ $('dest-whatsapp').checked=whatsappSelected(x);
  $('video-link').value=x.video_url||'';
  loadedMedia=x.media_id||null;
  if(x.media_id){$('media-preview').classList.remove('hidden');$('media-preview').textContent='Using existing attached media.'}
@@ -318,6 +323,7 @@ function dataFromForm(action){
   category:$('category').value,visibility:$('category').value==='fee'?'private':'public',
   website:$('dest-website').checked&&$('category').value!=='fee',
   whatsapp:$('dest-whatsapp').checked,telegram:$('dest-telegram').checked,
+  socials:$('dest-socials').checked&&$('category').value!=='fee',
   media_id:loadedMedia||'',video_url:['photo','video'].includes($('category').value)?$('video-link').value.trim():''
  };
 }
@@ -325,7 +331,7 @@ function formCheck(){
  const x=dataFromForm('draft');
  if(x.title.length<4||x.title.length>140){status('compose-status','Please add a title of at least 4 characters.',true);return false}
  if(x.body.length<5){status('compose-status','Please write a short message.',true);return false}
- if(!x.website&&!x.whatsapp&&!x.telegram){status('compose-status','Select at least one sharing option.',true);return false}
+ if(!x.website&&!x.whatsapp&&!x.telegram&&!x.socials){status('compose-status','Select at least one sharing option.',true);return false}
  if(x.video_url){try{const url=new URL(x.video_url);if(url.protocol!=='https:'||!['youtube.com','www.youtube.com','youtu.be'].includes(url.hostname))throw Error();}catch(e){status('compose-status','Please enter a valid YouTube link or leave it empty.',true);return false}}
  return true;
 }
@@ -333,10 +339,10 @@ function renderReview(){
  const x=dataFromForm('publish');
  $('review-title').textContent=x.title;$('review-message').textContent=x.body;
  $('review-file').textContent=$('media-file').files[0]?'Attached: '+$('media-file').files[0].name:x.media_id?'Existing media attached':x.video_url?'YouTube video included':'';
- const channels=[x.website?'Website: automatic':null,x.telegram?'Telegram: automatic when configured':null,x.whatsapp?'WhatsApp: select recipients and press Send manually':null].filter(Boolean);
+ const channels=[x.website?'Website: automatic':null,x.telegram?'Telegram: automatic when configured':null,x.socials?'Socials: automatic via webhook':null,x.whatsapp?'WhatsApp: select recipients and press Send manually':null].filter(Boolean);
  $('review-channels').textContent=channels.join(' · ');
  const previous=editingId?items.find(item=>item.id===editingId):null;
- $('confirm-publish').textContent=previous?.status==='published'?'Update live post':x.whatsapp&&!x.website&&!x.telegram?'Save & open WhatsApp':'Confirm & continue';
+ $('confirm-publish').textContent=previous?.status==='published'?'Update live post':x.whatsapp&&!x.website&&!x.telegram&&!x.socials?'Save & open WhatsApp':'Confirm & continue';
  $('review-draft').classList.toggle('hidden',previous?.status==='published');
 }
 function shareWhatsapp(x){
@@ -377,7 +383,7 @@ async function submitUpdate(action){
    // Editing a draft and confirming publication must complete BOTH actions:
    // save the revised draft, then explicitly publish it. Edits to already
    // published posts never resend Telegram messages.
-   if(previous?.status==='draft'&&action==='publish'&&(data.website||data.telegram)){
+   if(previous?.status==='draft'&&action==='publish'&&(data.website||data.telegram||data.socials)){
     result=await call('/updates/'+editingId,{method:'PATCH',body:JSON.stringify({action:'publish'})});
    }
   }else{

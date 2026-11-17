@@ -1,4 +1,4 @@
-import { configured, json, sameOrigin, hasSession, normalizeUpdate, deliverTelegram } from '../../../_lib/ysca-manager.js';
+import { configured, json, sameOrigin, hasSession, normalizeUpdate, deliverTelegram, deliverSocials } from '../../../_lib/ysca-manager.js';
 
 export async function onRequestPatch({request, env, params}) {
  if (!configured(env) || !await hasSession(request,env.YSCA_MANAGER_SESSION_SECRET)) return json({error:'Login required'},401);
@@ -54,7 +54,7 @@ export async function onRequestPatch({request, env, params}) {
   });
  }catch(e){return json({error:e.message||'Invalid draft'},400)}
  const website=f.website&&f.visibility==='public';
- if(!website&&!f.telegram) return json({error:'This notice is ready for WhatsApp sharing. Open WhatsApp to send it.'},409);
+ if(!website&&!f.telegram&&!f.socials&&!f.groups.includes('__share__')) return json({error:'Choose at least one sharing destination to publish'},409);
  await env.DB.prepare("UPDATE ysca_updates SET status='published',publish_website=?,published_at=?,updated_at=?,telegram_status=? WHERE id=?")
   .bind(website?1:0,website?now:null,now,f.telegram?'pending':'not_requested',id).run();
  let telegramStatus='not_requested';
@@ -64,7 +64,15 @@ export async function onRequestPatch({request, env, params}) {
   });
   await env.DB.prepare('UPDATE ysca_updates SET telegram_status=? WHERE id=?').bind(telegramStatus,id).run();
  }
- return json({success:true,status:'published',telegram_status:telegramStatus});
+ let socialStatus='not_requested';
+ if(f.socials) {
+  socialStatus=await deliverSocials(env,{
+   title:existing.title,body:existing.body,category:existing.category,
+   publish_website:website,visibility:existing.visibility,socials:true,
+   mediaId:existing.media_id,video_url:existing.video_url
+  });
+ }
+ return json({success:true,status:'published',telegram_status:telegramStatus,social_status:socialStatus});
 }
 
 /** Delete a notice permanently. Uploaded media is retained because it may be shared

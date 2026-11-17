@@ -105,19 +105,28 @@ export function normalizeUpdate(body) {
   if (!visibility) throw new Error('Choose public or private visibility');
   const website = body.website === true;
   const telegram = body.telegram === true;
+  const socials = body.socials === true;
   // V2: WhatsApp recipient choice happens inside WhatsApp, not on the website.
   // Keep legacy group IDs readable without a D1 schema migration.
-  const groups = typeof body.whatsapp === 'boolean' ?
-    (body.whatsapp ? ['__share__'] : []) : body.groups;
-  if (!Array.isArray(groups) || groups.length > 4 ||
-      groups.some(g => g !== '__share__' && !GROUP_IDS.includes(g)) ||
+  let groups = [];
+  if (Array.isArray(body.groups)) {
+    groups = [...body.groups];
+  } else if (typeof body.whatsapp === 'boolean' && body.whatsapp) {
+    groups.push('__share__');
+  }
+  if (socials && !groups.includes('__socials__')) {
+    groups.push('__socials__');
+  }
+  if (!Array.isArray(groups) || groups.length > 6 ||
+      groups.some(g => g !== '__share__' && g !== '__socials__' && !GROUP_IDS.includes(g)) ||
       new Set(groups).size !== groups.length) {
     throw new Error('Choose a valid sharing destination');
   }
-  if (!website && !telegram && !groups.length) throw new Error('Choose at least one sharing destination');
+  if (!website && !telegram && !groups.length && !socials) throw new Error('Choose at least one sharing destination');
   if (website && visibility !== 'public') throw new Error('Private updates cannot be published on the public website');
+  if (socials && visibility !== 'public') throw new Error('Private updates cannot be published to social media');
   // Financial reminders are private by default and never published to public news.
-  if (category === 'fee' && (website || visibility !== 'private')) {
+  if (category === 'fee' && (website || socials || visibility !== 'private')) {
     throw new Error('Fee reminders must stay private; use Announcement for a general public fee deadline');
   }
   let videoUrl = '';
@@ -132,7 +141,7 @@ export function normalizeUpdate(body) {
   }
   const mediaId = body.media_id ? String(body.media_id) : '';
   if (mediaId && !/^[0-9a-f-]{36}$/.test(mediaId)) throw new Error('Invalid media ID');
-  return { title, message, category, visibility, website, telegram, groups, videoUrl, mediaId };
+  return { title, message, category, visibility, website, telegram, socials, groups, videoUrl, mediaId };
 }
 export async function deliverTelegram(env, update) {
   if (!update.publish_telegram) return 'not_requested';
@@ -149,4 +158,33 @@ export async function deliverTelegram(env, update) {
     });
     return result.ok ? 'sent' : 'failed';
   } catch (_) { return 'failed'; }
+}
+
+export async function deliverSocials(env, update) {
+  if (!update.socials && !update.publish_socials) return 'not_requested';
+  const webhookUrl = env.MAKE_WEBHOOK_URL || env.SOCIAL_WEBHOOK_URL;
+  if (!webhookUrl) return 'not_configured';
+  const postUrl = update.publish_website && update.visibility === 'public'
+    ? 'https://youngstarcricketacademy.com/updates'
+    : 'https://youngstarcricketacademy.com/';
+  try {
+    const result = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: update.title,
+        content: update.body || update.message,
+        category: update.category,
+        url: postUrl,
+        mediaId: update.mediaId || update.media_id || null,
+        videoUrl: update.videoUrl || update.video_url || null,
+        tags: ['CricketCoaching', 'GreaterNoida', 'YSCA'],
+        timestamp: new Date().toISOString()
+      })
+    });
+    return result.ok ? 'sent' : 'failed';
+  } catch (err) {
+    console.error('Socials delivery failed:', err);
+    return 'failed';
+  }
 }

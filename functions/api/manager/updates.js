@@ -1,12 +1,18 @@
-import { json, configured, hasSession, sameOrigin, normalizeUpdate, deliverTelegram } from '../../_lib/ysca-manager.js';
+import { json, configured, hasSession, sameOrigin, normalizeUpdate, deliverTelegram, deliverSocials } from '../../_lib/ysca-manager.js';
 
 async function authorize(request, env) {
   return configured(env) && await hasSession(request, env.YSCA_MANAGER_SESSION_SECRET);
 }
 const columns = 'id,title,body,category,visibility,status,publish_website,publish_telegram,whatsapp_groups,media_id,video_url,telegram_status,created_at,updated_at,published_at';
 function serialize(r) {
-  return { ...r, publish_website: !!r.publish_website, publish_telegram: !!r.publish_telegram,
-    whatsapp_groups: JSON.parse(r.whatsapp_groups || '[]') };
+  const groups = JSON.parse(r.whatsapp_groups || '[]');
+  return {
+    ...r,
+    publish_website: !!r.publish_website,
+    publish_telegram: !!r.publish_telegram,
+    publish_socials: groups.includes('__socials__'),
+    whatsapp_groups: groups.filter(g => g !== '__socials__')
+  };
 }
 export async function onRequestGet({ request, env }) {
   if (!await authorize(request, env)) return json({ error: 'Login required' }, 401);
@@ -35,7 +41,7 @@ export async function onRequestPost({ request, env, context }) {
   }
   const id = crypto.randomUUID(), now = new Date().toISOString();
   const published = publish && form.website && form.visibility === 'public';
-  const activated = publish && (published || form.telegram);
+  const activated = publish && (published || form.telegram || form.socials);
   try {
     await env.DB.prepare(`INSERT INTO ysca_updates
       (id,title,body,category,visibility,status,publish_website,publish_telegram,
@@ -58,7 +64,16 @@ export async function onRequestPost({ request, env, context }) {
     await env.DB.prepare('UPDATE ysca_updates SET telegram_status = ? WHERE id = ?')
       .bind(telegramStatus, id).run().catch(e => console.error('Telegram delivery log failed', e));
   }
+  let socialStatus = 'not_requested';
+  if (publish && form.socials) {
+    socialStatus = await deliverSocials(env, {
+      title: form.title, body: form.message, category: form.category,
+      publish_website: published, visibility: form.visibility, socials: true,
+      mediaId: form.mediaId, videoUrl: form.videoUrl
+    });
+  }
   return json({ success: true, id, status: activated ? 'published' : 'draft',
     telegram_status: telegramStatus,
-    whatsapp: form.groups.length ? 'ready_to_share_manually' : 'not_selected' }, 201);
+    social_status: socialStatus,
+    whatsapp: form.groups.includes('__share__') ? 'ready_to_share_manually' : 'not_selected' }, 201);
 }
