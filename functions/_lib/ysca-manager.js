@@ -178,6 +178,8 @@ export async function deliverSocials(env, update) {
         url: postUrl,
         mediaId: update.mediaId || update.media_id || null,
         videoUrl: update.videoUrl || update.video_url || null,
+        youtubeVideoUrl: update.videoUrl || update.video_url || null,
+        platforms: ['google_business', 'facebook', 'instagram', 'twitter', 'youtube'],
         tags: ['CricketCoaching', 'GreaterNoida', 'YSCA'],
         timestamp: new Date().toISOString()
       })
