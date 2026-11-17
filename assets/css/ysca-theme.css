@@ -344,3 +344,313 @@ summary:focus-visible,
   .ysca-video-poster:hover img,
   .ysca-video-poster:focus-visible img { transform: none; }
 }
+
+/* ==========================================================================
+   YSCA Universal Multi-Platform Social Share Component
+   ========================================================================== */
+.ysca-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(11, 23, 71, 0.06);
+  color: var(--ysca-color-navy-900);
+  border: 1px solid var(--ysca-color-border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.ysca-share-btn:hover,
+.ysca-share-btn:focus-visible {
+  background: var(--ysca-color-navy-900);
+  color: var(--ysca-color-gold-500);
+  border-color: var(--ysca-color-navy-900);
+  transform: translateY(-1px);
+}
+
+.ysca-share-btn i {
+  font-size: 13px;
+  color: var(--ysca-color-gold-500);
+}
+
+.ysca-share-btn:hover i {
+  color: var(--ysca-color-white);
+}
+
+/* Modal styles */
+.ysca-share-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.ysca-share-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ysca-share-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 22, 44, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ysca-share-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(254, 166, 48, 0.25);
+  overflow: hidden;
+  z-index: 2;
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ysca-share-modal.is-open .ysca-share-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.ysca-share-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ysca-share-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b1747;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.ysca-share-subheading {
+  font-size: 13px;
+  color: #64748b;
+  margin: 3px 0 0;
+}
+
+.ysca-share-close-btn {
+  background: #f1f5f9;
+  border: none;
+  color: #64748b;
+  font-size: 24px;
+  line-height: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.ysca-share-close-btn:hover {
+  background: #e2e8f0;
+  color: #0b1747;
+}
+
+.ysca-share-body {
+  padding: 20px 24px 24px;
+}
+
+.ysca-share-item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0e1b2e;
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 3px solid #fea630;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ysca-share-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.ysca-share-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 8px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  text-decoration: none !important;
+  color: #0e1b2e;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ysca-share-item:hover,
+.ysca-share-item:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.ysca-share-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  transition: transform 0.2s ease;
+}
+
+.ysca-share-item:hover .ysca-share-icon {
+  transform: scale(1.08);
+}
+
+.ysca-share-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  text-align: center;
+}
+
+/* Brand icon backgrounds */
+.ysca-share-wa .ysca-share-icon { background: #25D366; }
+.ysca-share-fb .ysca-share-icon { background: #1877f2; }
+.ysca-share-x .ysca-share-icon { background: #0f1419; }
+.ysca-share-in .ysca-share-icon { background: #0a66c2; }
+.ysca-share-tg .ysca-share-icon { background: #229ED9; }
+.ysca-share-copy .ysca-share-icon { background: #0b1747; color: #fea630; }
+
+.ysca-share-copy-bar {
+  display: flex;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.ysca-share-copy-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #334155;
+  outline: none;
+  width: 100%;
+}
+
+.ysca-copy-btn {
+  background: #0b1747;
+  color: #ffffff;
+  border: none;
+  border-radius: 7px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ysca-copy-btn:hover {
+  background: #fea630;
+  color: #0b1747;
+}
+
+/* Toast */
+.ysca-share-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #0b1747;
+  color: #ffffff;
+  border: 1px solid #fea630;
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 1000010;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ysca-share-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.ysca-share-toast i {
+  color: #fea630;
+}
+
+@media (max-width: 480px) {
+  .ysca-share-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .ysca-share-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+}
+
+.btn-psc-share {
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  color: #0b1747;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.btn-psc-share:hover,
+.btn-psc-share:focus-visible {
+  background: #0b1747;
+  color: #fea630;
+  border-color: #0b1747;
+  transform: translateY(-1px);
+}
