@@ -161,12 +161,20 @@ export async function deliverTelegram(env, update) {
 }
 
 export async function deliverSocials(env, update) {
-  if (!update.socials && !update.publish_socials) return 'not_requested';
+  if (!update.socials) return 'not_requested';
   const webhookUrl = env.MAKE_WEBHOOK_URL || env.SOCIAL_WEBHOOK_URL;
   if (!webhookUrl) return 'not_configured';
   const postUrl = update.publish_website && update.visibility === 'public'
     ? 'https://youngstarcricketacademy.com/updates'
     : 'https://youngstarcricketacademy.com/';
+  const rawMediaId = update.mediaId || update.media_id || null;
+  const videoUrl  = update.videoUrl  || update.video_url  || null;
+  // Build a fully-qualified public URL for the attached image/video so that
+  // Make.com modules (Google Business, Facebook, etc.) can use it as sourceUrl.
+  // /api/updates/media/:id serves media for any published public update.
+  const mediaUrl = rawMediaId
+    ? 'https://youngstarcricketacademy.com/api/updates/media/' + rawMediaId
+    : null;
   try {
     const result = await fetch(webhookUrl, {
       method: 'POST',
@@ -176,9 +184,13 @@ export async function deliverSocials(env, update) {
         content: update.body || update.message,
         category: update.category,
         url: postUrl,
-        mediaId: update.mediaId || update.media_id || null,
-        videoUrl: update.videoUrl || update.video_url || null,
-        youtubeVideoUrl: update.videoUrl || update.video_url || null,
+        mediaId:  rawMediaId,
+        mediaUrl: mediaUrl,       // full public URL — map to sourceUrl in Make.com
+        sourceUrl: mediaUrl,      // direct alias so Google Business module works without mapping
+        videoUrl: videoUrl,
+        youtubeVideoUrl: videoUrl,
+        hasMedia: !!rawMediaId,
+        hasVideo: !!videoUrl,
         platforms: ['google_business', 'facebook', 'instagram', 'twitter', 'youtube'],
         tags: ['CricketCoaching', 'GreaterNoida', 'YSCA'],
         timestamp: new Date().toISOString()
