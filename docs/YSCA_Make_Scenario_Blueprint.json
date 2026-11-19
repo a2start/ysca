@@ -1,0 +1,152 @@
+{
+  "name": "YSCA - Multi-Platform Auto-Share Pipeline",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {},
+      "filter": null,
+      "metadata": {
+        "designer": {
+          "x": -400,
+          "y": 0,
+          "name": "YSCA Manager Webhook"
+        },
+        "restore": {},
+        "parameters": [
+          {
+            "name": "hook",
+            "type": "hook:gateway-webhook",
+            "label": "Webhook"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "builtin:BasicRouter",
+      "version": 1,
+      "parameters": {},
+      "filter": null,
+      "metadata": {
+        "designer": {
+          "x": -150,
+          "y": 0,
+          "name": "Platform Router"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "google-my-business:createPost",
+      "version": 1,
+      "parameters": {
+        "topicType": "LOCAL_POST_TOPIC_TYPE_UNSPECIFIED",
+        "summary": "{{1.title}}\n\n{{1.content}}\n\n📍 Young Star Cricket Academy, Malakpur, Greater Noida\n{{1.url}}",
+        "callToAction": {
+          "actionType": "LEARN_MORE",
+          "url": "{{1.url}}"
+        }
+      },
+      "filter": {
+        "name": "Has Title & Content",
+        "scope": "roundtrip",
+        "conditions": [
+          [
+            {
+              "a": "{{1.title}}",
+              "o": "text:isNotEmpty"
+            }
+          ]
+        ]
+      },
+      "metadata": {
+        "designer": {
+          "x": 150,
+          "y": -250,
+          "name": "Google Business Profile (SEO)"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "facebook-pages:createAPost",
+      "version": 2,
+      "parameters": {
+        "message": "{{1.title}}\n\n{{1.content}}\n\nLearn, Practice, Progress at Young Star Cricket Academy, Greater Noida.\n👉 {{1.url}}\n\n#CricketCoaching #GreaterNoida #YSCA"
+      },
+      "filter": null,
+      "metadata": {
+        "designer": {
+          "x": 150,
+          "y": -120,
+          "name": "Facebook Page"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "module": "instagram-business:createPhotoPost",
+      "version": 1,
+      "parameters": {
+        "caption": "{{1.title}}\n\n{{1.content}}\n\n🏏 Young Star Cricket Academy, Greater Noida\nAdmissions open for ages 5+ to open age.\nLink in bio: {{1.url}}\n\n#CricketCoaching #GreaterNoida #CricketTraining #YSCA #CricketAcademy"
+      },
+      "filter": null,
+      "metadata": {
+        "designer": {
+          "x": 150,
+          "y": 10,
+          "name": "Instagram for Business"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "module": "twitter:createATweet",
+      "version": 2,
+      "parameters": {
+        "text": "{{substring(1.title, 0, 100)}}: {{substring(1.content, 0, 120)}}... {{1.url}} #CricketCoaching #GreaterNoida #YSCA"
+      },
+      "filter": null,
+      "metadata": {
+        "designer": {
+          "x": 150,
+          "y": 140,
+          "name": "X / Twitter"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "module": "youtube:createACommunityPost",
+      "version": 1,
+      "parameters": {
+        "text": "{{1.title}}\n\n{{1.content}}\n\nWatch training & match highlights:\n{{1.youtubeVideoUrl}}\n\nAcademy details: {{1.url}}"
+      },
+      "filter": null,
+      "metadata": {
+        "designer": {
+          "x": 150,
+          "y": 270,
+          "name": "YouTube Community"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    }
+  }
+}
+
