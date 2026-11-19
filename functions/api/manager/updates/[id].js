@@ -70,7 +70,7 @@ export async function onRequestPatch({request, env, params}) {
    title:existing.title,body:existing.body,category:existing.category,
    publish_website:website,visibility:existing.visibility,socials:true,
    mediaId:existing.media_id,video_url:existing.video_url
-  });
+  }, request);
  }
  return json({success:true,status:'published',telegram_status:telegramStatus,social_status:socialStatus});
 }

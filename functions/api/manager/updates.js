@@ -70,7 +70,7 @@ export async function onRequestPost({ request, env, context }) {
       title: form.title, body: form.message, category: form.category,
       publish_website: published, visibility: form.visibility, socials: true,
       mediaId: form.mediaId, videoUrl: form.videoUrl
-    });
+    }, request);
   }
   return json({ success: true, id, status: activated ? 'published' : 'draft',
     telegram_status: telegramStatus,

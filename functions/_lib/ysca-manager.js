@@ -160,20 +160,29 @@ export async function deliverTelegram(env, update) {
   } catch (_) { return 'failed'; }
 }
 
-export async function deliverSocials(env, update) {
+export async function deliverSocials(env, update, request = null) {
   if (!update.socials) return 'not_requested';
   const webhookUrl = env.MAKE_WEBHOOK_URL || env.SOCIAL_WEBHOOK_URL;
   if (!webhookUrl) return 'not_configured';
+  let baseUrl = 'https://youngstarcricketacademy.com';
+  if (request) {
+    try {
+      const u = new URL(request.url);
+      if (u.origin && u.origin.startsWith('http')) {
+        baseUrl = u.origin;
+      }
+    } catch (_) {}
+  }
   const postUrl = update.publish_website && update.visibility === 'public'
-    ? 'https://youngstarcricketacademy.com/updates'
-    : 'https://youngstarcricketacademy.com/';
+    ? baseUrl + '/updates'
+    : baseUrl + '/';
   const rawMediaId = update.mediaId || update.media_id || null;
   const videoUrl  = update.videoUrl  || update.video_url  || null;
   // Build a fully-qualified public URL for the attached image/video so that
   // Make.com modules (Google Business, Facebook, etc.) can use it as sourceUrl.
   // /api/updates/media/:id serves media for any published public update.
   const mediaUrl = rawMediaId
-    ? 'https://youngstarcricketacademy.com/api/updates/media/' + rawMediaId
+    ? baseUrl + '/api/updates/media/' + rawMediaId
     : null;
   try {
     const result = await fetch(webhookUrl, {
