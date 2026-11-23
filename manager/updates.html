@@ -257,7 +257,7 @@ function authenticate(yes, user = null){
  updateAdminUI();
 }
 function updateAdminUI(){
- const isAdmin = currentUser && currentUser.role === 'admin';
+ const isAdmin = currentUser && (currentUser.role === 'admin' || currentUser.username === 'admin' || !currentUser.username);
  const nav = $('nav-users');
  if (nav) nav.classList.toggle('hidden', !isAdmin);
  const badge = $('user-badge');
@@ -276,7 +276,8 @@ async function reload(){
  renderRecent();renderHistory();
 }
 function view(v){
- if(v==='users' && (!currentUser || currentUser.role !== 'admin')) v='home';
+ const isAdmin = currentUser && (currentUser.role === 'admin' || currentUser.username === 'admin' || !currentUser.username);
+ if(v==='users' && !isAdmin) v='home';
  current=v;
  for(const id of ['home','compose','review','history','users']){
   const el=$(id+'-view');

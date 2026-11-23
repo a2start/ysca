@@ -3,7 +3,9 @@ import { configured, json, sameOrigin, hasSession, ensureUsersTable, hashPasswor
 async function authorizeAdmin(request, env) {
   if (!configured(env)) return null;
   const session = await hasSession(request, env.YSCA_MANAGER_SESSION_SECRET);
-  if (!session || session.role !== 'admin') return null;
+  if (!session) return null;
+  const isPrimaryAdmin = session.role === 'admin' || session.username === 'admin' || !session.username;
+  if (!isPrimaryAdmin) return null;
   return session;
 }
 

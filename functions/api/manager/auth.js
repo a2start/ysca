@@ -8,13 +8,14 @@ export async function onRequestGet({ request, env }) {
   if (!session) {
     return json({ authenticated: false, configured: true });
   }
+  const isPrimaryAdmin = session.role === 'admin' || session.username === 'admin' || !session.username;
   return json({
     authenticated: true,
     configured: true,
     user: {
       username: session.username || 'admin',
-      role: session.role || 'manager',
-      name: session.name || (session.role === 'admin' ? 'Primary Admin' : 'Manager')
+      role: isPrimaryAdmin ? 'admin' : session.role,
+      name: session.name || (isPrimaryAdmin ? 'Primary Admin' : 'Manager')
     }
   });
 }
