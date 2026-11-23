@@ -25,7 +25,8 @@ export async function onRequestPatch({ request, params, env }) {
   const role = typeof input.role === 'string' ? input.role.trim() : existing.role;
   const badge = typeof input.badge === 'string' ? input.badge.trim() : existing.badge;
   const bio = typeof input.bio === 'string' ? input.bio.trim() : existing.bio;
-  const image = typeof input.image === 'string' && input.image.trim() ? input.image.trim() : existing.image;
+  let image = typeof input.image === 'string' && input.image.trim() ? input.image.trim() : existing.image;
+  if (image && image.startsWith('assets/')) image = '/' + image;
   const slug = typeof input.slug === 'string' && input.slug.trim() ? input.slug.trim() : existing.slug;
   
   let tagsJson = existing.tags;

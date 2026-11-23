@@ -6,8 +6,8 @@ export const INITIAL_COACHES = [
     name: 'Kapil Pratap Singh',
     role: 'Head Coach & Director of Cricket',
     badge: 'Head Coach',
-    bio: 'Kapil Pratap Singh is Head Coach & Director of Cricket at Young Star Cricket Academy, bringing over a decade of elite player coaching experience across age pathways from Foundation to Senior Tournament Squads.',
-    image: 'assets/images/kps.jpg',
+    bio: 'Kapil Pratap Singh brings over a decade of high-performance coaching and mentorship to Young Star Cricket Academy. As Director of Cricket, he oversees youth talent scouting, video biomechanics, and competitive tournament preparation across all academy age groups.',
+    image: '/assets/images/kps.jpg',
     slug: 'coach-kapil-pratap-singh',
     tags: JSON.stringify(['Batting Mastery', 'Match Strategy', 'Player Mentorship', 'Game Temperament']),
     sort_order: 1,
@@ -19,7 +19,7 @@ export const INITIAL_COACHES = [
     role: 'Senior Cricket Coach — Under-19 & Above Lead Coach',
     badge: 'Under-19 & Above Lead',
     bio: 'Rajeev Gupta leads the Under-19 and above age-group coaching at Young Star Cricket Academy, focusing on match awareness, bowling dynamics, tactical preparation, and competitive tournament performance.',
-    image: 'assets/images/rg.jpg',
+    image: '/assets/images/rg.jpg',
     slug: 'coach-rajeev-gupta',
     tags: JSON.stringify(['Bowling Dynamics', 'Match Awareness', 'Coaching Guidance', 'Tactical Analysis']),
     sort_order: 2,
@@ -31,7 +31,7 @@ export const INITIAL_COACHES = [
     role: 'Cricket & Fitness Coach — Under-12 Lead Coach',
     badge: 'Under-12 Coach',
     bio: 'Suryabhan Singh is the dedicated Under-12 age-group coach and fitness specialist at Young Star Cricket Academy, combining batting and bowling basics with age-appropriate physical agility and movement training.',
-    image: 'assets/images/sbs.jpg',
+    image: '/assets/images/sbs.jpg',
     slug: 'coach-suryabhan-singh',
     tags: JSON.stringify(['Strength & Conditioning', 'Batting Drills', 'Agility & Speed', 'Injury Prevention']),
     sort_order: 3,
@@ -43,7 +43,7 @@ export const INITIAL_COACHES = [
     role: 'Cricket Coach — Under-16 & Above Lead Coach',
     badge: 'Under-16 & Above Lead',
     bio: 'Manoj Gupta leads coaching for Under-16 and above players at Young Star Cricket Academy, guiding cricketers through advanced technical drills, footwork discipline, and match-scenario execution.',
-    image: 'assets/images/mg.jpg',
+    image: '/assets/images/mg.jpg',
     slug: 'coach-manoj-gupta',
     tags: JSON.stringify(['Footwork & Balance', 'Bowling Actions', 'Net Discipline', 'Foundational Drills']),
     sort_order: 4,
@@ -55,7 +55,7 @@ export const INITIAL_COACHES = [
     role: 'Cricket Coach — Under-14 & Above Lead Coach',
     badge: 'Under-14 & Above Lead',
     bio: 'Nayan Bhardwaj is the Under-14 and above lead coach at Young Star Cricket Academy, focusing on modern strokeplay, sharp fielding reflexes, game awareness, and transition to competitive youth cricket.',
-    image: 'assets/images/nb.jpg',
+    image: '/assets/images/nb.jpg',
     slug: 'coach-nayan-bhardwaj',
     tags: JSON.stringify(['Modern Strokeplay', 'Power Hitting', 'Ground Fielding', 'Video Analytics']),
     sort_order: 5,
@@ -67,7 +67,7 @@ export const INITIAL_COACHES = [
     role: 'Junior Cricket Coach — Under-10 Coaching Team',
     badge: 'Under-10 Coach',
     bio: 'Lakshya Bharti coaches the Under-10 grassroots cricketers alongside coaches Priya and Ayush Kashyap, focusing on motor skills, hand-eye coordination, and joyful cricket foundations.',
-    image: 'assets/images/lb.jpg',
+    image: '/assets/images/lb.jpg',
     slug: 'coach-lokesh-bharti',
     tags: JSON.stringify(['Batting Resilience', 'Coaching Team', 'Youth Grassroots', 'Game Psychology']),
     sort_order: 6,
@@ -79,7 +79,7 @@ export const INITIAL_COACHES = [
     role: 'Youth Cricket Coach — Under-11 Coaching Team',
     badge: 'Under-11 Coach',
     bio: 'Nikhil Yadav mentors the Under-11 age category alongside Ayush Naithani at Young Star Cricket Academy, cultivating strong hand-eye coordination, dynamic fielding reflex drills, and match discipline.',
-    image: 'assets/images/ny.jpg',
+    image: '/assets/images/ny.jpg',
     slug: 'coach-nikhil-yadav',
     tags: JSON.stringify(['Hand-Eye Coordination', 'Fielding Reflexes', 'Positive Motivation', 'Team Synergy']),
     sort_order: 7,
@@ -95,7 +95,7 @@ export async function ensureCoachesTable(db) {
     role TEXT NOT NULL,
     badge TEXT NOT NULL DEFAULT '',
     bio TEXT NOT NULL,
-    image TEXT NOT NULL DEFAULT 'assets/images/kps.jpg',
+    image TEXT NOT NULL DEFAULT '/assets/images/kps.jpg',
     slug TEXT NOT NULL,
     tags TEXT NOT NULL DEFAULT '[]',
     sort_order INTEGER NOT NULL DEFAULT 0,
@@ -104,7 +104,7 @@ export async function ensureCoachesTable(db) {
     updated_at TEXT NOT NULL
   )`).run();
 
-  // Seed default coaches if table is empty
+  // If table is empty or has relative asset paths without leading slash, normalize them
   const countRow = await db.prepare('SELECT COUNT(*) AS total FROM ysca_coaches').first();
   if (!countRow || countRow.total === 0) {
     const now = new Date().toISOString();
@@ -113,6 +113,9 @@ export async function ensureCoachesTable(db) {
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       ).bind(c.id, c.name, c.role, c.badge, c.bio, c.image, c.slug, c.tags, c.sort_order, c.is_active, now, now).run();
     }
+  } else {
+    // Fix existing relative image paths that might be missing the leading slash
+    await db.prepare("UPDATE ysca_coaches SET image = '/' || image WHERE image LIKE 'assets/%'").run();
   }
 }
 
@@ -127,6 +130,7 @@ export async function onRequestGet({ env }) {
     const { results } = await env.DB.prepare('SELECT * FROM ysca_coaches ORDER BY sort_order ASC, created_at ASC').all();
     const coaches = (results || []).map(r => ({
       ...r,
+      image: r.image && r.image.startsWith('assets/') ? '/' + r.image : (r.image || '/assets/images/kps.jpg'),
       tags: typeof r.tags === 'string' ? JSON.parse(r.tags || '[]') : r.tags
     }));
     return json({ coaches: coaches.length ? coaches : INITIAL_COACHES });
@@ -151,7 +155,8 @@ export async function onRequestPost({ request, env }) {
   const role = typeof input.role === 'string' ? input.role.trim() : '';
   const badge = typeof input.badge === 'string' ? input.badge.trim() : '';
   const bio = typeof input.bio === 'string' ? input.bio.trim() : '';
-  const image = typeof input.image === 'string' && input.image.trim() ? input.image.trim() : 'assets/images/kps.jpg';
+  let image = typeof input.image === 'string' && input.image.trim() ? input.image.trim() : '/assets/images/kps.jpg';
+  if (image.startsWith('assets/')) image = '/' + image;
   
   if (!name || !role || !bio) {
     return json({ error: 'Name, Role, and Bio are required' }, 400);

@@ -235,27 +235,63 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
      <button type="button" id="btn-toggle-add-coach" class="btn primary">+ Add Coach</button>
     </div>
     <div class="panelbody">
-     <div id="coach-form-card" class="card hidden" style="margin-bottom:24px;border:1px solid #e2e8f0;padding:20px;border-radius:12px;background:#f8fafc;">
-      <h3 style="margin-top:0;margin-bottom:6px;font-size:1.15rem;" id="coach-form-title">Add New Coach</h3>
-      <p class="hint" style="margin-bottom:16px;">Fill in the coach's profile details. Changes reflect on the public coaching directory.</p>
+     <div id="coach-form-card" class="card hidden" style="margin-bottom:24px;border:1px solid #e2e8f0;padding:24px;border-radius:14px;background:#ffffff;box-shadow:0 4px 12px rgba(15,23,42,0.04);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+       <div>
+        <h3 style="margin:0;font-size:1.25rem;color:#0f172a;" id="coach-form-title">Add New Coach</h3>
+        <p class="hint" style="margin:4px 0 0 0;">Manage coach directory profile, photos, qualifications, and specialties.</p>
+       </div>
+       <button type="button" class="tiny" id="btn-close-coach-form" style="font-size:16px;cursor:pointer;">✕</button>
+      </div>
       <form id="coach-form" class="form">
        <input type="hidden" id="coach-id">
+       
+       <!-- Coach Photo Selector & Library -->
+       <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;margin-bottom:16px;">
+        <label style="font-weight:700;display:block;margin-bottom:8px;font-size:0.9rem;color:#1e293b;">Coach Photo</label>
+        <div style="display:flex;gap:18px;align-items:center;">
+         <div style="position:relative;">
+          <img id="coach-image-preview" src="/assets/images/kps.jpg" alt="Preview" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid #3b82f6;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+         </div>
+         <div style="flex:1;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+           <button type="button" class="btn" id="btn-toggle-library" style="font-size:12px;padding:5px 12px;">🖼️ Choose from Photo Library</button>
+           <label class="btn" style="font-size:12px;padding:5px 12px;cursor:pointer;margin:0;">
+            ⬆️ Upload New Photo
+            <input type="file" id="coach-image-upload" accept="image/jpeg,image/png,image/webp" style="display:none;">
+           </label>
+          </div>
+          <input id="coach-image" placeholder="/assets/images/kps.jpg or full URL" value="/assets/images/kps.jpg" required autocomplete="off" style="font-size:12px;padding:6px 10px;">
+          <span id="coach-upload-status" class="status" style="font-size:11px;"></span>
+         </div>
+        </div>
+
+        <!-- Collapsible Image Library Grid -->
+        <div id="coach-image-library" class="hidden" style="margin-top:14px;padding-top:12px;border-top:1px dashed #cbd5e1;">
+         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-size:11.5px;font-weight:600;color:#64748b;text-transform:uppercase;">Academy Photos Library</span>
+          <span style="font-size:11px;color:#94a3b8;">Click any photo to select</span>
+         </div>
+         <div id="coach-library-grid" style="display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;"></div>
+        </div>
+       </div>
+
        <div class="twocol">
-        <div class="field"><label for="coach-name">Coach Full Name</label><input id="coach-name" placeholder="e.g. Mr. Rahul Sharma" required autocomplete="off"></div>
-        <div class="field"><label for="coach-role">Role / Designation</label><input id="coach-role" placeholder="e.g. Senior Bowling Coach — Under-16 Lead" required autocomplete="off"></div>
+        <div class="field"><label for="coach-name">Coach Full Name</label><input id="coach-name" placeholder="e.g. Kapil Pratap Singh" required autocomplete="off"></div>
+        <div class="field"><label for="coach-role">Role / Designation</label><input id="coach-role" placeholder="e.g. Head Coach & Director of Cricket" required autocomplete="off"></div>
        </div>
        <div class="twocol">
-        <div class="field"><label for="coach-badge">Badge Pill (optional)</label><input id="coach-badge" placeholder="e.g. Head Coach or Under-16 Lead" autocomplete="off"></div>
-        <div class="field"><label for="coach-slug">Profile Page Slug (optional)</label><input id="coach-slug" placeholder="e.g. coach-rahul-sharma" autocomplete="off"></div>
+        <div class="field"><label for="coach-badge">Badge Pill (optional)</label><input id="coach-badge" placeholder="e.g. Head Coach or Under-19 Lead" autocomplete="off"></div>
+        <div class="field"><label for="coach-slug">Profile Page Slug</label><input id="coach-slug" placeholder="e.g. coach-kapil-pratap-singh" autocomplete="off"></div>
        </div>
        <div class="twocol">
-        <div class="field"><label for="coach-image">Photo URL</label><input id="coach-image" placeholder="assets/images/kps.jpg or full image URL" value="assets/images/kps.jpg" required autocomplete="off"></div>
-        <div class="field"><label for="coach-order">Display Order</label><input id="coach-order" type="number" min="1" max="99" value="1" required></div>
+        <div class="field"><label for="coach-order">Display Order (1 = Top)</label><input id="coach-order" type="number" min="1" max="99" value="1" required></div>
+        <div class="field"><label for="coach-tags">Specialization Tags (comma separated)</label><input id="coach-tags" placeholder="e.g. Batting Mastery, Match Strategy, Player Mentorship" autocomplete="off"></div>
        </div>
-       <div class="field"><label for="coach-tags">Specialization Tags (comma separated)</label><input id="coach-tags" placeholder="e.g. Batting Mastery, Video Analysis, Match Strategy, Fast Bowling" autocomplete="off"></div>
-       <div class="field"><label for="coach-bio">Biography / Coaching Overview</label><textarea id="coach-bio" rows="3" placeholder="Provide background, age-groups trained, and coaching focus..." required style="min-height:90px;"></textarea></div>
-       <div class="cta" style="border-top:none;padding-top:4px;">
-        <button type="submit" class="btn primary" id="btn-save-coach">Save Coach</button>
+       <div class="field"><label for="coach-bio">Biography / Coaching Overview</label><textarea id="coach-bio" rows="3" placeholder="Provide background, age-groups trained, qualifications, and tactical focus..." required style="min-height:90px;"></textarea></div>
+       
+       <div class="cta" style="border-top:1px solid #f1f5f9;padding-top:14px;margin-top:16px;">
+        <button type="submit" class="btn primary" id="btn-save-coach">Save Coach Profile</button>
         <button type="button" class="btn" id="btn-cancel-coach">Cancel</button>
         <span id="coach-form-status" class="status" role="status" aria-live="polite"></span>
        </div>
@@ -771,6 +807,7 @@ $('media-file').addEventListener('change',()=>{
 });
 
 let coachesList = [];
+let coachImagesLibrary = [];
 
 async function loadCoaches(){
  $('coaches-count').textContent = 'Loading coaches…';
@@ -781,6 +818,71 @@ async function loadCoaches(){
  } catch(e) {
   $('coaches-count').textContent = 'Failed to load coaches: ' + e.message;
  }
+}
+
+async function loadCoachImagesLibrary(){
+ try {
+  const res = await call('/coach-images');
+  coachImagesLibrary = res.library || [];
+  renderCoachLibraryGrid();
+ } catch(e) {
+  console.warn('Library load failed:', e);
+ }
+}
+
+function renderCoachLibraryGrid(){
+ const grid = $('coach-library-grid');
+ if (!grid) return;
+ grid.replaceChildren();
+
+ coachImagesLibrary.forEach(imgItem => {
+  const thumbWrap = node('div', undefined);
+  thumbWrap.style.display = 'flex';
+  thumbWrap.style.flexDirection = 'column';
+  thumbWrap.style.alignItems = 'center';
+  thumbWrap.style.cursor = 'pointer';
+  thumbWrap.style.padding = '4px';
+  thumbWrap.style.borderRadius = '8px';
+  thumbWrap.style.background = '#ffffff';
+  thumbWrap.style.border = '1px solid #e2e8f0';
+  thumbWrap.style.minWidth = '80px';
+  thumbWrap.style.flexShrink = '0';
+  thumbWrap.style.transition = 'all 0.2s';
+
+  const img = node('img', undefined);
+  img.src = imgItem.url;
+  img.alt = imgItem.name;
+  img.style.width = '60px';
+  img.style.height = '60px';
+  img.style.borderRadius = '50%';
+  img.style.objectFit = 'cover';
+  img.style.border = '2px solid transparent';
+
+  const label = node('span', imgItem.name.replace(/^(Mr.|Coach)s*/, ''), 'tiny');
+  label.style.fontSize = '10px';
+  label.style.textAlign = 'center';
+  label.style.marginTop = '4px';
+  label.style.whiteSpace = 'nowrap';
+  label.style.overflow = 'hidden';
+  label.style.textOverflow = 'ellipsis';
+  label.style.maxWidth = '75px';
+
+  thumbWrap.append(img, label);
+
+  thumbWrap.addEventListener('click', () => {
+   selectCoachImage(imgItem.url);
+  });
+
+  grid.append(thumbWrap);
+ });
+}
+
+function selectCoachImage(url){
+ if (!url) return;
+ if (url.startsWith('assets/')) url = '/' + url;
+ $('coach-image').value = url;
+ $('coach-image-preview').src = url;
+ $('coach-image-library').classList.add('hidden');
 }
 
 function renderCoaches(){
@@ -800,16 +902,20 @@ function renderCoaches(){
   row.style.border = '1px solid #e2e8f0';
   row.style.borderRadius = '10px';
 
+  let imgSrc = c.image || '/assets/images/kps.jpg';
+  if (imgSrc.startsWith('assets/')) imgSrc = '/' + imgSrc;
+
   const avatar = node('img', undefined);
-  avatar.src = c.image || 'assets/images/kps.jpg';
+  avatar.src = imgSrc;
   avatar.alt = c.name;
-  avatar.style.width = '48px';
-  avatar.style.height = '48px';
+  avatar.style.width = '52px';
+  avatar.style.height = '52px';
   avatar.style.borderRadius = '50%';
   avatar.style.objectFit = 'cover';
   avatar.style.marginRight = '14px';
   avatar.style.flexShrink = '0';
   avatar.style.border = '2px solid #e2e8f0';
+  avatar.onerror = function(){ this.src = '/assets/images/kps.jpg'; };
 
   const info = node('div', undefined, 'rowmain');
   info.style.flex = '1';
@@ -818,6 +924,7 @@ function renderCoaches(){
   titleRow.style.display = 'flex';
   titleRow.style.alignItems = 'center';
   titleRow.style.gap = '8px';
+  titleRow.style.flexWrap = 'wrap';
   
   const nameEl = node('strong', c.name);
   nameEl.style.fontSize = '15px';
@@ -875,7 +982,13 @@ function renderCoaches(){
   actions.style.alignItems = 'center';
   actions.style.marginLeft = '12px';
 
-  const editBtn = node('button', 'Edit', 'btn');
+  const viewBtn = node('a', '↗ View', 'btn');
+  viewBtn.href = '/' + (c.slug || 'coach');
+  viewBtn.target = '_blank';
+  viewBtn.style.padding = '4px 10px';
+  viewBtn.style.fontSize = '12px';
+
+  const editBtn = node('button', 'Edit', 'btn primary');
   editBtn.style.padding = '4px 10px';
   editBtn.style.fontSize = '12px';
   editBtn.addEventListener('click', () => openEditCoach(c));
@@ -886,7 +999,7 @@ function renderCoaches(){
   delBtn.style.color = '#ef4444';
   delBtn.addEventListener('click', () => deleteCoach(c));
 
-  actions.append(editBtn, delBtn);
+  actions.append(viewBtn, editBtn, delBtn);
 
   row.append(avatar, info, actions);
   list.append(row);
@@ -901,13 +1014,51 @@ function openEditCoach(c){
  $('coach-role').value = c ? c.role : '';
  $('coach-badge').value = c ? c.badge || '' : '';
  $('coach-slug').value = c ? c.slug || '' : '';
- $('coach-image').value = c ? c.image || 'assets/images/kps.jpg' : 'assets/images/kps.jpg';
+ 
+ let img = c ? (c.image || '/assets/images/kps.jpg') : '/assets/images/kps.jpg';
+ if (img.startsWith('assets/')) img = '/' + img;
+ $('coach-image').value = img;
+ $('coach-image-preview').src = img;
  $('coach-order').value = c ? c.sort_order || 1 : (coachesList.length + 1);
  $('coach-tags').value = c ? (Array.isArray(c.tags) ? c.tags.join(', ') : c.tags || '') : '';
  $('coach-bio').value = c ? c.bio || '' : '';
  status('coach-form-status', '');
+ status('coach-upload-status', '');
+ $('coach-image-library').classList.add('hidden');
  $('coach-name').focus();
+ loadCoachImagesLibrary();
 }
+
+$('coach-image')?.addEventListener('input', () => {
+ let url = $('coach-image').value.trim();
+ if (url.startsWith('assets/')) url = '/' + url;
+ $('coach-image-preview').src = url || '/assets/images/kps.jpg';
+});
+
+$('btn-toggle-library')?.addEventListener('click', () => {
+ const lib = $('coach-image-library');
+ lib.classList.toggle('hidden');
+ if (!lib.classList.contains('hidden') && !coachImagesLibrary.length) {
+  loadCoachImagesLibrary();
+ }
+});
+
+$('coach-image-upload')?.addEventListener('change', async () => {
+ const file = $('coach-image-upload').files[0];
+ if (!file) return;
+ status('coach-upload-status', 'Uploading image…');
+ const formData = new FormData();
+ formData.append('file', file);
+ try {
+  const res = await call('/media', { method: 'POST', body: formData });
+  const mediaUrl = '/api/updates/media/' + res.media_id;
+  selectCoachImage(mediaUrl);
+  status('coach-upload-status', 'Photo uploaded and selected!');
+  loadCoachImagesLibrary();
+ } catch(err) {
+  status('coach-upload-status', 'Upload failed: ' + err.message, true);
+ }
+});
 
 async function deleteCoach(c){
  if(!confirm('Are you sure you want to remove coach "' + c.name + '"?')) return;
@@ -928,6 +1079,12 @@ $('btn-toggle-add-coach')?.addEventListener('click', () => {
  }
 });
 
+$('btn-close-coach-form')?.addEventListener('click', () => {
+ $('coach-form-card').classList.add('hidden');
+ $('coach-form').reset();
+ status('coach-form-status', '');
+});
+
 $('btn-cancel-coach')?.addEventListener('click', () => {
  $('coach-form-card').classList.add('hidden');
  $('coach-form').reset();
@@ -942,12 +1099,15 @@ $('coach-form')?.addEventListener('submit', async e => {
  $('btn-save-coach').disabled = true;
 
  const id = $('coach-id').value;
+ let img = $('coach-image').value.trim() || '/assets/images/kps.jpg';
+ if (img.startsWith('assets/')) img = '/' + img;
+
  const payload = {
   name: $('coach-name').value.trim(),
   role: $('coach-role').value.trim(),
   badge: $('coach-badge').value.trim(),
   slug: $('coach-slug').value.trim(),
-  image: $('coach-image').value.trim(),
+  image: img,
   sort_order: parseInt($('coach-order').value, 10) || 1,
   tags: $('coach-tags').value.split(',').map(t => t.trim()).filter(Boolean),
   bio: $('coach-bio').value.trim()
