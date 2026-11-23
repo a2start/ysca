@@ -1,7 +1,8 @@
 import { configured, json, sameOrigin, hasSession, normalizeUpdate, deliverTelegram, deliverSocials } from '../../../_lib/ysca-manager.js';
 
 export async function onRequestPatch({request, env, params}) {
- if (!configured(env) || !await hasSession(request,env.YSCA_MANAGER_SESSION_SECRET)) return json({error:'Login required'},401);
+ const session = await hasSession(request, env.YSCA_MANAGER_SESSION_SECRET);
+ if (!configured(env) || !session) return json({error:'Login required'},401);
  if (!sameOrigin(request)) return json({error:'Invalid request origin'},403);
  if (!(request.headers.get('content-type')||'').includes('application/json')) return json({error:'JSON required'},415);
  const id=String(params.id||'');
@@ -11,6 +12,8 @@ export async function onRequestPatch({request, env, params}) {
  const existing=await env.DB.prepare('SELECT * FROM ysca_updates WHERE id=?').bind(id).first();
  if (!existing) return json({error:'Update not found'},404);
  const now=new Date().toISOString();
+ const authorName = existing.author_name || session?.name || session?.username || 'Primary Admin';
+ const authorUsername = existing.author_username || session?.username || 'admin';
  if (input.action==='archive') {
   if(existing.status==='archived') return json({error:'Already archived'},409);
   await env.DB.prepare("UPDATE ysca_updates SET status='archived',publish_website=0,updated_at=? WHERE id=?")
@@ -37,10 +40,10 @@ export async function onRequestPatch({request, env, params}) {
   // For published posts, changed destinations are applied only to the website.
   await env.DB.prepare(`UPDATE ysca_updates SET
     title=?,body=?,category=?,visibility=?,publish_website=?,whatsapp_groups=?,
-    media_id=?,video_url=?,updated_at=?,published_at=?
+    media_id=?,video_url=?,updated_at=?,published_at=?,author_name=?,author_username=?
     WHERE id=?`).bind(f.title,f.message,f.category,f.visibility,publicPost?1:(existing.status==='draft'&&f.website?1:0),
      JSON.stringify(f.groups),f.mediaId||null,f.videoUrl||null,now,
-     publicPost?(existing.published_at||now):null,id).run();
+     publicPost?(existing.published_at||now):null,authorName,authorUsername,id).run();
   return json({success:true,status:existing.status,website_live:publicPost,telegram_not_resent:true});
  }
  if(existing.status!=='draft')return json({error:'Only drafts can be published'},409);
@@ -55,8 +58,10 @@ export async function onRequestPatch({request, env, params}) {
  }catch(e){return json({error:e.message||'Invalid draft'},400)}
  const website=f.website&&f.visibility==='public';
  if(!website&&!f.telegram&&!f.socials&&!f.groups.includes('__share__')) return json({error:'Choose at least one sharing destination to publish'},409);
- await env.DB.prepare("UPDATE ysca_updates SET status='published',publish_website=?,published_at=?,updated_at=?,telegram_status=? WHERE id=?")
-  .bind(website?1:0,website?now:null,now,f.telegram?'pending':'not_requested',id).run();
+ const publishAuthorName = session?.name || session?.username || existing.author_name || 'Primary Admin';
+ const publishAuthorUsername = session?.username || existing.author_username || 'admin';
+ await env.DB.prepare("UPDATE ysca_updates SET status='published',publish_website=?,published_at=?,updated_at=?,telegram_status=?,author_name=?,author_username=? WHERE id=?")
+  .bind(website?1:0,website?now:null,now,f.telegram?'pending':'not_requested',publishAuthorName,publishAuthorUsername,id).run();
  let telegramStatus='not_requested';
  if(f.telegram) {
   telegramStatus=await deliverTelegram(env,{

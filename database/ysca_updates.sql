@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS ysca_updates (
   media_id TEXT,
   video_url TEXT,
   telegram_status TEXT NOT NULL DEFAULT 'not_requested',
+  author_name TEXT,
+  author_username TEXT,
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
   published_at TEXT

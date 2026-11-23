@@ -350,16 +350,18 @@ function renderRecent(){
  const list=$('recent');list.replaceChildren();
  if(!items.length){list.append(node('div','No updates yet. Choose a quick action above to create your first notice.','empty'));return}
  items.slice(0,5).forEach(x=>{const row=node('div',undefined,'recent-row'),info=node('div',undefined,'rowmain'),flag=node('span',stateOf(x),'pill '+(x.status==='published'?'public':x.status==='draft'?'private':''));
- info.append(node('strong',x.title),node('small',labels[x.category]+' · '+safeDate(x.created_at)));row.append(info,flag);list.append(row);});
+ const authorLabel = x.author_name ? ' · by ' + x.author_name : '';
+ info.append(node('strong',x.title),node('small',labels[x.category]+' · '+safeDate(x.created_at)+authorLabel));row.append(info,flag);list.append(row);});
 }
 function renderHistory(){
  const out=$('history-list');out.replaceChildren();
  const q=$('search').value.trim().toLowerCase();
- const filtered=items.filter(x=>(selectedStatus==='all'||x.status===selectedStatus)&&(!q||(x.title+' '+x.body+' '+x.category).toLowerCase().includes(q)));
+ const filtered=items.filter(x=>(selectedStatus==='all'||x.status===selectedStatus)&&(!q||(x.title+' '+x.body+' '+x.category+' '+(x.author_name||'')+' '+(x.author_username||'')).toLowerCase().includes(q)));
  if(!filtered.length){const empty=node('div',undefined,'empty');empty.append(node('div','🗂️','emoji'),node('div',q?'No results match your search.':'No updates in this section.'));out.append(empty);return}
  filtered.forEach(x=>{
   const row=node('div',undefined,'history-row'),info=node('div',undefined,'rowmain'),actions=node('div',undefined,'actions');
-  info.append(node('strong',x.title),node('small',labels[x.category]+' · '+stateOf(x)+' · '+safeDate(x.created_at)));
+  const authorLabel = x.author_name ? ' · by ' + x.author_name + (x.author_username ? ' (@' + x.author_username + ')' : '') : '';
+  info.append(node('strong',x.title),node('small',labels[x.category]+' · '+stateOf(x)+' · '+safeDate(x.created_at)+authorLabel));
   if(x.telegram_status==='failed')info.append(node('small',' · Telegram delivery failed'));
   const add=(label,fn)=>{const b=node('button',label,'tiny');b.type='button';b.addEventListener('click',fn);actions.append(b)};
   if(x.status!=='archived'){

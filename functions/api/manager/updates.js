@@ -3,7 +3,12 @@ import { json, configured, hasSession, sameOrigin, normalizeUpdate, deliverTeleg
 async function authorize(request, env) {
   return configured(env) && await hasSession(request, env.YSCA_MANAGER_SESSION_SECRET);
 }
-const columns = 'id,title,body,category,visibility,status,publish_website,publish_telegram,whatsapp_groups,media_id,video_url,telegram_status,created_at,updated_at,published_at';
+async function ensureUpdatesAuthorColumns(db) {
+  if (!db) return;
+  try { await db.prepare('ALTER TABLE ysca_updates ADD COLUMN author_name TEXT').run(); } catch (_) {}
+  try { await db.prepare('ALTER TABLE ysca_updates ADD COLUMN author_username TEXT').run(); } catch (_) {}
+}
+const columns = 'id,title,body,category,visibility,status,publish_website,publish_telegram,whatsapp_groups,media_id,video_url,telegram_status,created_at,updated_at,published_at,author_name,author_username';
 function serialize(r) {
   const groups = JSON.parse(r.whatsapp_groups || '[]');
   return {
@@ -11,12 +16,15 @@ function serialize(r) {
     publish_website: !!r.publish_website,
     publish_telegram: !!r.publish_telegram,
     publish_socials: groups.includes('__socials__'),
-    whatsapp_groups: groups.filter(g => g !== '__socials__')
+    whatsapp_groups: groups.filter(g => g !== '__socials__'),
+    author_name: r.author_name || 'Primary Admin',
+    author_username: r.author_username || 'admin'
   };
 }
 export async function onRequestGet({ request, env }) {
   if (!await authorize(request, env)) return json({ error: 'Login required' }, 401);
   try {
+    await ensureUpdatesAuthorColumns(env.DB);
     const results = await env.DB.prepare('SELECT ' + columns + ' FROM ysca_updates ORDER BY created_at DESC LIMIT 150').all();
     const groups = await env.DB.prepare('SELECT id,label FROM ysca_whatsapp_groups ORDER BY id').all();
     return json({ items: (results.results || []).map(serialize), groups: groups.results || [] });
@@ -26,7 +34,8 @@ export async function onRequestGet({ request, env }) {
   }
 }
 export async function onRequestPost({ request, env, context }) {
-  if (!await authorize(request, env)) return json({ error: 'Login required' }, 401);
+  const session = await hasSession(request, env.YSCA_MANAGER_SESSION_SECRET);
+  if (!configured(env) || !session) return json({ error: 'Login required' }, 401);
   if (!sameOrigin(request)) return json({ error: 'Invalid request origin' }, 403);
   if (!(request.headers.get('content-type') || '').includes('application/json')) return json({ error: 'JSON required' }, 415);
   const input = await request.json().catch(() => null);
@@ -42,16 +51,21 @@ export async function onRequestPost({ request, env, context }) {
   const id = crypto.randomUUID(), now = new Date().toISOString();
   const published = publish && form.website && form.visibility === 'public';
   const activated = publish && (published || form.telegram || form.socials);
+  const authorName = session?.name || session?.username || (session?.role === 'admin' ? 'Primary Admin' : 'Manager');
+  const authorUsername = session?.username || 'admin';
   try {
+    await ensureUpdatesAuthorColumns(env.DB);
     await env.DB.prepare(`INSERT INTO ysca_updates
       (id,title,body,category,visibility,status,publish_website,publish_telegram,
-       whatsapp_groups,media_id,video_url,telegram_status,created_at,updated_at,published_at)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+       whatsapp_groups,media_id,video_url,telegram_status,created_at,updated_at,published_at,
+       author_name,author_username)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
       .bind(id, form.title, form.message, form.category, form.visibility,
         activated ? 'published' : 'draft',
         form.website ? 1 : 0, form.telegram ? 1 : 0,
         JSON.stringify(form.groups), form.mediaId || null, form.videoUrl || null,
-        publish && form.telegram ? 'pending' : 'not_requested', now, now, published ? now : null).run();
+        publish && form.telegram ? 'pending' : 'not_requested', now, now, published ? now : null,
+        authorName, authorUsername).run();
   } catch (e) {
     console.error('YSCA save failed:', e);
     return json({ error: 'Could not save update. Check your database migration.' }, 503);
