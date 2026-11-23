@@ -730,7 +730,8 @@
                             <p>The directory introduces the academy coaching team. Credentials and individual biographies are published only when they are supported by academy records.</p>
                         </div>
 
-                                                <div class="coach-roster-card" data-aos="fade-up" data-aos-duration="900">
+                                                <div id="coaches-roster-container">
+<div class="coach-roster-card" data-aos="fade-up" data-aos-duration="900">
                             <div class="coach-card-row">
                                 <div class="coach-card-media">
                                     <div class="coach-card-avatar">
@@ -1011,6 +1012,9 @@
                             </div>
                         </div>
                         
+                        
+</div>
+
                         <div class="roster-cta-banner" data-aos="fade-up">
                             <h3>Interested in cricket coaching?</h3>
                             <p>Share the player’s age, experience and programme interest in an enquiry. The academy can respond with the relevant published information.</p>
@@ -1136,5 +1140,73 @@
     <script src="assets/js/plugins/slick.min.js"></script>
     <script src="assets/js/plugins/aos.js"></script>
     <script src="assets/js/theme.js"></script>
+
+<script>
+(function(){
+  // Check if live dynamic coaches are available from /api/coaches
+  fetch('/api/coaches')
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if(!data || !Array.isArray(data.coaches) || !data.coaches.length) return;
+      var container = document.getElementById('coaches-roster-container');
+      if(!container) return;
+      
+      var html = data.coaches.map(function(coach){
+        var badgeHtml = coach.badge ? '<span class="coach-badge-pill">' + escapeHtml(coach.badge) + '</span>' : '';
+        var tagsHtml = (Array.isArray(coach.tags) ? coach.tags : []).map(function(t){
+          return '<span class="coach-pill-tag"><i class="fas fa-check text-warning me-1"></i> ' + escapeHtml(t) + '</span>';
+        }).join('');
+        
+        var profileUrl = coach.slug ? (coach.slug.endsWith('.html') ? coach.slug : coach.slug) : 'coach';
+        var trialUrl = 'contact?subject=' + encodeURIComponent('Trial Session with Coach ' + coach.name);
+        var imgSrc = coach.image || 'assets/images/kps.jpg';
+
+        return '<div class="coach-roster-card" data-aos="fade-up" data-aos-duration="900">' +
+          '<div class="coach-card-row">' +
+            '<div class="coach-card-media">' +
+              '<div class="coach-card-avatar">' +
+                '<img src="' + escapeHtml(imgSrc) + '" alt="' + escapeHtml(coach.name) + '" loading="lazy">' +
+              '</div>' +
+              badgeHtml +
+            '</div>' +
+            '<div class="coach-card-content">' +
+              '<div class="coach-card-title-row">' +
+                '<div>' +
+                  '<h3 class="coach-card-name">' +
+                    '<a href="' + escapeHtml(profileUrl) + '">' + escapeHtml(coach.name) + '</a>' +
+                  '</h3>' +
+                  '<div class="coach-card-role">' + escapeHtml(coach.role) + '</div>' +
+                '</div>' +
+              '</div>' +
+              '<p class="coach-card-bio">' + escapeHtml(coach.bio) + '</p>' +
+              '<div class="coach-pill-tags">' + tagsHtml + '</div>' +
+              '<div class="coach-card-actions">' +
+                '<a href="' + escapeHtml(profileUrl) + '" class="coach-view-btn">' +
+                  '<i class="fas fa-id-badge"></i> View Full Profile' +
+                '</a>' +
+                '<a href="' + escapeHtml(trialUrl) + '" class="coach-trial-btn">' +
+                  '<i class="far fa-calendar-alt"></i> Book Trial With ' + escapeHtml(coach.name.replace(/^(Mr.|Coach)s*/, '')) +
+                '</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('\n');
+
+      container.innerHTML = html;
+    })
+    .catch(function(e){ console.warn('Could not sync dynamic coaches:', e); });
+
+  function escapeHtml(str){
+    if(!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+})();
+</script>
+
 </body>
 </html>

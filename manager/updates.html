@@ -105,6 +105,7 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
    <button type="button" data-view="home" class="on"><span>⌂</span> Home</button>
    <button type="button" data-view="compose"><span>✎</span> Create</button>
    <button type="button" data-view="history"><span>▤</span> All updates</button>
+   <button type="button" data-view="coaches" id="nav-coaches"><span>🏏</span> Coaches</button>
    <button type="button" data-view="users" id="nav-users" class="hidden"><span>👥</span> Team / Users</button>
   </nav></div>
   <div class="sidebar-note">Write once and share anywhere. Website updates publish automatically. WhatsApp opens for you to choose recipients and press Send.</div>
@@ -224,6 +225,52 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
     </div>
    </div>
   </section>
+  <section id="coaches-view" class="hidden">
+   <div class="panel">
+    <div class="panelhead">
+     <div>
+      <h2>Manage Academy Coaches</h2>
+      <p class="sectiondesc">Add, edit, reorder or update profiles for coaches shown on the website directory.</p>
+     </div>
+     <button type="button" id="btn-toggle-add-coach" class="btn primary">+ Add Coach</button>
+    </div>
+    <div class="panelbody">
+     <div id="coach-form-card" class="card hidden" style="margin-bottom:24px;border:1px solid #e2e8f0;padding:20px;border-radius:12px;background:#f8fafc;">
+      <h3 style="margin-top:0;margin-bottom:6px;font-size:1.15rem;" id="coach-form-title">Add New Coach</h3>
+      <p class="hint" style="margin-bottom:16px;">Fill in the coach's profile details. Changes reflect on the public coaching directory.</p>
+      <form id="coach-form" class="form">
+       <input type="hidden" id="coach-id">
+       <div class="twocol">
+        <div class="field"><label for="coach-name">Coach Full Name</label><input id="coach-name" placeholder="e.g. Mr. Rahul Sharma" required autocomplete="off"></div>
+        <div class="field"><label for="coach-role">Role / Designation</label><input id="coach-role" placeholder="e.g. Senior Bowling Coach — Under-16 Lead" required autocomplete="off"></div>
+       </div>
+       <div class="twocol">
+        <div class="field"><label for="coach-badge">Badge Pill (optional)</label><input id="coach-badge" placeholder="e.g. Head Coach or Under-16 Lead" autocomplete="off"></div>
+        <div class="field"><label for="coach-slug">Profile Page Slug (optional)</label><input id="coach-slug" placeholder="e.g. coach-rahul-sharma" autocomplete="off"></div>
+       </div>
+       <div class="twocol">
+        <div class="field"><label for="coach-image">Photo URL</label><input id="coach-image" placeholder="assets/images/kps.jpg or full image URL" value="assets/images/kps.jpg" required autocomplete="off"></div>
+        <div class="field"><label for="coach-order">Display Order</label><input id="coach-order" type="number" min="1" max="99" value="1" required></div>
+       </div>
+       <div class="field"><label for="coach-tags">Specialization Tags (comma separated)</label><input id="coach-tags" placeholder="e.g. Batting Mastery, Video Analysis, Match Strategy, Fast Bowling" autocomplete="off"></div>
+       <div class="field"><label for="coach-bio">Biography / Coaching Overview</label><textarea id="coach-bio" rows="3" placeholder="Provide background, age-groups trained, and coaching focus..." required style="min-height:90px;"></textarea></div>
+       <div class="cta" style="border-top:none;padding-top:4px;">
+        <button type="submit" class="btn primary" id="btn-save-coach">Save Coach</button>
+        <button type="button" class="btn" id="btn-cancel-coach">Cancel</button>
+        <span id="coach-form-status" class="status" role="status" aria-live="polite"></span>
+       </div>
+      </form>
+     </div>
+     <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+       <span class="hint" id="coaches-count">Loading coaches…</span>
+       <button type="button" id="refresh-coaches" class="tiny">Refresh list</button>
+      </div>
+      <div id="coaches-list" style="display:flex;flex-direction:column;gap:12px;"></div>
+     </div>
+    </div>
+   </div>
+  </section>
   <footer>YSCA Manager · WhatsApp sharing requires selecting and sending to recipients inside WhatsApp. <a href="/updates.html" target="_blank" rel="noopener">View public updates ↗</a></footer>
  </main>
 </div>
@@ -305,15 +352,16 @@ function view(v){
  const isAdmin = currentUser && (currentUser.role === 'admin' || currentUser.username === 'admin' || !currentUser.username);
  if(v==='users' && !isAdmin) v='home';
  current=v;
- for(const id of ['home','compose','review','history','users']){
+ for(const id of ['home','compose','review','history','users','coaches']){
   const el=$(id+'-view');
   if(el) el.classList.toggle('hidden',id!==v);
  }
  document.querySelectorAll('.menu button').forEach(b=>b.classList.toggle('on',b.dataset.view===v));
- $('page-title').textContent=({home:'Manager dashboard',compose:editingId?'Edit update':'Create an update',review:'Review & share',history:'All updates',users:'Team & user access'})[v];
- $('page-desc').textContent=({home:'What would you like to share today?',compose:'A few details, then you are ready.',review:'Check the details before proceeding.',history:'Everything in one place.',users:'Only you (the administrator) can manage and invite dashboard users.'})[v];
+ $('page-title').textContent=({home:'Manager dashboard',compose:editingId?'Edit update':'Create an update',review:'Review & share',history:'All updates',users:'Team & user access',coaches:'Academy Coaches'})[v];
+ $('page-desc').textContent=({home:'What would you like to share today?',compose:'A few details, then you are ready.',review:'Check the details before proceeding.',history:'Everything in one place.',users:'Only you (the administrator) can manage and invite dashboard users.',coaches:'Manage faculty profiles, designations, and ordering on the website.'})[v];
  window.scrollTo({top:0,behavior:'instant'});
  if(v==='users') loadUsers();
+  if(v==='coaches') loadCoaches();
 }
 async function loadUsers(){
  if(!currentUser || currentUser.role !== 'admin') return;
@@ -721,6 +769,211 @@ $('media-file').addEventListener('change',()=>{
  const label=node('div',file.name+' · '+(file.size/1024/1024).toFixed(2)+' MB','hint');
  target.append(preview,label);target.classList.remove('hidden');
 });
+
+let coachesList = [];
+
+async function loadCoaches(){
+ $('coaches-count').textContent = 'Loading coaches…';
+ try {
+  const r = await call('/coaches');
+  coachesList = r.coaches || [];
+  renderCoaches();
+ } catch(e) {
+  $('coaches-count').textContent = 'Failed to load coaches: ' + e.message;
+ }
+}
+
+function renderCoaches(){
+ const list = $('coaches-list');
+ list.replaceChildren();
+ $('coaches-count').textContent = coachesList.length + ' coach' + (coachesList.length === 1 ? '' : 'es') + ' configured';
+ if(!coachesList.length){
+  list.append(node('div', 'No coaches found. Click "+ Add Coach" to create the first profile.', 'empty'));
+  return;
+ }
+
+ coachesList.forEach(c => {
+  const row = node('div', undefined, 'recent-row');
+  row.style.alignItems = 'center';
+  row.style.padding = '14px 16px';
+  row.style.background = '#ffffff';
+  row.style.border = '1px solid #e2e8f0';
+  row.style.borderRadius = '10px';
+
+  const avatar = node('img', undefined);
+  avatar.src = c.image || 'assets/images/kps.jpg';
+  avatar.alt = c.name;
+  avatar.style.width = '48px';
+  avatar.style.height = '48px';
+  avatar.style.borderRadius = '50%';
+  avatar.style.objectFit = 'cover';
+  avatar.style.marginRight = '14px';
+  avatar.style.flexShrink = '0';
+  avatar.style.border = '2px solid #e2e8f0';
+
+  const info = node('div', undefined, 'rowmain');
+  info.style.flex = '1';
+  
+  const titleRow = node('div', undefined);
+  titleRow.style.display = 'flex';
+  titleRow.style.alignItems = 'center';
+  titleRow.style.gap = '8px';
+  
+  const nameEl = node('strong', c.name);
+  nameEl.style.fontSize = '15px';
+  titleRow.append(nameEl);
+
+  if (c.badge) {
+   const badge = node('span', c.badge, 'pill private');
+   badge.style.fontSize = '11px';
+   badge.style.padding = '2px 8px';
+   titleRow.append(badge);
+  }
+
+  const orderBadge = node('span', '#' + (c.sort_order || 1), 'pill');
+  orderBadge.style.fontSize = '10px';
+  orderBadge.style.padding = '1px 6px';
+  orderBadge.style.background = '#f1f5f9';
+  orderBadge.style.color = '#475569';
+  titleRow.append(orderBadge);
+
+  const roleEl = node('small', c.role);
+  roleEl.style.display = 'block';
+  roleEl.style.color = '#64748b';
+  roleEl.style.marginTop = '2px';
+
+  const bioEl = node('p', c.bio);
+  bioEl.style.fontSize = '12.5px';
+  bioEl.style.color = '#334155';
+  bioEl.style.margin = '4px 0 0 0';
+  bioEl.style.lineHeight = '1.4';
+
+  const tagsArray = Array.isArray(c.tags) ? c.tags : [];
+  if (tagsArray.length) {
+   const tagsRow = node('div', undefined);
+   tagsRow.style.display = 'flex';
+   tagsRow.style.flexWrap = 'wrap';
+   tagsRow.style.gap = '4px';
+   tagsRow.style.marginTop = '6px';
+   tagsArray.forEach(t => {
+    const tPill = node('span', t, 'tiny');
+    tPill.style.background = '#eff6ff';
+    tPill.style.color = '#1d4ed8';
+    tPill.style.borderRadius = '4px';
+    tPill.style.padding = '1px 6px';
+    tPill.style.fontSize = '11px';
+    tagsRow.append(tPill);
+   });
+   info.append(titleRow, roleEl, bioEl, tagsRow);
+  } else {
+   info.append(titleRow, roleEl, bioEl);
+  }
+
+  const actions = node('div', undefined);
+  actions.style.display = 'flex';
+  actions.style.gap = '8px';
+  actions.style.alignItems = 'center';
+  actions.style.marginLeft = '12px';
+
+  const editBtn = node('button', 'Edit', 'btn');
+  editBtn.style.padding = '4px 10px';
+  editBtn.style.fontSize = '12px';
+  editBtn.addEventListener('click', () => openEditCoach(c));
+
+  const delBtn = node('button', 'Delete', 'btn');
+  delBtn.style.padding = '4px 10px';
+  delBtn.style.fontSize = '12px';
+  delBtn.style.color = '#ef4444';
+  delBtn.addEventListener('click', () => deleteCoach(c));
+
+  actions.append(editBtn, delBtn);
+
+  row.append(avatar, info, actions);
+  list.append(row);
+ });
+}
+
+function openEditCoach(c){
+ $('coach-form-card').classList.remove('hidden');
+ $('coach-form-title').textContent = c ? 'Edit Coach: ' + c.name : 'Add New Coach';
+ $('coach-id').value = c ? c.id : '';
+ $('coach-name').value = c ? c.name : '';
+ $('coach-role').value = c ? c.role : '';
+ $('coach-badge').value = c ? c.badge || '' : '';
+ $('coach-slug').value = c ? c.slug || '' : '';
+ $('coach-image').value = c ? c.image || 'assets/images/kps.jpg' : 'assets/images/kps.jpg';
+ $('coach-order').value = c ? c.sort_order || 1 : (coachesList.length + 1);
+ $('coach-tags').value = c ? (Array.isArray(c.tags) ? c.tags.join(', ') : c.tags || '') : '';
+ $('coach-bio').value = c ? c.bio || '' : '';
+ status('coach-form-status', '');
+ $('coach-name').focus();
+}
+
+async function deleteCoach(c){
+ if(!confirm('Are you sure you want to remove coach "' + c.name + '"?')) return;
+ try {
+  await call('/coaches/' + c.id, { method: 'DELETE' });
+  await loadCoaches();
+ } catch(e) {
+  alert('Failed to delete coach: ' + e.message);
+ }
+}
+
+$('btn-toggle-add-coach')?.addEventListener('click', () => {
+ const card = $('coach-form-card');
+ if (card.classList.contains('hidden')) {
+  openEditCoach(null);
+ } else {
+  card.classList.add('hidden');
+ }
+});
+
+$('btn-cancel-coach')?.addEventListener('click', () => {
+ $('coach-form-card').classList.add('hidden');
+ $('coach-form').reset();
+ status('coach-form-status', '');
+});
+
+$('refresh-coaches')?.addEventListener('click', () => loadCoaches());
+
+$('coach-form')?.addEventListener('submit', async e => {
+ e.preventDefault();
+ status('coach-form-status', 'Saving coach profile…');
+ $('btn-save-coach').disabled = true;
+
+ const id = $('coach-id').value;
+ const payload = {
+  name: $('coach-name').value.trim(),
+  role: $('coach-role').value.trim(),
+  badge: $('coach-badge').value.trim(),
+  slug: $('coach-slug').value.trim(),
+  image: $('coach-image').value.trim(),
+  sort_order: parseInt($('coach-order').value, 10) || 1,
+  tags: $('coach-tags').value.split(',').map(t => t.trim()).filter(Boolean),
+  bio: $('coach-bio').value.trim()
+ };
+
+ try {
+  if (id) {
+   await call('/coaches/' + id, { method: 'PATCH', body: JSON.stringify(payload) });
+   status('coach-form-status', 'Coach updated successfully!');
+  } else {
+   await call('/coaches', { method: 'POST', body: JSON.stringify(payload) });
+   status('coach-form-status', 'Coach added successfully!');
+  }
+  setTimeout(() => {
+   $('coach-form-card').classList.add('hidden');
+   $('coach-form').reset();
+   status('coach-form-status', '');
+  }, 1000);
+  await loadCoaches();
+ } catch(err) {
+  alertErr(err, 'coach-form-status');
+ } finally {
+  $('btn-save-coach').disabled = false;
+ }
+});
+
 if(location.hostname==='youngstarcricketacademy.com'||location.hostname==='www.youngstarcricketacademy.com'){location.replace('https://ysca.pages.dev/manager/updates.html')}
 else start();
 })();
