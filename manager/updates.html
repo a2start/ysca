@@ -227,6 +227,32 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
   <footer>YSCA Manager · WhatsApp sharing requires selecting and sending to recipients inside WhatsApp. <a href="/updates.html" target="_blank" rel="noopener">View public updates ↗</a></footer>
  </main>
 </div>
+<!-- Password Change Modal -->
+<div id="password-modal" class="hidden" style="position:fixed;inset:0;background:rgba(15,23,42,0.6);display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px;">
+ <div style="background:#fff;border-radius:12px;padding:24px;max-width:380px;width:100%;box-shadow:0 20px 25px -5px rgba(0,0,0,0.15);">
+  <h3 style="margin-top:0;margin-bottom:8px;font-size:1.2rem;color:#0f172a;">Change Password</h3>
+  <p class="hint" style="margin-bottom:16px;font-size:0.85rem;">Update your login password. Must be at least 8 characters.</p>
+  <form id="password-form" class="form">
+   <div class="field" style="margin-bottom:12px;">
+    <label for="pwd-current">Current Password</label>
+    <input type="password" id="pwd-current" autocomplete="current-password" required placeholder="Enter current password">
+   </div>
+   <div class="field" style="margin-bottom:12px;">
+    <label for="pwd-new">New Password</label>
+    <input type="password" id="pwd-new" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters">
+   </div>
+   <div class="field" style="margin-bottom:14px;">
+    <label for="pwd-confirm">Confirm New Password</label>
+    <input type="password" id="pwd-confirm" autocomplete="new-password" required minlength="8" placeholder="Repeat new password">
+   </div>
+   <p id="password-status" class="status" role="status" aria-live="polite" style="margin-bottom:12px;font-size:0.85rem;"></p>
+   <div style="display:flex;gap:8px;justify-content:flex-end;">
+    <button type="button" class="btn" id="btn-cancel-password">Cancel</button>
+    <button type="submit" class="btn primary" id="btn-save-password">Update Password</button>
+   </div>
+  </form>
+ </div>
+</div>
 <script>
 (function(){
 'use strict';
@@ -572,6 +598,56 @@ $('login-form').addEventListener('submit',async e=>{
 });
 $('logout').addEventListener('click',async()=>{try{await call('/auth',{method:'POST',body:JSON.stringify({action:'logout'})})}catch(_){}
  authenticate(false);items=[];editingId=null;currentUser=null;usersList=[];});
+
+$('btn-change-password')?.addEventListener('click',()=>{
+ const modal = $('password-modal');
+ modal.classList.remove('hidden');
+ $('password-form').reset();
+ status('password-status','');
+ $('pwd-current').focus();
+});
+$('btn-cancel-password')?.addEventListener('click',()=>{
+ $('password-modal').classList.add('hidden');
+ $('password-form').reset();
+ status('password-status','');
+});
+$('password-form')?.addEventListener('submit',async e=>{
+ e.preventDefault();
+ const cur = $('pwd-current').value;
+ const p1 = $('pwd-new').value;
+ const p2 = $('pwd-confirm').value;
+ if(p1.length < 8){
+  status('password-status','New password must be at least 8 characters.',true);
+  return;
+ }
+ if(p1 !== p2){
+  status('password-status','New passwords do not match.',true);
+  return;
+ }
+ status('password-status','Updating password…');
+ $('btn-save-password').disabled = true;
+ try {
+  const res = await call('/auth', {
+   method: 'POST',
+   body: JSON.stringify({
+    action: 'change-password',
+    current_password: cur,
+    new_password: p1
+   })
+  });
+  status('password-status', res.message || 'Password updated successfully!');
+  $('password-form').reset();
+  setTimeout(()=>{
+   $('password-modal').classList.add('hidden');
+   status('password-status','');
+  }, 1500);
+ } catch(err) {
+  alertErr(err, 'password-status');
+ } finally {
+  $('btn-save-password').disabled = false;
+ }
+});
+
 $('btn-toggle-add-user')?.addEventListener('click',()=>{
  const card = $('add-user-card');
  card.classList.toggle('hidden');
