@@ -40,3 +40,14 @@ INSERT OR IGNORE INTO ysca_whatsapp_groups(id,label) VALUES
   ('group-2','WhatsApp Group 2'),
   ('group-3','WhatsApp Group 3'),
   ('group-4','WhatsApp Group 4');
+
+CREATE TABLE IF NOT EXISTS ysca_users (
+  id TEXT PRIMARY KEY,
+  username TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  name TEXT NOT NULL,
+  role TEXT NOT NULL CHECK (role IN ('admin', 'manager')),
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_ysca_users_username ON ysca_users(username);

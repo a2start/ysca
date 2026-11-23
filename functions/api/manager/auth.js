@@ -1,31 +1,22 @@
-import { configured, json, sameOrigin, passwordMatches, sessionCookie, clearSessionCookie, hasSession, rateCheck } from '../../_lib/ysca-manager.js';
+import { configured, json, sameOrigin, passwordMatches, sessionCookie, clearSessionCookie, hasSession, rateCheck, ensureUsersTable, verifyUserPassword } from '../../_lib/ysca-manager.js';
 
 export async function onRequestGet({ request, env }) {
   if (!configured(env)) {
-    // Temporary staging-only diagnosis: expose missing setting names, never secret values.
-    // Keep production responses generic, and remove this branch-only diagnostic after setup.
-    const isDashboardPreview = new URL(request.url).hostname ===
-      'feature-manager-updates-dash.ysca.pages.dev';
-    if (!isDashboardPreview) return json({ authenticated: false, configured: false }, 503);
-
-    const missing = [];
-    if (!env?.DB) missing.push('DB (D1 database binding)');
-    if (typeof env?.YSCA_MANAGER_PASSWORD !== 'string' ||
-        env.YSCA_MANAGER_PASSWORD.length < 12) {
-      missing.push('YSCA_MANAGER_PASSWORD (minimum 12 characters)');
-    }
-    if (typeof env?.YSCA_MANAGER_SESSION_SECRET !== 'string' ||
-        env.YSCA_MANAGER_SESSION_SECRET.length < 32) {
-      missing.push('YSCA_MANAGER_SESSION_SECRET (minimum 32 characters)');
-    }
-    return json({
-      authenticated: false,
-      configured: false,
-      missing,
-      error: 'Preview setup incomplete: ' + missing.join('; ')
-    }, 503);
+    return json({ authenticated: false, configured: false }, 503);
   }
-  return json({ authenticated: await hasSession(request, env.YSCA_MANAGER_SESSION_SECRET), configured: true });
+  const session = await hasSession(request, env.YSCA_MANAGER_SESSION_SECRET);
+  if (!session) {
+    return json({ authenticated: false, configured: true });
+  }
+  return json({
+    authenticated: true,
+    configured: true,
+    user: {
+      username: session.username || 'admin',
+      role: session.role || 'manager',
+      name: session.name || (session.role === 'admin' ? 'Primary Admin' : 'Manager')
+    }
+  });
 }
 
 export async function onRequestPost({ request, env }) {
@@ -38,9 +29,51 @@ export async function onRequestPost({ request, env }) {
   if (input?.action !== 'login') return json({ error: 'Invalid action' }, 400);
   const allowed = await rateCheck(env.DB, request, env.YSCA_MANAGER_SESSION_SECRET);
   if (!allowed) return json({ error: 'Too many login attempts. Try again in 15 minutes.' }, 429);
-  if (!await passwordMatches(input.password, env.YSCA_MANAGER_PASSWORD)) {
-    return json({ error: 'Incorrect password' }, 401);
+
+  const username = typeof input.username === 'string' ? input.username.trim().toLowerCase() : '';
+  const password = typeof input.password === 'string' ? input.password : '';
+  if (!password) return json({ error: 'Password required' }, 400);
+
+  let authenticatedUser = null;
+
+  // 1. Primary admin: if username is empty, 'admin', or directly matches env.YSCA_MANAGER_PASSWORD
+  if (!username || username === 'admin') {
+    if (await passwordMatches(password, env.YSCA_MANAGER_PASSWORD)) {
+      authenticatedUser = { username: 'admin', name: 'Primary Admin', role: 'admin' };
+    }
   }
-  const cookie = await sessionCookie(env.YSCA_MANAGER_SESSION_SECRET);
-  return json({ success: true }, 200, { 'Set-Cookie': cookie });
+
+  // 2. Database users (created by admin)
+  if (!authenticatedUser && username && env.DB) {
+    try {
+      await ensureUsersTable(env.DB);
+      const user = await env.DB.prepare(
+        'SELECT id, username, name, password_hash, role FROM ysca_users WHERE LOWER(username) = ?'
+      ).bind(username).first();
+      if (user && await verifyUserPassword(password, user.password_hash)) {
+        authenticatedUser = { username: user.username, name: user.name, role: user.role };
+      }
+    } catch (e) {
+      console.error('User DB auth check failed:', e);
+    }
+  }
+
+  // 3. Fallback: if username was not provided or entered something else but password matches admin
+  if (!authenticatedUser && await passwordMatches(password, env.YSCA_MANAGER_PASSWORD)) {
+    authenticatedUser = { username: 'admin', name: 'Primary Admin', role: 'admin' };
+  }
+
+  if (!authenticatedUser) {
+    return json({ error: 'Incorrect username or password' }, 401);
+  }
+
+  const cookie = await sessionCookie(env.YSCA_MANAGER_SESSION_SECRET, authenticatedUser);
+  return json({
+    success: true,
+    user: {
+      username: authenticatedUser.username,
+      name: authenticatedUser.name,
+      role: authenticatedUser.role
+    }
+  }, 200, { 'Set-Cookie': cookie });
 }

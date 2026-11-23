@@ -51,9 +51,12 @@ export async function passwordMatches(supplied, expected) {
 async function hmacKey(secret) {
   return crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
 }
-export async function sessionCookie(secret) {
+export async function sessionCookie(secret, user = { role: 'admin', username: 'admin' }) {
   const payload = encode64(enc.encode(JSON.stringify({
-    role: 'manager', exp: Math.floor(Date.now() / 1000) + SESSION_AGE
+    role: user?.role === 'admin' ? 'admin' : 'manager',
+    username: user?.username || 'admin',
+    name: user?.name || 'Administrator',
+    exp: Math.floor(Date.now() / 1000) + SESSION_AGE
   })));
   const signature = await crypto.subtle.sign('HMAC', await hmacKey(secret), enc.encode(payload));
   return 'ysca_session=' + payload + '.' + encode64(new Uint8Array(signature)) +
@@ -74,9 +77,50 @@ export async function hasSession(request, secret) {
     const valid = await crypto.subtle.verify('HMAC', await hmacKey(secret), decode64(sig), enc.encode(payload));
     if (!valid) return false;
     const obj = JSON.parse(new TextDecoder().decode(decode64(payload)));
-    return obj?.role === 'manager' && Number.isInteger(obj.exp) &&
-      obj.exp > Math.floor(Date.now() / 1000) && obj.exp <= Math.floor(Date.now() / 1000) + SESSION_AGE;
+    if (['manager', 'admin'].includes(obj?.role) && Number.isInteger(obj.exp) &&
+      obj.exp > Math.floor(Date.now() / 1000) && obj.exp <= Math.floor(Date.now() / 1000) + SESSION_AGE) {
+      return obj;
+    }
+    return false;
   } catch (_) { return false; }
+}
+
+export async function hashPassword(password) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const key = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+    key,
+    256
+  );
+  return encode64(salt) + ':' + encode64(new Uint8Array(bits));
+}
+
+export async function verifyUserPassword(password, stored) {
+  if (typeof password !== 'string' || !stored || typeof stored !== 'string' || !stored.includes(':')) return false;
+  const [saltB64, hashB64] = stored.split(':');
+  const salt = decode64(saltB64);
+  const expected = decode64(hashB64);
+  const key = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits(
+    { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+    key,
+    256
+  );
+  return equalBytes(new Uint8Array(bits), expected);
+}
+
+export async function ensureUsersTable(db) {
+  if (!db) return;
+  await db.prepare(`CREATE TABLE IF NOT EXISTS ysca_users (
+    id TEXT PRIMARY KEY,
+    username TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    name TEXT NOT NULL,
+    role TEXT NOT NULL CHECK (role IN ('admin', 'manager')),
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+  )`).run();
 }
 export async function rateCheck(db, request, salt) {
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown';

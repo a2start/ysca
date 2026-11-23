@@ -93,7 +93,8 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
  <form id="login-form" class="login-card">
   <div class="kicker">Young Star Cricket Academy</div><h1>Welcome back</h1>
   <p class="hint">Sign in to manage academy announcements and updates.</p>
-  <div class="field"><label for="login-password">Manager password</label><input id="login-password" type="password" autocomplete="current-password" required></div>
+  <div class="field"><label for="login-username">Username <small style="color:#7c8da4;font-weight:400">(optional for admin)</small></label><input id="login-username" type="text" autocomplete="username" placeholder="Leave empty for admin password"></div>
+  <div class="field"><label for="login-password">Password</label><input id="login-password" type="password" autocomplete="current-password" required placeholder="Enter password"></div>
   <button type="submit" class="btn primary">Sign in →</button><p id="login-status" class="status" role="status" aria-live="polite"></p>
  </form>
 </section>
@@ -104,13 +105,14 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
    <button type="button" data-view="home" class="on"><span>⌂</span> Home</button>
    <button type="button" data-view="compose"><span>✎</span> Create</button>
    <button type="button" data-view="history"><span>▤</span> All updates</button>
+   <button type="button" data-view="users" id="nav-users" class="hidden"><span>👥</span> Team / Users</button>
   </nav></div>
   <div class="sidebar-note">Write once and share anywhere. Website updates publish automatically. WhatsApp opens for you to choose recipients and press Send.</div>
  </aside>
  <main class="workspace">
   <header class="topbar">
    <div><div class="kicker">Young Star Cricket Academy</div><h1 id="page-title">Manager dashboard</h1><p id="page-desc" class="hint">What would you like to share today?</p></div>
-   <div class="topbuttons"><button type="button" class="btn" id="logout">Sign out</button><button type="button" class="btn primary" id="new">+ New</button></div>
+   <div class="topbuttons"><span id="user-badge" class="pill" style="display:none;align-self:center;margin-right:4px;"></span><button type="button" class="btn" id="logout">Sign out</button><button type="button" class="btn primary" id="new">+ New</button></div>
   </header>
   <section id="home-view">
    <h2 class="sectiontitle">Quick actions</h2><p class="sectiondesc">Choose what you want to share. We'll prepare the rest.</p>
@@ -181,6 +183,47 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
     </div><div id="history-list"></div>
    </div></div>
   </section>
+  <section id="users-view" class="hidden">
+   <div class="panel">
+    <div class="panelhead">
+     <div><h2>Team & User Access</h2><p class="sectiondesc">Only you (the administrator) can manage and invite dashboard users.</p></div>
+     <button type="button" id="btn-toggle-add-user" class="btn primary">+ Add User</button>
+    </div>
+    <div class="panelbody">
+     <div id="add-user-card" class="panel hidden" style="border:1px dashed #d7e0ed;background:#fcfdff;padding:22px;margin-bottom:24px;">
+      <h3 class="sectiontitle" style="font-size:16px;">Add New Dashboard User</h3>
+      <p class="hint" style="margin-bottom:16px;">Create credentials for a coach or staff member to manage and publish academy updates.</p>
+      <form id="add-user-form" class="form">
+       <div class="twocol">
+        <div class="field"><label for="new-user-username">Username</label><input id="new-user-username" placeholder="e.g. coach_rahul" required pattern="[a-zA-Z0-9_.-]{3,30}" autocomplete="off"></div>
+        <div class="field"><label for="new-user-name">Full Name</label><input id="new-user-name" placeholder="e.g. Rahul Sharma" required autocomplete="off"></div>
+       </div>
+       <div class="twocol">
+        <div class="field"><label for="new-user-password">Password (min 8 characters)</label><input id="new-user-password" type="password" minlength="8" required placeholder="••••••••" autocomplete="new-password"></div>
+        <div class="field"><label for="new-user-role">Role</label>
+         <select id="new-user-role">
+          <option value="manager" selected>Manager (Create & Publish updates)</option>
+          <option value="admin">Admin (Can also manage users)</option>
+         </select>
+        </div>
+       </div>
+       <div class="cta" style="border-top:none;padding-top:4px;">
+        <button type="submit" class="btn primary" id="btn-create-user">Create User Account</button>
+        <button type="button" class="btn" id="btn-cancel-add-user">Cancel</button>
+        <span id="add-user-status" class="status" role="status" aria-live="polite"></span>
+       </div>
+      </form>
+     </div>
+     <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+       <span class="hint" id="users-count">Loading users…</span>
+       <button type="button" id="refresh-users" class="tiny">Refresh list</button>
+      </div>
+      <div id="users-list"></div>
+     </div>
+    </div>
+   </div>
+  </section>
   <footer>YSCA Manager · WhatsApp sharing requires selecting and sending to recipients inside WhatsApp. <a href="/updates.html" target="_blank" rel="noopener">View public updates ↗</a></footer>
  </main>
 </div>
@@ -189,7 +232,7 @@ footer{color:#8995a7;font-size:11px;margin-top:28px}
 'use strict';
 const api='/api/manager';
 const $=id=>document.getElementById(id);
-let items=[], current='home', actionType='announcement', editingId=null, loadedMedia=null, currentFileUrl=null, selectedStatus='all', busy=false;
+let items=[], current='home', actionType='announcement', editingId=null, loadedMedia=null, currentFileUrl=null, selectedStatus='all', busy=false, currentUser=null, usersList=[];
 const icons={announcement:'📢',fee:'💳',training:'🏏',match:'🏆',holiday:'🌴',event:'📅',photo:'📸',video:'🎬',general:'✎'};
 const labels={announcement:'Announcement',fee:'Fee reminder',training:'Training update',match:'Match update',holiday:'Holiday notice',event:'Event',photo:'Photo update',video:'Video update',general:'Other update'};
 const templates={
@@ -207,16 +250,97 @@ function node(tag,text,cls){const el=document.createElement(tag);if(text!==undef
 function status(id,txt,failed=false){const el=$(id);el.textContent=txt;el.className='status'+(failed?' error':'');}
 function alertErr(e,id){status(id,e?.message||'Something went wrong. Please try again.',true);}
 async function call(path,opts={}){const isForm=opts.body instanceof FormData;const r=await fetch(api+path,{credentials:'same-origin',...opts,headers:{...(isForm?{}:{'Content-Type':'application/json'}),...(opts.headers||{})}});const data=await r.json().catch(()=>({error:'Service unavailable'}));if(!r.ok)throw Error(data.error||'Request failed');return data;}
-function authenticate(yes){$('login-screen').classList.toggle('hidden',yes);$('app').classList.toggle('hidden',!yes);}
+function authenticate(yes, user = null){
+ currentUser = user;
+ $('login-screen').classList.toggle('hidden',yes);
+ $('app').classList.toggle('hidden',!yes);
+ updateAdminUI();
+}
+function updateAdminUI(){
+ const isAdmin = currentUser && currentUser.role === 'admin';
+ const nav = $('nav-users');
+ if (nav) nav.classList.toggle('hidden', !isAdmin);
+ const badge = $('user-badge');
+ if (badge) {
+  if (currentUser) {
+   badge.style.display = 'inline-flex';
+   badge.textContent = (currentUser.name || currentUser.username) + (isAdmin ? ' (Admin)' : ' (Manager)');
+   badge.className = 'pill ' + (isAdmin ? 'public' : 'private');
+  } else {
+   badge.style.display = 'none';
+  }
+ }
+}
 async function reload(){
  const response=await call('/updates');items=response.items||[];
  renderRecent();renderHistory();
 }
-function view(v){current=v;for(const id of ['home','compose','review','history'])$(id+'-view').classList.toggle('hidden',id!==v);
+function view(v){
+ if(v==='users' && (!currentUser || currentUser.role !== 'admin')) v='home';
+ current=v;
+ for(const id of ['home','compose','review','history','users']){
+  const el=$(id+'-view');
+  if(el) el.classList.toggle('hidden',id!==v);
+ }
  document.querySelectorAll('.menu button').forEach(b=>b.classList.toggle('on',b.dataset.view===v));
- $('page-title').textContent=({home:'Manager dashboard',compose:editingId?'Edit update':'Create an update',review:'Review & share',history:'All updates'})[v];
- $('page-desc').textContent=({home:'What would you like to share today?',compose:'A few details, then you are ready.',review:'Check the details before proceeding.',history:'Everything in one place.'})[v];
+ $('page-title').textContent=({home:'Manager dashboard',compose:editingId?'Edit update':'Create an update',review:'Review & share',history:'All updates',users:'Team & user access'})[v];
+ $('page-desc').textContent=({home:'What would you like to share today?',compose:'A few details, then you are ready.',review:'Check the details before proceeding.',history:'Everything in one place.',users:'Only you (the administrator) can manage and invite dashboard users.'})[v];
  window.scrollTo({top:0,behavior:'instant'});
+ if(v==='users') loadUsers();
+}
+async function loadUsers(){
+ if(!currentUser || currentUser.role !== 'admin') return;
+ $('users-count').textContent = 'Loading users…';
+ try{
+  const r = await call('/users');
+  usersList = r.users || [];
+  renderUsers();
+ }catch(e){
+  $('users-list').replaceChildren(node('div', 'Could not load users: ' + e.message, 'empty'));
+  $('users-count').textContent = 'Error loading users';
+ }
+}
+function renderUsers(){
+ const list = $('users-list'); list.replaceChildren();
+ $('users-count').textContent = usersList.length + ' registered ' + (usersList.length === 1 ? 'user' : 'users');
+ if(!usersList.length){
+  list.append(node('div', 'No users found.', 'empty'));
+  return;
+ }
+ usersList.forEach(u => {
+  const row = node('div', undefined, 'history-row');
+  const info = node('div', undefined, 'rowmain');
+  const actions = node('div', undefined, 'actions');
+  const rolePill = node('span', u.role === 'admin' ? 'Admin' : 'Manager', 'pill ' + (u.role === 'admin' ? 'public' : 'private'));
+  rolePill.style.marginLeft = '8px';
+  const titleWrap = node('div', undefined, undefined);
+  titleWrap.append(node('strong', u.name || u.username), rolePill);
+  const sub = node('small', '@' + u.username + (u.created_at ? ' · Added ' + safeDate(u.created_at) : ' · Primary System Account'));
+  info.append(titleWrap, sub);
+
+  if(!u.is_primary){
+   const delBtn = node('button', 'Delete', 'tiny delete-update');
+   delBtn.type = 'button';
+   delBtn.addEventListener('click', () => deleteUser(u));
+   actions.append(delBtn);
+  } else {
+   const badge = node('span', 'Root Admin', 'hint');
+   badge.style.fontSize = '11px';
+   actions.append(badge);
+  }
+  row.append(info, actions);
+  list.append(row);
+ });
+}
+async function deleteUser(u){
+ if(busy) return;
+ if(!confirm('Remove user access for "' + u.name + '" (@' + u.username + ')? They will no longer be able to sign in.')) return;
+ busy = true;
+ try{
+  await call('/users', { method: 'DELETE', body: JSON.stringify({ id: u.id }) });
+  await loadUsers();
+ }catch(e){ alert('Failed to delete user: ' + e.message); }
+ finally{ busy = false; }
 }
 function safeDate(iso){if(!iso)return '';const d=new Date(iso);return Number.isNaN(d.getTime())?'':d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}
 function stateOf(x){if(x.status==='archived')return 'Archived';if(x.status==='draft'&&whatsappSelected(x)&&!x.publish_website&&!x.publish_telegram)return 'Ready for WhatsApp';if(x.status==='draft')return 'Draft';return x.publish_website?'Published':'Processed'}
@@ -424,16 +548,66 @@ async function changeItem(x,action){
  catch(e){alert(e.message)}
 }
 async function start(){
- try{const r=await call('/auth');if(r.authenticated){authenticate(true);await reload();view('home')}}
+ try{const r=await call('/auth');if(r.authenticated){authenticate(true, r.user);await reload();view('home')}}
  catch(e){status('login-status','Backend not configured or unavailable. Contact the website administrator.',true)}
 }
 $('login-form').addEventListener('submit',async e=>{
  e.preventDefault();status('login-status','Signing in…');
- try{await call('/auth',{method:'POST',body:JSON.stringify({action:'login',password:$('login-password').value})});$('login-password').value='';authenticate(true);await reload();view('home');status('login-status','')}
- catch(err){alertErr(err,'login-status')}
+ try{
+  const res = await call('/auth',{method:'POST',body:JSON.stringify({
+   action:'login',
+   username:$('login-username').value.trim(),
+   password:$('login-password').value
+  })});
+  $('login-password').value='';
+  $('login-username').value='';
+  authenticate(true, res.user);
+  await reload();
+  view('home');
+  status('login-status','');
+ }catch(err){alertErr(err,'login-status')}
 });
 $('logout').addEventListener('click',async()=>{try{await call('/auth',{method:'POST',body:JSON.stringify({action:'logout'})})}catch(_){}
- authenticate(false);items=[];editingId=null;});
+ authenticate(false);items=[];editingId=null;currentUser=null;usersList=[];});
+$('btn-toggle-add-user')?.addEventListener('click',()=>{
+ const card = $('add-user-card');
+ card.classList.toggle('hidden');
+ status('add-user-status','');
+ if(!card.classList.contains('hidden')) $('new-user-username').focus();
+});
+$('btn-cancel-add-user')?.addEventListener('click',()=>{
+ $('add-user-card').classList.add('hidden');
+ $('add-user-form').reset();
+ status('add-user-status','');
+});
+$('refresh-users')?.addEventListener('click',()=>loadUsers());
+$('add-user-form')?.addEventListener('submit',async e=>{
+ e.preventDefault();
+ status('add-user-status','Creating account…');
+ $('btn-create-user').disabled=true;
+ try{
+  await call('/users',{
+   method:'POST',
+   body:JSON.stringify({
+    username:$('new-user-username').value.trim(),
+    name:$('new-user-name').value.trim(),
+    password:$('new-user-password').value,
+    role:$('new-user-role').value
+   })
+  });
+  status('add-user-status','User created successfully!');
+  $('add-user-form').reset();
+  setTimeout(()=>{
+   $('add-user-card').classList.add('hidden');
+   status('add-user-status','');
+  },1200);
+  await loadUsers();
+ }catch(err){
+  alertErr(err,'add-user-status');
+ }finally{
+  $('btn-create-user').disabled=false;
+ }
+});
 document.querySelectorAll('.menu button').forEach(b=>b.addEventListener('click',()=>b.dataset.view==='compose'?resetForm():view(b.dataset.view)));
 document.querySelectorAll('[data-quick]').forEach(b=>b.addEventListener('click',()=>resetForm(({schedule:'training',media:'photo'})[b.dataset.quick]||b.dataset.quick)));
 $('new').addEventListener('click',()=>resetForm());
